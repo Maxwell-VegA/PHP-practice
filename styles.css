@@ -1,0 +1,10 @@
+* {
+    background: black;
+    color: whitesmoke;
+    font-family: monospace;
+}
+
+h1 {
+    font-size: 32px;
+    color: red;
+}

@@ -1,10 +1,7 @@
 <?php
 
-require 'dbh.inc.php';
-
-
-
 if (isset($_POST['signup-submit'])) {
+    require 'dbh.inc.php';
     $username   =   $_POST['uid'];
     $email      =   $_POST['email'];
     $password   =   $_POST['pwd'];

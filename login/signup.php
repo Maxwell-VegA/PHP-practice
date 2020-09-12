@@ -1,7 +1,28 @@
 <?php
     require "header.php";
 ?>
-
+<?php
+    if (isset($_GET['error'])) {
+        if ($_GET['error'] == 'emptyfields') {
+            echo "please fill in all fields";
+        }
+        elseif ($_GET['error'] == 'invalidemailuid') {
+            echo "Invalid username and e-mail";
+        }
+        elseif ($_GET['error'] == 'invalidemail') {
+            echo "Invalid e-mail";
+        }
+        elseif ($_GET['error'] == 'invaliduid') {
+            echo "Invalid username";
+        }
+        elseif ($_GET['error'] == 'passwordcheck') {
+            echo "passwords do not match";
+        }
+        elseif ($_GET['error'] == 'usertaken') {
+            echo "username is already taken";
+        }
+    }
+?>
 <form action="includes/signup.inc.php" method="POST">
     <p>Username:</p>
     <input type="text"      name="uid">

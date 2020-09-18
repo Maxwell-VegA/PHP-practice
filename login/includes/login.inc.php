@@ -30,13 +30,9 @@ if (isset($_POST['login-submit'])) {
                 }
                 elseif ($pwdCheck == true) {
                     session_start();
-                    $_SESSION['userId'] = $row['idUsers'];
+                    $_SESSION['userId'] = $row['id'];
                     $_SESSION['userUid'] = $row['uidUsers'];
-                    // This is where you would add permissions 
-                    // For example
-                    // $_SESSION['userClass'] = $row['classUsers'];
-                    // I assume later it would involve an
-                    // if ($_SESSION['userClass'] == "admin") {do something}
+                    $_SESSION['userClass'] = $row['userClass'];
                     header("Location: ../login.php?login=success");
                     exit();
                 }

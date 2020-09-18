@@ -21,12 +21,12 @@ if (isset($_GET['signup'])) {
     else {
         ?>
         <form action="includes/login.inc.php" method="POST">
-        <p>Username or E-mail:</p>
-        <input type="text" name="mailuid">
-        <p>Password:</p>
-        <input type="password" name="pwd">
-        <!-- <br> -->
-        <button type="submit" name="login-submit">Login</button>
+            <p>Username or E-mail:</p>
+            <input type="text" name="mailuid">
+            <p>Password:</p>
+            <input type="password" name="pwd">
+            <!-- <br> -->
+            <button type="submit" name="login-submit">Login</button>
         </form>
         
         <a href="signup.php">Sign Up</a>      
@@ -39,8 +39,9 @@ if (isset($_GET['signup'])) {
 
 <main>
     <?php
-    if (isset($_SESSION['userId'])) {
-        echo '<p>You are logged in</p>';
+    if ($auth === true) {
+        echo '<p>Welcome ' . $_SESSION['userUid'] . '!</p>';
+        
     }
     else {
         echo '<p>Log in or register</p>';
@@ -53,11 +54,25 @@ if (isset($_GET['signup'])) {
 
 
 <?php
-    // require "footer.php";
+    require "footer.php";
 ?>
 
 
-</body>
-</html>
 
-<!-- For now this is index but later this will become the login screen that you can navigate to from the home page which I haven't yet created -->
+<!-- 
+CREATE TABLE users (
+	id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    uidUsers TINYTEXT NOT NULL,
+    emailUsers TINYTEXT NOT NULL,
+    pwdUsers LONGTEXT NOT NULL,
+	userClass BOOLEAN NOT NULL
+);
+
+CREATE TABLE todos (
+	id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    createdBy TINYTEXT NOT NULL,
+    entryTitle TINYTEXT NOT NULL,
+    entryContent LONGTEXT,
+	completed BOOLEAN NOT NULL
+);
+ -->

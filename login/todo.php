@@ -9,9 +9,9 @@
 
 <h1>Your to-do list:</h1>
 
-<form action="includes/newtodo.inc.php" method="POST">
+<form action="includes/newtodo.inc.php" method="POST" autocomplete="off">
     <p>Item name:</p>
-    <input type="text" name="entryTitle" placeholder="Today I will...">
+    <input type="text" name="entryTitle"  placeholder="Today I will...">
     <p>Entry description (optional):</p>
     <input type="text" name="entryContent" placeholder="Go for a walk if...">
     <!-- Perhaps I could add an optional "time when to do" -->
@@ -19,17 +19,30 @@
     <br>
     <button type="submit" name="createEntry">Create item!</button>
 </form>
-
+<br>
 
 <div class="todoItemsContainer">
 <?php
     if ($showPosts === true) {
         foreach ($titlesAndContents as $value) {
-            ?> <div class='anItem'> <?php
-            foreach ($value as $v) {
-                echo "<h3 class='itemTitle'>$v</h3>";
+            ?> 
+            <br> 
+            <div class='item-container'> 
+            <?php
+            echo $value['entryTitle'] . "<br>";
+            echo $value['entryContent'] . "<br>";
+            if ($value['completed'] != 0) {
+            ?> <a href="/php_practice/login/includes/modifytodo.inc.php?action=incompleted&item=<?php echo $value['id']; ?>">unmark</a> <?php
             }
-            ?> </div> <?php
+            else {
+            ?> <a href="/php_practice/login/includes/modifytodo.inc.php?action=completed&item=<?php echo $value['id']; ?>">mark as completed</a> <?php
+            }
+            ?> 
+            <a href="/php_practice/login/includes/modifytodo.inc.php?action=delete&item=<?php echo $value['id']; ?>">delete</a>
+
+
+            </div> 
+            <?php
         }
     }
     else {
@@ -45,7 +58,7 @@
 
 <!-- Theres an issue creating discription-less entries - check newtodo.inc.php -->
 
-<!-- Create search and tag functionalities for the notes part -->
+<!-- Create search, date (now()) and tag functionalities for the notes part -->
 
 
 
@@ -64,5 +77,3 @@
 <?php
     require "footer.php";
 ?>
-
-<!-- Perhaps we can add classes to the to-do items? Or should I leave that just for notes. -->

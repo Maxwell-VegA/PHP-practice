@@ -1,35 +1,32 @@
 <?php
     require "header.php";
-?>
-<br>
 
-<?php
-if (isset($_GET['signup'])) {
-        if ($_GET['signup'] == 'success') {
-            echo "Signup successful!";
+    if (isset($_GET['signup'])) {
+            if ($_GET['signup'] == 'success') {
+                echo "Signup successful!";
+            }
         }
-    }
 ?>
+
 <?php
     if ($auth === true) {
         ?>
-        <form action="includes/logout.inc.php" method="POST">
-            <button type="submit" name="logout-submit">Log Out</button>
-        </form>   
+
         <?php
     }
     else {
         ?>
-        <form action="includes/login.inc.php" method="POST">
+        <main class="login-main">
+        <form action="includes/login.inc.php" method="POST" autocomplete="off">
             <p>Username or E-mail:</p>
             <input type="text" name="mailuid">
             <p>Password:</p>
             <input type="password" name="pwd">
-            <!-- <br> -->
+            <br>
             <button type="submit" name="login-submit">Login</button>
+            <a href="signup.php">Sign Up</a>      
         </form>
-        
-        <a href="signup.php">Sign Up</a>      
+        </main>
         <?php
     }
 ?>
@@ -37,7 +34,7 @@ if (isset($_GET['signup'])) {
 
 
 
-<main>
+<div class="login-message">
     <?php
     if ($auth === true) {
         echo '<p>Welcome ' . $_SESSION['userUid'] . '!</p>';
@@ -49,7 +46,7 @@ if (isset($_GET['signup'])) {
     ?>
 
     
-</main>
+</div>
 
 
 
@@ -74,5 +71,25 @@ CREATE TABLE todos (
     entryTitle TINYTEXT NOT NULL,
     entryContent LONGTEXT,
 	completed BOOLEAN NOT NULL
+);
+ -->
+<!-- 
+ // $sql = "SELECT * FROM users";
+// $result = mysqli_query($conn, $sql);
+// if (mysqli_num_rows($result) > 0) {
+//     while($row = mysqli_fetch_assoc($result)) {
+//         $output[] = $row;
+//     }
+// } -->
+
+<!-- 
+    CREATE TABLE notes (
+	id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    createdBy TINYTEXT NOT NULL,
+    noteTitle TINYTEXT NOT NULL,
+    noteText LONGTEXT,
+    noteSubText LONGTEXT,
+	created DATETIME NOT NULL,
+    lastModified DATETIME NOT NULL
 );
  -->

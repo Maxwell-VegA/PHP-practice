@@ -26,11 +26,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHP-Practice</title>
-    <link href="styles.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-    
-
+<nav>
+    <div class="nav-container">
 <?php 
     ?>
     <a href="login.php">Home</a>
@@ -42,9 +42,9 @@
     }
     elseif ($auth === true) {
         ?>
-        <a href="todo.php">To-Do List</a>
+        <a href="todo.php">To-Do</a>
         <a href="notes.php">Notes</a>
-        <a href="profile.php">Profile</a>
+        <!-- <a href="profile.php">Profile</a> -->
         <form action="includes/logout.inc.php" method="POST">
             <button type="submit" name="logout-submit">Log Out</button>
         </form>   
@@ -52,8 +52,10 @@
         if ($adminPermissions === true) {
             echo "<span>User Class - 1</span>";
         }
-    }
-
-    
-
+        else {
+            echo "<span>User Class - 0</span>";
+        }
+    }  
 ?>
+    </div>
+</nav>

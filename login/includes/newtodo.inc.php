@@ -4,8 +4,8 @@ session_start();
 if (isset($_POST['createEntry'])) {
     require 'dbh.inc.php';
     $createdBy  =   $_SESSION['userUid'];
-    $title      =   $_POST['entryTitle'];
-    $content    =   $_POST['entryContent'];
+    $title      =   trim($_POST['entryTitle']);
+    $content    =   trim($_POST['entryContent']);
     $completed  =   0;
 
     if (empty($title) || empty($content)) {
@@ -23,9 +23,10 @@ if (isset($_POST['createEntry'])) {
         else {
             // bind the data in place of the placeholders
             mysqli_stmt_bind_param($stmt, "sss", $createdBy, $title, $content);
-            header("Location: ../todo.php");
             // Execute the statement
             mysqli_stmt_execute($stmt);
+            header("Location: ../todo.php");
+            exit();
         }
     }   
 }

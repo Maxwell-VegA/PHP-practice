@@ -6,12 +6,21 @@
             header("Location: login.php");
     }
 ?>
+<!-- <script>
+    $(document).ready(function () {
+        $('#firstIn').click(function () { 
+            var input = $('#firstIn').val();
+            alert(input);
+            
+        });
+    });
+</script> -->
 
 <h1>Your to-do list:</h1>
 
 <form action="includes/newtodo.inc.php" method="POST" autocomplete="off">
     <p>Item name:</p>
-    <input type="text" name="entryTitle"  placeholder="Today I will...">
+    <input id="firstIn" type="text" name="entryTitle"  placeholder="Today I will...">
     <p>Entry description (optional):</p>
     <input type="text" name="entryContent" placeholder="Go for a walk if...">
     <!-- Perhaps I could add an optional "time when to do" -->

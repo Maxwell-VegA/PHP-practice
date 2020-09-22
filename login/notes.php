@@ -13,15 +13,11 @@
 <!-- ======================================================== -->
 
 <header>
-    <!-- <div class="notes-title-container">
-        <h1 class="notes-title">Notes</h1>
-    </div> -->
     <div class="notes-leftside-options-container">
         <form action="includes/createcategory.inc.php" method="POST" autocomplete="off">
-            <label for="newCategoryName">New category:</label>
-            <input type="text" name="newCategoryName" placeholder="Category Name" maxlength="14">
-            <label for="newCategoryColor">Color:</label>
-            <input type="color" name="newCategoryColor" value="#ff0000">
+            <input type="text" name="newCategoryName" placeholder="New category..." maxlength="14">
+            <label for="clr">Color:</label>
+            <input id="clr" type="color" name="newCategoryColor" value="#ff0000">
             <button type="submit" name="newCategorySubmit">Create</button>
         </form>
     </div>
@@ -47,7 +43,7 @@
                     $index++;
                     $cName = $aCategory['categoryName'];
                     echo "<a class='category categoryBtn categoryBtn$index' ";
-                    echo "style='background-color: " . $aCategory['color'] . ";'>";
+                    echo "style='border-color: " . $aCategory['color'] . ";'>";
                     echo $cName;
                     echo "</a>";
                     echo "<script>var valueCategory$index = '$cName';</script>";
@@ -155,19 +151,21 @@
 <!-- I probably should create that pin function -->
 <!-- create note categories aren't showing up when I'm sorting by a certain category. When in a category that category should be the default for a new note -->
 <!-- The all category is still reloding the whole page -->
+<!-- A neumorphic inset bed for all the categories -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->
 <!-- Sorting, subtext hover, the fullnote page, change note category by clicking on it-->
 <!-- ======================================================== -->
 
+<!-- <div class="bgdec" id="background-decoration"></div> -->
 <section id="notes-main-section">
-    <!-- <div id="background-decoration"> -->
-    <!-- </div> -->
     <?php
     require "innernotes.php";
     ?>
 </section>
+<div class="bgdec" id="background-decoration0"></div>
+<div class="bgdec" id="background-decoration1"></div>
 
 <!-- ======================================================== -->
 <!-- ======================================================== -->

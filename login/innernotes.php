@@ -59,7 +59,7 @@
             echo "<h2>" . $note['noteTitle']    . "</h2>";
             echo "<p>"  . $note['noteText']     . "</p>";
             echo "<span>" . $note['lastModified'] . "</span>";
-            echo "<div><i style='background-color: " . $note['categoryColor'] . ";'>" . $note['category'] . "</i></div>";
+            echo "<div><i style='border-color: " . $note['categoryColor'] . ";'>" . $note['category'] . "</i></div>";
             ?> <b><a href="/php_practice/login/fullnote.php?note=<?php echo $note['id']; ?>">View full note</a></b> </div> <?php
         }
     }

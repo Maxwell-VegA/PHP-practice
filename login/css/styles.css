@@ -1,18 +1,55 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: monospace;
-  color: #eeeeee;
-  text-decoration: none;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
 }
 
 body {
-  background: #212121;
-  height: 100vh;
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  font-family: 'Roboto Mono', monospace;
+  color: #eeeeee;
+  text-decoration: none;
+  outline: none;
+  font-size: 13px;
+}
+
+body {
+  background: #141414;
+  overflow-x: hidden;
 }
 
 button {
-  background: #212121;
+  background: #141414;
   border: none;
   padding: .4rem;
 }
@@ -22,10 +59,11 @@ button:hover {
 }
 
 nav {
+  display: none;
   position: relative;
   width: 100vw;
   height: 60px;
-  background: #111111;
+  background: #141414;
 }
 
 nav .nav-container {
@@ -105,11 +143,13 @@ nav .nav-container a {
 }
 
 header {
+  position: fixed;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 200px 1fr 300px;
-      grid-template-columns: 200px 1fr 300px;
+  -ms-grid-columns: 300px 1fr 300px;
+      grid-template-columns: 300px 1fr 300px;
   width: 100%;
+  top: 0;
 }
 
 .categories-bar-overlay {
@@ -117,22 +157,22 @@ header {
   z-index: 2;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 200px 1fr 300px;
-      grid-template-columns: 200px 1fr 300px;
-  height: 80px;
+  -ms-grid-columns: 300px 1fr 300px;
+      grid-template-columns: 300px 1fr 300px;
+  height: 120px;
   width: 100%;
   pointer-events: none;
-  -webkit-box-shadow: 5px 5px 5px 3px #000000af;
-          box-shadow: 5px 5px 5px 3px #000000af;
+  -webkit-box-shadow: 5px 5px 10px 5px #00000092;
+          box-shadow: 5px 5px 10px 5px #00000092;
 }
 
 .categories-bar-overlay div {
-  background: #212121;
+  background: #141414;
 }
 
 .categories-bar-overlay .categories-overlay-middle {
-  background: -webkit-gradient(linear, left top, right top, from(#212121), color-stop(4rem, #21212100), color-stop(90%, #21212100), to(#212121));
-  background: linear-gradient(90deg, #212121 0%, #21212100 4rem, #21212100 90%, #212121 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#141414), color-stop(4rem, #14141400), color-stop(90%, #14141400), to(#141414));
+  background: linear-gradient(90deg, #141414 0%, #14141400 4rem, #14141400 90%, #141414 100%);
 }
 
 .categories-container::-webkit-scrollbar {
@@ -145,12 +185,12 @@ header {
 }
 
 .categories-container {
-  height: 80px;
+  height: 120px;
   justify-items: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: #212121;
+  background: #141414;
   overflow: hidden;
   overflow-x: scroll;
 }
@@ -167,22 +207,112 @@ header {
   font-style: italic;
   margin: .5rem;
   padding: .25rem 1rem;
-  background: #ff0000;
+  background: #141414;
   border-radius: 9999px;
+  border: #ff0000 2px solid;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
 }
 
 .categories-container .inner-categories-container .category:hover {
+  text-decoration: underline;
+  text-shadow: 0px 0px 7px #ffffff;
   cursor: pointer;
+}
+
+select {
+  padding: 0.25rem;
+  background: #141414;
+  border-radius: 12px;
+}
+
+select option {
+  background: #141414 !important;
+}
+
+select option:hover {
+  background: #ff0000;
 }
 
 .notes-leftside-options-container {
   position: relative;
   z-index: 3;
+  padding: 1.5rem 2.5rem;
+  background: #141414;
+}
+
+.notes-leftside-options-container form {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 35% 35% 20%;
+      grid-template-columns: 35% 35% 20%;
+  -ms-grid-rows: 3fr 2fr;
+      grid-template-rows: 3fr 2fr;
+      grid-template-areas: "input input create" "label color color";
+  width: 260px;
+}
+
+.notes-leftside-options-container button {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: create;
+  color: #ff0000;
+  font-weight: bold;
+  font-size: 1.15rem;
+  -webkit-transition-duration: 0.1s;
+          transition-duration: 0.1s;
+  border-radius: 12px;
+  -webkit-box-shadow: 3px 3px 2px 2px #00000092, -3px -3px 2px 2px #21212192;
+          box-shadow: 3px 3px 2px 2px #00000092, -3px -3px 2px 2px #21212192;
+}
+
+.notes-leftside-options-container button:hover {
+  color: #ff0000;
+  text-decoration: underline;
+  text-shadow: 0px 0px 7px #ff0000;
+  cursor: pointer;
+}
+
+.notes-leftside-options-container input {
+  padding: 0.25rem;
+  background: #141414;
+  border-radius: 12px;
+}
+
+.notes-leftside-options-container input:nth-child(1) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: input;
+  padding: .75rem 0rem .25rem 1.5rem;
+  border: 1px solid #14141400;
+  -webkit-box-shadow: inset 3px 3px 2px 2px #00000092, inset -3px -3px 2px 2px #21212192;
+          box-shadow: inset 3px 3px 2px 2px #00000092, inset -3px -3px 2px 2px #21212192;
+}
+
+.notes-leftside-options-container input:nth-child(1):focus {
+  border: 1px solid #dd0000;
+}
+
+.notes-leftside-options-container input:nth-child(3) {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
+  grid-area: color;
+  background: #14141400 !important;
+  height: 30px;
+  width: 100%;
+}
+
+.notes-leftside-options-container input:nth-child(3):hover {
+  cursor: pointer;
 }
 
 .notes-rightside-options-container {
   position: relative;
   z-index: 3;
+  padding: .5rem 2.5rem;
+  background: #141414;
 }
 
 section {
@@ -194,7 +324,7 @@ section {
   grid-gap: 2.5rem;
   width: 80%;
   max-width: 80rem;
-  margin: 2rem auto;
+  margin: 11rem auto;
 }
 
 section .note-input {
@@ -205,10 +335,10 @@ section .note-input {
   -ms-grid-rows: 4rem 1fr 3rem 3rem;
       grid-template-rows: 4rem 1fr 3rem 3rem;
       grid-template-areas: "title title" "content content" "category category" "date full";
-  background: #212121;
+  background: #141414;
   border-radius: 12px;
-  -webkit-box-shadow: 5px 5px 5px 3px #000000af, -5px -5px 5px 3px #333333af;
-          box-shadow: 5px 5px 5px 3px #000000af, -5px -5px 5px 3px #333333af;
+  -webkit-box-shadow: 5px 5px 5px 3px #00000092, -5px -5px 5px 3px #21212192;
+          box-shadow: 5px 5px 5px 3px #00000092, -5px -5px 5px 3px #21212192;
 }
 
 section .note-input input {
@@ -218,9 +348,8 @@ section .note-input input {
   color: #eeeeee;
   width: 93%;
   padding: 3.5%;
-  background: #212121;
+  background: #141414;
   border: none;
-  outline: none;
 }
 
 section .note-input input:nth-child(1) {
@@ -237,9 +366,8 @@ section .note-input textarea {
   color: #eeeeee;
   width: 93%;
   padding: 3.5%;
-  background: #212121;
+  background: #141414;
   border: none;
-  outline: none;
   resize: none;
   border-top: 1px #eeeeee dashed;
   border-bottom: 1px #eeeeee dashed;
@@ -250,7 +378,7 @@ section .note-input input:nth-child(3) {
 }
 
 section .note-input select:nth-child(4) {
-  background: #212121;
+  background: #141414;
   border: none;
   border-bottom-left-radius: 12px;
   outline: none;
@@ -285,16 +413,16 @@ section .note-container {
   display: grid;
   -ms-grid-columns: 35% 65%;
       grid-template-columns: 35% 65%;
-  -ms-grid-rows: 3rem 1fr 1.8rem 2rem;
-      grid-template-rows: 3rem 1fr 1.8rem 2rem;
+  -ms-grid-rows: 3rem 1fr 2rem 2rem;
+      grid-template-rows: 3rem 1fr 2rem 2rem;
       grid-template-areas: "title title" "content content" "category category" "date full";
   grid-row-gap: 1rem;
   padding: 1.5rem;
   padding-bottom: 3rem;
-  background: #212121;
+  background: #141414;
   border-radius: 12px;
-  -webkit-box-shadow: 5px 5px 5px 3px #000000af, -5px -5px 5px 3px #333333af;
-          box-shadow: 5px 5px 5px 3px #000000af, -5px -5px 5px 3px #333333af;
+  -webkit-box-shadow: 5px 5px 5px 3px #00000092, -5px -5px 5px 3px #21212192;
+          box-shadow: 5px 5px 5px 3px #00000092, -5px -5px 5px 3px #21212192;
 }
 
 section .note-container h2 {
@@ -307,6 +435,7 @@ section .note-container h2 {
 }
 
 section .note-container p {
+  color: #9b9b9b;
   -ms-grid-row: 2;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
@@ -330,11 +459,20 @@ section .note-container div {
 section .note-container div i {
   display: block;
   float: right;
+  color: #eeeeee;
   font-style: italic;
   bottom: 0px;
   padding: .25rem 1rem;
-  background: #ff0000;
+  background: #141414;
   border-radius: 9999px;
+  border: #ff0000 2px solid;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+}
+
+section .note-container div i:hover {
+  color: #ffffff;
+  text-shadow: 0px 0px 7px #ffffff;
 }
 
 section .note-container a {
@@ -342,11 +480,50 @@ section .note-container a {
   -ms-grid-column: 2;
   grid-area: full;
   float: right;
-  color: #ff0000;
+  color: #dd0000;
+  -webkit-transition-duration: 0.1s;
+          transition-duration: 0.1s;
 }
 
 section .note-container a:hover {
-  cursor: pointer;
+  color: #ff0000;
   text-decoration: underline;
+  text-shadow: 0px 0px 7px #ff0000;
+  cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  * {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1840px) {
+  .bgdec {
+    position: fixed;
+    z-index: -1;
+    height: 120%;
+    top: 0px;
+    overflow-y: hidden;
+    background: #141414;
+    pointer-events: none;
+    -webkit-box-shadow: 5px 5px 8px 5px #00000092, -5px -5px 8px 5px #21212192;
+            box-shadow: 5px 5px 8px 5px #00000092, -5px -5px 8px 5px #21212192;
+  }
+  #background-decoration {
+    width: 96%;
+    max-width: 96rem;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+  #background-decoration0 {
+    width: 10%;
+    left: 10%;
+  }
+  #background-decoration1 {
+    width: 10%;
+    left: 80%;
+  }
 }
 /*# sourceMappingURL=styles.css.map */

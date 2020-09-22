@@ -16,9 +16,18 @@
     <div class="notes-leftside-options-container">
         <form action="includes/createcategory.inc.php" method="POST" autocomplete="off">
             <input type="text" name="newCategoryName" placeholder="New category..." maxlength="14">
-            <label for="clr">Color:</label>
-            <input id="clr" type="color" name="newCategoryColor" value="#ff0000">
-            <button type="submit" name="newCategorySubmit">Create</button>
+            <label class="color-example" for="clr">color</label>
+            <input id="clr" type="color" name="newCategoryColor" value="#8f8f8f">
+            <button id="category-create-btn" type="submit" name="newCategorySubmit">Create</button>
+            <script>
+                $(document).ready(function () {
+                    $("#clr").change(function (e) { 
+                        var currentColor = $(this).val();
+                        // console.log(currentColor);
+                        $(".color-example").css("border-color", currentColor);
+                    });
+                });
+            </script>
         </form>
     </div>
 
@@ -34,7 +43,6 @@
         <?php 
             if ($showCategories === false) {
                 echo "no categories";
-                // figure out how to deal with the default unsorted category
             }
             else {
                 $index = 0;
@@ -89,7 +97,7 @@
             }
             ?>
         </select>
-        <br>
+
         <label for="order-by">Order by:</label>
         <select name="" id="order-by">
             <option value="0">Last modified</option>
@@ -152,6 +160,7 @@
 <!-- create note categories aren't showing up when I'm sorting by a certain category. When in a category that category should be the default for a new note -->
 <!-- The all category is still reloding the whole page -->
 <!-- A neumorphic inset bed for all the categories -->
+<!-- When the all category is selected through the leftside dropdown menu it displays nothing - BUG -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->

@@ -2,7 +2,7 @@
     require 'dbh.inc.php';
     $currentUser = $_SESSION['userUid'];
     $showCategories = false;
-    $sql = "SELECT id FROM categories WHERE createdBy='$currentUser';";
+    $sql = "SELECT id FROM categories WHERE createdBy='$currentUser' OR categoryName = 'unsorted';";
     $stmt = mysqli_stmt_init($conn);
     mysqli_stmt_prepare($stmt, $sql);
     mysqli_stmt_execute($stmt);
@@ -13,7 +13,7 @@
     }
 
     if ($showCategories) {
-        $sql = "SELECT * FROM categories WHERE createdBy = '$currentUser';";
+        $sql = "SELECT * FROM categories WHERE createdBy = '$currentUser' OR categoryName = 'unsorted';";
         mysqli_stmt_prepare($stmt, $sql);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);

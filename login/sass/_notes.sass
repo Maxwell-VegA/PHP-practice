@@ -3,8 +3,16 @@
 // html - maxchar""
 //  html - fieldset and optgroup elements are interesting
 // pointer-events: none
-    
-    
+select
+    -moz-appearance: textfield
+      
+select:hover,
+select:focus 
+    -moz-appearance: number-input
+input::-webkit-inner-spin-button 
+    display: none
+    margin: 0
+
 header
     position: fixed
     display: grid
@@ -118,10 +126,12 @@ header
             cursor: pointer
 
     
+      
     input
         padding: 0.25rem
         background: $c3
         border-radius: $border-r
+        
         &:nth-child(1)
             grid-area: input
             padding: .75rem 0rem .25rem 1.5rem

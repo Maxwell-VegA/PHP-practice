@@ -142,12 +142,26 @@ nav .nav-container a {
   text-decoration: underline;
 }
 
+select {
+  -moz-appearance: textfield;
+}
+
+select:hover,
+select:focus {
+  -moz-appearance: number-input;
+}
+
+input::-webkit-inner-spin-button {
+  display: none;
+  margin: 0;
+}
+
 header {
   position: fixed;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 400px minmax(350px, 1fr) 400px;
-      grid-template-columns: 400px minmax(350px, 1fr) 400px;
+  -ms-grid-columns: 400px 1fr 400px;
+      grid-template-columns: 400px 1fr 400px;
       grid-template-areas: "left mid right";
   width: 100%;
   top: 0;
@@ -161,8 +175,8 @@ header {
   display: -ms-grid;
   display: grid;
   display: none;
-  -ms-grid-columns: 400px minmax(350px, 1fr) 400px;
-      grid-template-columns: 400px minmax(350px, 1fr) 400px;
+  -ms-grid-columns: 400px 1fr 400px;
+      grid-template-columns: 400px 1fr 400px;
   height: 165px;
   width: 100%;
   pointer-events: none;
@@ -615,5 +629,9 @@ section .note-container a:hover {
 
 #fullnote textarea {
   height: 300px;
+}
+
+#fullnote .full-note {
+  margin: auto;
 }
 /*# sourceMappingURL=styles.css.map */

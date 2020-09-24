@@ -135,32 +135,23 @@
 
 <!-- add a toggle which allows quickly deleting multiple notes from the main screen instead of going into the full note -->
 <!-- Add a trash functionality so that notes are not deleted fully -->
-<!-- All category names should be italicised -->
 <!-- move date up to the category line and view full note can take the full with of the note card -->
-<!-- style the color picker -->
-<!-- Perhaps I can deal with the category bacground color problem by simply aplying a darkening filter which will allow the white to always pop off -->
-<!-- Sort by options (default - last modified) -->
 <!-- a color theme picker in the top right of the nav bar -->
-<!-- Remove the nav bar? Place what remains in the footer -->
-<!-- Import fonts and import the normalize sass stylesheet (used in the shirt editor project) -->
-<!-- We'll need to limit how wide the main notes section can get on big displays so that it doesn't get too overwhelming -->
-<!-- If a note has subtext display a hoverable "s" or an "i" on the card which will show the subtext -->
-<!-- Sublime notes -->
-<!-- To delete categories create a toggle which shortens the 10000% width of the category container compressing them all into one window and then adding an x to the side for deleting -->
+<!-- not a necessary feature --- If a note has subtext display a hoverable "s" or an "i" on the card which will show the subtext -->
+<!-- Sublime notes / Nexus -->
 <!-- The delete toggle may be done using JS -->
 <!-- Create a simple toggle for switching between five and three rows on desktop (perhaps place it in the footer) -->
 <!-- Create a button for going straight into fullnote editing mode to create a new note so that it isn't necessary to first create a small note then edit it if you want to create a big nore straight from the beginning. -->
-<!-- Clicking on a note's category allows you to change it to a different one -->
-<!-- Consider how many of these features do you actually need to just push out a good looking portfolio project -->
-<!-- add in the html date picker thing somewhere to showcase your ability there -->
+<!-- Clicking on a note's category allows you to change it to a different one. This should be done as a dropdown list. -->
+<!-- add in the html date picker thing somewhere to showcase your ability there perhaps? on the fullnote section?-->
 <!-- not a necessary feature --- add in multi category select if it isn't too hard -->
-<!-- Add scrolling buttons for the categories selector and figure out a relevant way to order those categories. The best would likely be sorting by the latest categories that were used on a note. -->
+<!-- figure out a relevant way to order those categories. The best would likely be sorting by the latest categories that were used on a note. -->
 <!-- Do some research to see what it would take to add a search function (this is a low priority feature) -->
 <!-- I probably should create that pin function -->
 <!-- create note categories aren't showing up when I'm sorting by a certain category. When in a category that category should be the default for a new note -->
 <!-- The all category is still reloding the whole page -->
-<!-- A neumorphic inset bed for all the categories -->
 <!-- When the all category is selected through the leftside dropdown menu it displays nothing - BUG -->
+<!-- Create a section for a constant message stream that archives anything older than a week? -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->

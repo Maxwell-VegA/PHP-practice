@@ -152,6 +152,7 @@
 <!-- The all category is still reloding the whole page -->
 <!-- When the all category is selected through the leftside dropdown menu it displays nothing - BUG -->
 <!-- Create a section for a constant message stream that archives anything older than a week? -->
+<!-- The delte categories and notes feature is to be implemented thusly - there is a switch which toggles the user's mode in a database and if the mode is turned on certain buttons will appear in the category taggs and on the notes. Note class - active / archived / deleted. The new design must integrate these buttons and gradient/glowing/animated aspects. Use the sidespace? -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->

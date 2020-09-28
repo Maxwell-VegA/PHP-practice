@@ -60,29 +60,6 @@ button:hover {
 
 nav {
   display: none;
-  position: relative;
-  width: 100vw;
-  height: 60px;
-  background: #141414;
-}
-
-nav .nav-container {
-  display: -ms-grid;
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 140px;
-  justify-items: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 100%;
-}
-
-nav .nav-container a {
-  font-size: 2rem;
-  color: #eeeeee;
-  text-decoration: none;
-  text-transform: lowercase;
 }
 
 .login-message {
@@ -165,8 +142,8 @@ header {
       grid-template-areas: "left mid right";
   width: 100%;
   top: 0;
-  -webkit-box-shadow: 5px 5px 10px 7px #00000092;
-          box-shadow: 5px 5px 10px 7px #00000092;
+  -webkit-box-shadow: 0px 5px 10px 7px #00000092;
+          box-shadow: 0px 5px 10px 7px #00000092;
 }
 
 .categories-bar-overlay {
@@ -336,8 +313,7 @@ header {
 
 .notes-leftside-options-container input:nth-child(3) {
   -ms-grid-row: 2;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
+  -ms-grid-column: 3;
   grid-area: color;
   background: #14141400 !important;
   height: 30px;
@@ -493,6 +469,14 @@ section .span6 {
   grid-row: span 6;
 }
 
+section .borderFalse {
+  border: 2px solid #14141400;
+}
+
+section .borderTrue {
+  border: 2px solid #ff0000;
+}
+
 section .note-container {
   display: -ms-grid;
   display: grid;
@@ -633,5 +617,54 @@ section .note-container a:hover {
 
 #fullnote .full-note {
   margin: auto;
+}
+
+footer {
+  position: fixed;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 400px 1fr 400px;
+      grid-template-columns: 400px 1fr 400px;
+      grid-template-areas: "search search logout" "archive category color";
+  -ms-grid-rows: 3fr 2fr;
+      grid-template-rows: 3fr 2fr;
+  width: 100%;
+  height: 165px;
+  bottom: 0px;
+  left: 0px;
+  background: #141414;
+  -webkit-box-shadow: 0px -5px 13px 5px #00000092;
+          box-shadow: 0px -5px 13px 5px #00000092;
+}
+
+footer #search {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: search;
+}
+
+footer #logout {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: logout;
+}
+
+footer #darkmode {
+  -ms-grid-row: 2;
+  -ms-grid-column: 3;
+  grid-area: color;
+}
+
+footer #archive {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: archive;
+}
+
+footer #category {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: category;
 }
 /*# sourceMappingURL=styles.css.map */

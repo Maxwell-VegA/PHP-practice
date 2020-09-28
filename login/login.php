@@ -38,7 +38,8 @@
     <?php
     if ($auth === true) {
         echo '<p>Welcome ' . $_SESSION['userUid'] . '!</p>';
-        
+        header("Location: ../notes.php");
+ 
     }
     else {
         echo '<p>Log in or register</p>';

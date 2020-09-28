@@ -14,50 +14,56 @@
             exit();
         }
     }
+
+    
+
+
+
 ?>
 
 <main id="fullnote">
 <?php
     foreach ($noteArr as $note) {
+        $title   = $note['noteTitle'];
+        
+        if (!isset($_GET['error'])) {
+            $text    = $note['noteText'];
+            $subText = $note['noteSubText'];
+        }
+        elseif ($_GET['error'] === "emptytitle") {
+            $text    = $_GET['notetext'];
+            $subText = $_GET['notesubtext'];
+        }
         ?> 
         <div class="full-note"> 
             <form action="includes/modifynote.inc.php?note=<?php echo $_GET['note']; ?>" method="POST" autocomplete="off">
-                <select name="categoryandcolor" id="select-category-dropdown">
-                    <option class="category-in-options cio-1" >All</option>
-                    <?php 
+                
+        <?php
+        echo "<input type='text' name='noteTitle' maxlength='40' required placeholder='Title' value='"  . $title    . "'>";
+        echo "<textarea type='text' name='noteText' placeholder='Note text'>"                           . $text     . "</textarea>";
+        echo "<textarea type='text' name='noteSubText' placeholder='Hidden text'>"                      . $subText  . "</textarea>";
+        echo "" . $note['lastModified'] . "";
+        ?>
+                <select name="categoryAndColor">
+                    <?php
+                    echo "<option class='category-in-options'" . " style='color: " . $note['categoryColor'] . ";' value='" . $note['category'] . "," . $note['categoryColor'] . "'>" . $note['category'] . "</option>";
                     foreach ($categoryArr as $aCategory) {
-                        echo "<option class='category-in-options' style='background-color: " . $aCategory['color'] . ";'>" . $aCategory['categoryName'] . "</option>";
-                        ?>
-                            <script>
-                                $(document).ready(function () {
-                                    $('#select-category-dropdown').on('change', function() {
-                                        var value = $(this).val();
-                                        $.get("innernotes.php?categoryname=" + value, function(data, status) {
-                                            $("#notes-main-section").html(data);
-                                            console.log(status);
-                                        })
-                                    });
-                                });
-                            </script>
-                        <?php
+                        if ($note['category'] != $aCategory['categoryName']) {
+                            echo "<option class='category-in-options'" . " style='color: " . $aCategory['color'] . ";' value='" . $aCategory['categoryName'] . "," . $aCategory['color'] . "'>" . $aCategory['categoryName'] . "</option>";
+                        }
                     }
                     ?>
                 </select>
-            <br>
+                <button type="submit" name="saveNote">Save</button>
+            </form>
+        <a href="includes/archivenote.inc.php?note=<?php echo $note['id']; ?>&update=archived">Archive</a>
+        <a href="includes/deletenote.inc.php?note=<?php echo $note['id']; ?>&update=deleted">Delete</a>
+        <a href="notes.php?update=discarded">Return</a>
+        </div> <!-- closes the full-note div --> 
         <?php
-        echo "<input type='text' name='noteTitle' value='" . $note['noteTitle']     . "'><br>";
-        echo "<textarea type='text' name='noteText'>" . $note['noteText'] . "</textarea><br>";
-        echo "<input type='text' name='noteSubText' value='" . $note['noteSubText']   . "'><br>";
-        echo "" . $note['lastModified'] . "<br>";
-        echo "" . $note['category']     . "<br>";
-        ?> <button type="submit" name="saveNote">Save</button>
-        </form><?php
-        echo "<br>";
-        ?> <a href="/php_practice/login/includes/modifynote.inc.php?action=delete&note=<?php echo $note['id']; ?>">Delete</a>
-        <a href="/php_practice/login/includes/modifynote.inc.php?action=save&note=<?php echo $note['id']; ?>">Return without saving</a> </div> <?php
     }
 ?>
-<!-- return without saving. JS alert asking are you sure. -->
-</main>
-<?php
-    require "footer.php";
+<!-- return without saving. JS alert asking are you sure, don't ask me again -->
+</main>    
+</body>
+</html>

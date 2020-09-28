@@ -5,7 +5,7 @@
     require 'dbh.inc.php';
     $currentUser = $_SESSION['userUid'];
     $showNotes = false;
-    $sql = "SELECT id FROM notes WHERE createdBy='$currentUser';";
+    $sql = "SELECT id FROM notes WHERE createdBy='$currentUser' AND visibility = 'archived';";
     $stmt = mysqli_stmt_init($conn);
     mysqli_stmt_prepare($stmt, $sql);
     mysqli_stmt_execute($stmt);
@@ -63,9 +63,9 @@
         }
         $sql = "SELECT * FROM notes 
             WHERE createdBy = '$currentUser' 
-            AND visibility = 'default' 
+            AND visibility = 'archived' 
             AND id" . $sign . $idSelector . $selection .
-            " ORDER BY pinned DESC, $displayOrder;";
+            " ORDER BY $displayOrder;";
         mysqli_stmt_prepare($stmt, $sql);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);

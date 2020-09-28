@@ -17,7 +17,7 @@
             exit();
         }
         else {
-            $sql = "INSERT INTO notes (createdBy, noteTitle, noteText, noteSubText, created, lastModified, category, categoryColor) VALUES (?, ?, ?, ?, now(), now(), ?, ?)";
+            $sql = "INSERT INTO notes (createdBy, noteTitle, noteText, noteSubText, created, lastModified, category, categoryColor, visibility, pinned) VALUES (?, ?, ?, ?, now(), now(), ?, ?, 'default', 'no')";
             $stmt = mysqli_stmt_init($conn);
             if(!mysqli_stmt_prepare($stmt, $sql)) {
                echo "SQL statement failed";

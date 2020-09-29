@@ -6,21 +6,26 @@
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
+
+    if (!isset($archiveView)) {
+        $archiveView = false;
+    }
     
     $notesFound = true;
     $searchStrLength = 0;
-    
-    if (isset($_POST['search'])) {
-        $searchStrLength = strlen($_POST['search']);
-        if ($searchStrLength > 0) {
-            require "includes/search.inc.php";
+    if (!$archiveView) {
+        if (isset($_POST['search'])) {
+            $searchStrLength = strlen($_POST['search']);
+            if ($searchStrLength > 0) {
+                require "includes/search.inc.php";
+            }
+            else {
+                require "includes/notes.inc.php";
+            }
         }
         else {
             require "includes/notes.inc.php";
         }
-    }
-    else {
-        require "includes/notes.inc.php";
     }
 
     if (isset($_GET['a'])) {

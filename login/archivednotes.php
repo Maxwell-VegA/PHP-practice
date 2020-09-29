@@ -1,6 +1,6 @@
 <?php
     require "header.php";
-    require "includes/categories.inc.php";
+    // require "includes/categories.inc.php";
     require "includes/viewarchive.inc.php";
 
     if ($auth === false) {
@@ -15,7 +15,7 @@
 
 <section id="notes-main-section">
     <?php
-    require "innernotes.php";
+        require "innernotes.php";
     ?>
 </section>
 <!-- <div class="bgdec" id="background-decoration"></div> -->

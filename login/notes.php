@@ -1,7 +1,6 @@
 <?php
     require "header.php";
     // require "includes/notes.inc.php";
-    // require "includes/search.inc.php";
     require "includes/categories.inc.php";
 
     if ($auth === false) {

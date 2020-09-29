@@ -22,7 +22,7 @@
                 exit();
             }
             elseif (isset($_GET['restore'])) {
-                header("Location: ../notes.php?update=restored");
+                header("Location: ../archivednotes.php?b&update=restored");
                 exit();
             }
             else {

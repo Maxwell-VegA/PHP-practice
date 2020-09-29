@@ -1,14 +1,14 @@
 
 
     <footer>
-        <form action="search.inc.php" id="search">
-            <span>Search by:</span>
-            <label for="searchByTitle">title</label>
+        <div id="search">
+            <span>Search notes:</span>
+            <!-- <label for="searchByTitle">title</label>
             <input type="checkbox" name="searchByTitle" id="searchByTitle">
             <label for="searchByText">text</label>
-            <input type="checkbox" name="searchByText" id="searchByText">
+            <input type="checkbox" name="searchByText" id="searchByText"> -->
             <input type="text" name="searchbox" id="searchbox">
-        </form>
+        </div>
         <script>
             $(document).ready(function () {
                 $("#searchbox").keyup(function (e) { 

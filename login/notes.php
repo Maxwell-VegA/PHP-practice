@@ -49,6 +49,8 @@
 <!-- All dropdown option doesn't work in chrome BUG-->
 <!-- The category selector looks rather bad in lightmode and borders aren't enough -->
 <!-- Add the option to place the footer as a sidebar on the left / combine with tv layout maybe -->
+<!-- An empty archive displays the wrong message BUG -->
+<!-- After exiting search mode category select for new note doesn't work -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->

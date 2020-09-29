@@ -1,4 +1,7 @@
 <?php
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
     require 'dbh.inc.php';
     $currentUser = $_SESSION['userUid'];
     $showCategories = false;

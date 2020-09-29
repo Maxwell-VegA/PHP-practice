@@ -43,7 +43,6 @@
     }
     if (isset($_GET['categoryname'])) {
         $category = $_GET['categoryname'];
-        require "includes/categories.inc.php";
     }
 
 ?>
@@ -56,20 +55,36 @@
             <input type="text" name="noteSubtext" placeholder="Note hidden text">
             <select name="categoryAndColor">
                 <?php
-                if ($showNewNote === true) {
-                    foreach ($categoryArr as $aCategory) {
-                        echo "<option class='category-in-options'" . " style='color: " . $aCategory['color'] . ";' value='" . $aCategory['categoryName'] . "," . $aCategory['color'] . "'>" . $aCategory['categoryName'] . "</option>";
-                    } 
-                }
-                elseif ($showNewNote === false) {
-                    foreach ($categoryArr as $aCategory) {
-                        if ($category === $aCategory['categoryName']) {
-                            echo "<option class='category-in-options'" . " style='color: " . $aCategory['color'] . ";' value='" . $aCategory['categoryName'] . "," . $aCategory['color'] . "'>" . $aCategory['categoryName'] . "</option>";
-                        }
+                $log = [];
+                $logIndex = -1;
+                foreach ($noteArr as $note) {
+                    $logIndex++;
+                    // I think the solution is to create a for loop which loops through the amount of existing notes skipping the echo whenever a category repeats.
+                    if ($log[0] == $note['category']){
+                        continue;
                     }
+                    elseif ($log[6] == $note['category']){
+                        continue;
+                    }
+                    $log[] = $note['category'];
+                    echo "<option style='color: " . $note['categoryColor'] . ";'" . "value='" . $note['category'] . "," . $note['categoryColor'] . "'" . ">". $note['category'] . "</option>";                    
                 }
+    
+                // if ($showNewNote === true) {
+                //     foreach ($categoryArr as $aCategory) {
+                //         echo "<option class='category-in-options'" . " style='color: " . $aCategory['color'] . ";' value='" . $aCategory['categoryName'] . "," . $aCategory['color'] . "'>" . $aCategory['categoryName'] . "</option>";
+                //     } 
+                // }
+                // elseif ($showNewNote === false) {
+                //     foreach ($categoryArr as $aCategory) {
+                //         if ($category === $aCategory['categoryName']) {
+                //             echo "<option class='category-in-options'" . " style='color: " . $aCategory['color'] . ";' value='" . $aCategory['categoryName'] . "," . $aCategory['color'] . "'>" . $aCategory['categoryName'] . "</option>";
+                //         }
+                //     }
+                // }
                 ?>
             </select>
+            
             <button type="submit" name="createNote">Log note!</button>
         </form>    
         <?php 

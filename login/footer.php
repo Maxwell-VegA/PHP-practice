@@ -7,8 +7,26 @@
             <input type="checkbox" name="searchByTitle" id="searchByTitle">
             <label for="searchByText">text</label>
             <input type="checkbox" name="searchByText" id="searchByText">
-            <input type="text" id="searchbox">
+            <input type="text" name="searchbox" id="searchbox">
         </form>
+        <script>
+            $(document).ready(function () {
+                $("#searchbox").keyup(function (e) { 
+                    var input = $(this).val();
+                    if (input.length > -1) {
+                        $.ajax({
+                            type: "post",
+                            url: "innernotes.php",
+                            data: {search:input},
+                            dataType: "text",
+                            success: function (data) {
+                                $('#notes-main-section').html(data);
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
         <!-- ======================================================================== -->
         <form action="includes/logout.inc.php" method="POST" id="logout">
             <button type="submit" name="logout-submit">Log Out</button>
@@ -61,8 +79,8 @@
         <!-- ======================================================================== -->
         <form action="deletecategory.inc.php" id="category">
             <!-- dropdown category selector, -->
-            <select name="" id=""></select>    
-            <input type="submit" name="delete category" id="">
+            <select name=""></select>    
+            <input type="submit" name="delete category">
         </form>
     </footer>
 </body>

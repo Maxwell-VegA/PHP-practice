@@ -5,9 +5,18 @@
     // }
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
-        require "includes/notes.inc.php";
     }
-
+    
+    $notesFound = true;
+    $searchStrLength = 0;
+    
+    require "includes/search.inc.php";
+    if (isset($_POST['search'])) {
+        $searchStrLength = strlen($_POST['search']);
+    }
+    else {
+        // require "includes/search.inc.php";
+    }
 
     if (isset($_GET['a'])) {
         $editingMode = true;
@@ -20,10 +29,7 @@
     else {
         $editingMode = false;
         $archiveView = false;
-        if (!isset($showNewNote)) {
-            $showNewNote = false;
-            // Disabling the new note while under a category works but the optimal version would be to instead leave the new note there and auto set the category to the one the user is currently inside of.
-        }
+
     }
     if (isset($_GET['categoryname'])) {
         $category = $_GET['categoryname'];
@@ -32,14 +38,14 @@
 
 ?>
 <?php 
-    if ($editingMode === false && $archiveView === false) {
+    if ($editingMode === false && $archiveView === false && $searchStrLength < 1) {
         ?>
         <form class="note-input span3" action="includes/createnote.inc.php" method="POST" autocomplete="off">
-            <input type="text" name="noteTitle" placeholder="Note Title" maxlength="40" required>
+            <input type="text" name="noteTitle" placeholder="Note Title" maxlength="40">
             <textarea name="noteText" placeholder="Note text"></textarea>
             <input type="text" name="noteSubtext" placeholder="Note hidden text">
             <select name="categoryAndColor">
-                <?php 
+                <?php
                 if ($showNewNote === true) {
                     foreach ($categoryArr as $aCategory) {
                         echo "<option class='category-in-options'" . " style='color: " . $aCategory['color'] . ";' value='" . $aCategory['categoryName'] . "," . $aCategory['color'] . "'>" . $aCategory['categoryName'] . "</option>";
@@ -63,7 +69,10 @@
 
 
 <?php
-    if ($showNotes === false) {
+    if ($notesFound === false) {
+        echo "no notes found";
+    }
+    elseif ($showNotes === false) {
         echo "Notes will be displayed here. <br> Create one to get started!";
     }
     elseif (empty($noteArr)) {

@@ -12,12 +12,37 @@
         $category   =   $rawProc[0];
         $color      =   $rawProc[1];
 
-        if (empty($title)) {
-            header("Location: ../notes.php?error=emptytitle");
-            exit();
+        if (empty($title) && empty($text) && empty($subtext)) {
+            $sql = "INSERT INTO notes (createdBy, noteTitle, noteText, noteSubText, created, lastModified, category, categoryColor, visibility, pinned) 
+                    VALUES (?, 'New Note', '', '', now(), now(), ?, ?, 'default', 'no')";
+            $stmt = mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($stmt, $sql)) {
+               echo "SQL statement failed";
+            }
+            else {
+                mysqli_stmt_bind_param($stmt, "sss", $createdBy, $category, $color);
+                mysqli_stmt_execute($stmt);
+                header("Location: ../fullnote.php?note=new");
+                exit();
+            }
+        }
+        elseif (empty($title) && (!empty($text) || !empty($subtext))) {
+            $sql = "INSERT INTO notes (createdBy, noteTitle, noteText, noteSubText, created, lastModified, category, categoryColor, visibility, pinned) 
+                    VALUES (?, 'New Note', ?, ?, now(), now(), ?, ?, 'default', 'no')";
+            $stmt = mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($stmt, $sql)) {
+               echo "SQL statement failed";
+            }
+            else {
+                mysqli_stmt_bind_param($stmt, "sssss", $createdBy, $text, $subtext, $category, $color);
+                mysqli_stmt_execute($stmt);
+                header("Location: ../notes.php");
+                exit();
+            }
         }
         else {
-            $sql = "INSERT INTO notes (createdBy, noteTitle, noteText, noteSubText, created, lastModified, category, categoryColor, visibility, pinned) VALUES (?, ?, ?, ?, now(), now(), ?, ?, 'default', 'no')";
+            $sql = "INSERT INTO notes (createdBy, noteTitle, noteText, noteSubText, created, lastModified, category, categoryColor, visibility, pinned) 
+                    VALUES (?, ?, ?, ?, now(), now(), ?, ?, 'default', 'no')";
             $stmt = mysqli_stmt_init($conn);
             if(!mysqli_stmt_prepare($stmt, $sql)) {
                echo "SQL statement failed";

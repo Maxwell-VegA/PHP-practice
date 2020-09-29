@@ -7,7 +7,15 @@
     else {
         if(isset($_GET['note'])) {
             $noteId = $_GET['note'];
-            require "includes/notes.inc.php";
+            if ($noteId === 'new') {
+                require "includes/latestid.inc.php";
+                $redirect = $row['id'];
+                header("Location: fullnote.php?note=$redirect");
+
+            }
+            else {
+                require "includes/notes.inc.php";
+            }
         }
         else {
             header("Location: notes.php");
@@ -15,7 +23,9 @@
         }
     }
 
-    
+    if(isset($_GET['new'])) {
+
+    }
 
 
 

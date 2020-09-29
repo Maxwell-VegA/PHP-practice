@@ -26,44 +26,51 @@
     <div class="categories-container">
         <div class="inner-categories-container">
             <a class='category' href="notes.php">All</a>
-        <?php 
-            if ($showCategories === false) {
-                echo "no categories";
-            }
-            else {
-                $index = 0;
-                foreach ($categoryArr as $aCategory) {
-                    // echo "<a class='category categoryBtn'" . " style='background-color: " . $aCategory['color'] . ";'" . "href='notes.php?categoryname=" . $aCategory['categoryName'] . "'>" . $aCategory['categoryName'] . "</a>";
-                    $index++;
-                    $cName = $aCategory['categoryName'];
-                    echo "<a class='category categoryBtn categoryBtn$index' ";
-                    echo "style='border-color: " . $aCategory['color'] . ";'>";
-                    echo $cName;
-                    echo "</a>";
-                    echo "<script>var valueCategory$index = '$cName';</script>";
-                    ?>
-                        <script>
-                            $(document).ready(function () {
-                                $('.categoryBtn<?php echo $index ?>').click(function() {
-                                    $.get("innernotes.php?categoryname=" + valueCategory<?php echo $index ?>, function(data, status) {
-                                        $("#notes-main-section").html(data);
-                                        // console.log(status);
-                                    })
-                                });
-                            });
-                        </script>
-                    <?php
-                }
-            }
-        
-        ?>
+                <?php 
+                    if ($showCategories === false) {
+                        echo "no categories";
+                    }
+                    else {
+                        $index = 0;
+                        foreach ($categoryArr as $aCategory) {
+                            // echo "<a class='category categoryBtn'" . " style='background-color: " . $aCategory['color'] . ";'" . "href='notes.php?categoryname=" . $aCategory['categoryName'] . "'>" . $aCategory['categoryName'] . "</a>";
+                            $index++;
+                            $cName = $aCategory['categoryName'];
+                            echo "<a class='category categoryBtn categoryBtn$index' ";
+                            echo "style='border-color: " . $aCategory['color'] . ";'>";
+                            echo $cName;
+                            echo "</a>";
+                            echo "<script>var valueCategory$index = '$cName';</script>";
+                            ?>
+                                <script>
+                                    $(document).ready(function () {
+                                        $('.categoryBtn<?php echo $index ?>').click(function() {
+                                            $.get("innernotes.php?categoryname=" + valueCategory<?php echo $index ?>, function(data, status) {
+                                                $("#notes-main-section").html(data);
+                                            })
+                                        });
+                                    });
+                                </script>
+                            <?php
+                        }
+                    }
+                
+                ?>
         </div>
     </div>
     
     <div class="notes-rightside-options-container">
         <label for="select-category-dropdown">Category:</label>
         <select name="" id="select-category-dropdown">
-            <option class="category-in-options cio-1" >All</option>
+            <option id="cio-1" class="category-in-options">All</option>
+            <script>
+                $(document).ready(function () {
+                    $("#cio-1").click(function (e) { 
+                        window.location = "notes.php";
+                        // DOESNT WORK IN CHROME !!!!! ==================================================================================================================
+                    });
+                });
+            </script>
             <?php 
             foreach ($categoryArr as $aCategory) {
                 echo "<option class='category-in-options' style='color: " . $aCategory['color'] . ";'>" . $aCategory['categoryName'] . "</option>";
@@ -74,7 +81,6 @@
                                 var value = $(this).val();
                                 $.get("innernotes.php?categoryname=" + value, function(data, status) {
                                     $("#notes-main-section").html(data);
-                                    console.log(status);
                                 })
                             });
                         });

@@ -89,11 +89,12 @@ header
     background: $c3
     form
         display: grid
-        grid-template-columns: 40% 20% 40%
-        grid-template-rows: 3fr 2fr
-        grid-template-areas: "input input create" "color color label"
-        grid-gap: 1rem
+        grid-template-columns: 40% 10% 50%
+        grid-template-rows: 3fr 3fr
+        grid-template-areas: "input input input" "label . create" "color . ."
+        grid-gap: .75rem
         width: 100%
+        height: 120%
     label
         font-size: 1.15rem
         justify-self: center
@@ -140,11 +141,13 @@ header
             &:focus
                 border: 1px solid $caa
         &:nth-child(3)
-            // position: absolute
+            visibility: hidden
             grid-area: color
             background: $c3t !important
             height: 30px
             width: 100%
+            width: 0px
+            height: 0px
             margin: 0
 
             &:hover

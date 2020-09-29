@@ -10,12 +10,17 @@
     $notesFound = true;
     $searchStrLength = 0;
     
-    require "includes/search.inc.php";
     if (isset($_POST['search'])) {
         $searchStrLength = strlen($_POST['search']);
+        if ($searchStrLength > 0) {
+            require "includes/search.inc.php";
+        }
+        else {
+            require "includes/notes.inc.php";
+        }
     }
     else {
-        // require "includes/search.inc.php";
+        require "includes/notes.inc.php";
     }
 
     if (isset($_GET['a'])) {

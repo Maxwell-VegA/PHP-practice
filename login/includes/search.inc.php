@@ -14,71 +14,32 @@
     if ($row > 0) {
         $showNotes = true;
     }
-
-    $displayOrder = "lastModified DESC";
-    if (isset($_GET['sort'])) {
-        $orderBy = $_GET['sort'];
-        ?>
-        <script>
-        // alert(<?php echo $orderBy; ?>);
-        </script>
-        <?php
-        if ($orderBy == 0) {
-            $displayOrder = "lastModified DESC";
-        }
-        elseif ($orderBy == 1) {
-            $displayOrder = "created DESC";
-        }
-        elseif ($orderBy == 2) {
-            $displayOrder = "created ASC";
-        }
-        elseif ($orderBy == 3) {
-            $displayOrder = "noteTitle ASC";
-        }
-        ?>
-        <script>
-        // alert("<?php echo $displayOrder; ?>");
-        </script> 
-        <?php
-    }
-
-    if ($showNotes) {
-        if (!isset($_GET['note'])) {
-            $idSelector = '0';
-            $sign = ' > ';
-        }
-        else {
-            $idSelector = $_GET['note'];
-            $sign = ' = ';
-        }
-        if (!isset($_GET['categoryname'])) {
-            $selection = "";
-        }
-        else {
-            $selectedCategory = $_GET['categoryname'];
-            $selection = " AND category = '" . $selectedCategory . "'";
-        }
     
-    if (isset($_POST['search'])){
-        $input = trim($_POST['search']);
+    
+    $input = trim($_POST['search']);
+    $sql = "SELECT * FROM notes WHERE noteTitle LIKE '%$input%' AND (createdBy = '$currentUser' OR category = 'unsorted') AND visibility = 'default' ORDER BY pinned DESC, noteTitle ASC;";
+    $stmt = mysqli_stmt_init($conn);
+    // '%$input%'
+    if(!mysqli_stmt_prepare($stmt, $sql)) {
+        echo "SQL statement failed";
     }
     else {
-        $input = "";
-    }
-    $sql = "SELECT * FROM notes WHERE noteTitle LIKE '%$input%' AND (createdBy = '$currentUser' OR category = 'unsorted') AND visibility = 'default' AND id" . $sign . $idSelector . $selection . "ORDER BY pinned DESC, $displayOrder;";
-    mysqli_stmt_prepare($stmt, $sql);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    while($row = mysqli_fetch_assoc($result)) {
+        // mysqli_stmt_bind_param($stmt);
+        // mysqli_stmt_bind_param($stmt);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        while($row = mysqli_fetch_assoc($result)) {
             $noteArr[] = $row;
             if ($row > 0) {
                 $showNotes = true;
+                
             }
-            else $showNotes = false;
+            else {
+                $showNotes = false;
+            }    
         }
     }
-    $showNotes = true;
-
+    // $result = mysqli_query($conn, $sql);
     // if(mysqli_num_rows($result) > 0) {
     //     while($row = mysqli_fetch_assoc($result)) {
     //         $noteArr[] = $row;

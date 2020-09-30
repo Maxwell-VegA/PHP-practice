@@ -15,6 +15,7 @@ input::-webkit-inner-spin-button
 
 header
     position: fixed
+    z-index: 2
     display: grid
     grid-template-columns: $hGrid
     grid-template-areas: "left mid right"
@@ -180,29 +181,30 @@ header
                 
         option
             background: $c3  !important
-            // RESEARCH SASS filters =====================
             &:hover
                 background: $ca
 
 // ======================================================
 // ======================================================
 // ======================================================
-
-section
+main
+    position: absolute
+    z-index: 1
     display: grid
     grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr))
     grid-auto-rows: 6rem
-    // grid-auto-flow: dense
     grid-gap: 2.5rem
+    left: 50%
+    transform: translateX(-50%)
     width: 80%
     max-width: 80rem
-    margin: 15rem auto
     .note-input
         display: grid
+        // display: none
         grid-template-columns: 50% 50%
         grid-template-rows: 4rem 1fr 3rem 3rem
         grid-template-areas: "title title" "content content" "category category" "date full"
-        // grid-row-gap: .1rem
+        grid-row: span 3
         background: $c3
         border-radius: $border-r
         box-shadow: 5px 5px 5px 3px $c0, -5px -5px 5px 3px $c33
@@ -239,7 +241,15 @@ section
 
         button:nth-child(5)
             border-bottom-right-radius: $border-r
-
+section
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr))
+    grid-auto-rows: 6rem
+    // grid-auto-flow: dense
+    grid-gap: 2.5rem
+    width: 80%
+    max-width: 80rem
+    margin: 15rem auto
     .span2
         grid-row: span 2
     .span3

@@ -25,7 +25,18 @@
     
     <div class="categories-container">
         <div class="inner-categories-container">
-            <a class='category' href="notes.php">All</a>
+            <a class='category c-all'>All</a>
+            <script>
+                $(document).ready(function () {
+                    $(".c-all").click(function (e) { 
+                        $.get("innernotes.php",
+                            function(data, status) {
+                            $("#notes-main-section").html(data);
+                        })
+                    });
+                });
+            </script>
+
                 <?php 
                     if ($showCategories === false) {
                         echo "no categories";
@@ -62,12 +73,15 @@
     <div class="notes-rightside-options-container">
         <label for="select-category-dropdown">Category:</label>
         <select name="" id="select-category-dropdown">
-            <option id="cio-1" class="category-in-options">All</option>
+            <option id="cio-1" class="category-in-options cio-1">All</option>
             <script>
                 $(document).ready(function () {
-                    $("#cio-1").click(function (e) { 
-                        window.location = "notes.php";
-                        // DOESNT WORK IN CHROME !!!!! ==================================================================================================================
+                    $(".cio-1").click(function (e) { 
+                        // window.location = "notes.php";
+                        $.get("innernotes.php",
+                            function(data, status) {
+                            $("#notes-main-section").html(data);
+                        })
                     });
                 });
             </script>

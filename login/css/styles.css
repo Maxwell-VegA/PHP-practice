@@ -35,6 +35,20 @@ table {
   border-spacing: 0;
 }
 
+html {
+  --black-a:  #00000092;
+  --black-f:   #000c0c;
+  --dark:      #101414;
+  --dark-aa:   #10141400;
+  --dark-a:    #24292992;
+  --gray:      #919b9b;
+  --grayy:     #bbcccc;
+  --white:     #dceeee;
+  --whitee:    #f2ffff;
+  --accent:    #ff0000;
+  --accentt:   #dd0000;
+}
+
 * {
   font-family: 'Roboto Mono', monospace;
   color: #dceeee;
@@ -135,6 +149,7 @@ input::-webkit-inner-spin-button {
 
 header {
   position: fixed;
+  z-index: 2;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 320px 1fr 320px;
@@ -380,19 +395,23 @@ header {
   background: #ff0000;
 }
 
-section {
+main {
+  position: absolute;
+  z-index: 1;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (minmax(19rem, 1fr))[auto-fit];
       grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
   grid-auto-rows: 6rem;
   grid-gap: 2.5rem;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   width: 80%;
   max-width: 80rem;
-  margin: 15rem auto;
 }
 
-section .note-input {
+main .note-input {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 50% 50%;
@@ -400,13 +419,14 @@ section .note-input {
   -ms-grid-rows: 4rem 1fr 3rem 3rem;
       grid-template-rows: 4rem 1fr 3rem 3rem;
       grid-template-areas: "title title" "content content" "category category" "date full";
+  grid-row: span 3;
   background: #101414;
   border-radius: 12px;
   -webkit-box-shadow: 5px 5px 5px 3px #00000092, -5px -5px 5px 3px #24292992;
           box-shadow: 5px 5px 5px 3px #00000092, -5px -5px 5px 3px #24292992;
 }
 
-section .note-input input {
+main .note-input input {
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   grid-column: 1/3;
@@ -417,14 +437,14 @@ section .note-input input {
   border: none;
 }
 
-section .note-input input:nth-child(1) {
+main .note-input input:nth-child(1) {
   font-size: 1.4rem;
   font-weight: bold;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
 }
 
-section .note-input textarea {
+main .note-input textarea {
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   grid-column: 1/3;
@@ -438,19 +458,31 @@ section .note-input textarea {
   border-bottom: 1px #dceeee dashed;
 }
 
-section .note-input input:nth-child(3) {
+main .note-input input:nth-child(3) {
   border-bottom: 1px #dceeee dashed;
 }
 
-section .note-input select:nth-child(4) {
+main .note-input select:nth-child(4) {
   background: #101414;
   border: none;
   border-bottom-left-radius: 12px;
   outline: none;
 }
 
-section .note-input button:nth-child(5) {
+main .note-input button:nth-child(5) {
   border-bottom-right-radius: 12px;
+}
+
+section {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(19rem, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  grid-auto-rows: 6rem;
+  grid-gap: 2.5rem;
+  width: 80%;
+  max-width: 80rem;
+  margin: 15rem auto;
 }
 
 section .span2 {

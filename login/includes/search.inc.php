@@ -19,13 +19,10 @@
     $input = trim($_POST['search']);
     $sql = "SELECT * FROM notes WHERE (noteTitle LIKE '%$input%' OR noteText LIKE '%$input%') AND createdBy = '$currentUser' AND visibility = 'default' ORDER BY pinned DESC, noteTitle ASC;";
     $stmt = mysqli_stmt_init($conn);
-    // '%$input%'
     if(!mysqli_stmt_prepare($stmt, $sql)) {
         echo "SQL statement failed";
     }
     else {
-        // mysqli_stmt_bind_param($stmt, "s", $input);
-        // mysqli_stmt_bind_param($stmt);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         if (mysqli_num_rows($result) < 1) {
@@ -41,23 +38,4 @@
             }    
         }
     }
-    // $result = mysqli_query($conn, $sql);
-    // if(mysqli_num_rows($result) > 0) {
-    //     while($row = mysqli_fetch_assoc($result)) {
-    //         $noteArr[] = $row;
-    //         // echo $noteArr[0]['noteTitle'];
-    //         if ($row > 0) {
-    //             $showNotes = true;
-                
-    //         }
-    //         else {
-    //             $showNotes = false;
-    //         }    
-    //     }
-    // }
-    // else {
-    //     $notesFound = false;
-    //     $showNotes = false;
-    // }
-
 

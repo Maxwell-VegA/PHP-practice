@@ -77,11 +77,50 @@
             
         </div>
         <!-- ======================================================================== -->
-        <form action="deletecategory.inc.php" id="category">
-            <!-- dropdown category selector, -->
-            <select name=""></select>    
-            <input type="submit" name="delete category">
-        </form>
+        <!-- <form action="includes/deletecategory.inc.php" id="category" method="POST"> -->
+        <div>
+            <select id="category-to-delete" name="category">
+                <?php 
+                    foreach ($categoryArr as $aCategory) {
+                        if ($aCategory['categoryName'] !== "unsorted") {
+                            echo "<option class='category-in-options' style='color: " . $aCategory['color'] . ";' value=" . $aCategory['categoryName'] . ">" . $aCategory['categoryName'] . "</option>";  
+                        }
+                    }
+                ?>
+            </select>
+            <button id="deleteCategory">Delete Selected Category</button>
+            <script>
+                $(document).ready(function () {
+                    selectedCategory = "";
+                    $(".category-in-options").click(function (e) { 
+                        // Change the underline of the delete button to an active state
+                    });
+                    $('#deleteCategory').click(function (e) {
+                        var selectedCategory = $("#category-to-delete").val();
+                        $.ajax({
+                            type: "POST",
+                            url: "includes/deletecategory.inc.php",
+                            data: {category:selectedCategory},
+                            dataType: "text",
+                            success: function (response) {
+                                var input = "";
+                                $.ajax({
+                                    type: "post",
+                                    url: "innernotes.php",
+                                    data: {search:input},
+                                    dataType: "text",
+                                    success: function (data) {
+                                        $('#notes-main-section').html(data);
+                                    }
+                                });
+                                // That manages to update the main section however the navigation and footer should be updated as well somehow.
+                            }
+                        });
+                    });
+                });
+            </script>
+        </div>
+        <!-- </form> -->
     </footer>
 </body>
 </html>

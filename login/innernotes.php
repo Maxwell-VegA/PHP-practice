@@ -43,55 +43,49 @@
     }
     if (isset($_GET['categoryname'])) {
         $category = $_GET['categoryname'];
-    }
-
-?>
-<?php 
-    if ($editingMode === false && $archiveView === false && $searchStrLength < 1) {
         ?>
-        <form class="note-input span3" action="includes/createnote.inc.php" method="POST" autocomplete="off">
-            <input type="text" name="noteTitle" placeholder="Note Title" maxlength="40">
-            <textarea name="noteText" placeholder="Note text"></textarea>
-            <input type="text" name="noteSubtext" placeholder="Note hidden text">
-            <select name="categoryAndColor">
-                <?php
-                $log = [];
-                $logIndex = -1;
-                foreach ($noteArr as $note) {
-                    $logIndex++;
-                    // I think the solution is to create a for loop which loops through the amount of existing notes skipping the echo whenever a category repeats.
-                    if ($log[0] == $note['category']){
-                        continue;
-                    }
-                    elseif ($log[6] == $note['category']){
-                        continue;
-                    }
-                    $log[] = $note['category'];
-                    echo "<option style='color: " . $note['categoryColor'] . ";'" . "value='" . $note['category'] . "," . $note['categoryColor'] . "'" . ">". $note['category'] . "</option>";                    
-                }
-    
-                // if ($showNewNote === true) {
-                //     foreach ($categoryArr as $aCategory) {
-                //         echo "<option class='category-in-options'" . " style='color: " . $aCategory['color'] . ";' value='" . $aCategory['categoryName'] . "," . $aCategory['color'] . "'>" . $aCategory['categoryName'] . "</option>";
-                //     } 
-                // }
-                // elseif ($showNewNote === false) {
-                //     foreach ($categoryArr as $aCategory) {
-                //         if ($category === $aCategory['categoryName']) {
-                //             echo "<option class='category-in-options'" . " style='color: " . $aCategory['color'] . ";' value='" . $aCategory['categoryName'] . "," . $aCategory['color'] . "'>" . $aCategory['categoryName'] . "</option>";
-                //         }
-                //     }
-                // }
-                ?>
-            </select>
-            
-            <button type="submit" name="createNote">Log note!</button>
-        </form>    
-        <?php 
+            <script>
+                $(document).ready(function () {
+                    $.ajax({
+                        type: "post",
+                        url: "newnote.php",
+                        data: {sortingByCategory:'<?php echo $category ?>'},
+                        dataType: "text",
+                        success: function (response) {
+                            $('main').html(response);
+                        }
+                    });
+                });
+            </script>       
+        <?php        
     }
+    else {
+        ?>
+            <script>
+                $(document).ready(function () {
+                    $.ajax({
+                        type: "post",
+                        url: "newnote.php",
+                        data: {sortingByCategory:'all'},
+                        dataType: "text",
+                        success: function (response) {
+                            $('main').html(response);
+                        }
+                    });
+                });
+            </script>       
+        <?php        
+    }
+
 ?>
+
     
 
+<?php 
+    if ($editingMode === false && $archiveView === false) {
+        ?> <div class="span3"></div> <?php
+    }
+?>
 
 <?php
     if ($notesFound === false) {
@@ -152,7 +146,6 @@
                 <script>
                     $(document).ready(function () {
                         $('#card<?php echo $index; ?>').click(function (e) { 
-                            e.preventDefault();
                             // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
                         });
                     });
@@ -162,3 +155,7 @@
         }
     }
 ?>
+<?php 
+    if ($editingMode === false && $archiveView === false) {
+        ?> <div class="span3"></div> <?php
+    }

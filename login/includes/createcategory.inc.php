@@ -3,9 +3,11 @@
 
     if(isset($_POST['newCategorySubmit'])) {
         require 'dbh.inc.php';
-        $createdBy  =   $_SESSION['userUid'];
-        $category   =   trim($_POST['newCategoryName']);
-        $color      =   $_POST['newCategoryColor'];
+        $createdBy   =   $_SESSION['userUid'];
+        $categoryRaw =   trim($_POST['newCategoryName']);
+        $category    =   str_replace(" ", "-", $categoryRaw);
+        // insert a dash on space
+        $color       =   $_POST['newCategoryColor'];
         if (empty($category)) {
             header("Location: ../notes.php?error=emptyname");
             exit();

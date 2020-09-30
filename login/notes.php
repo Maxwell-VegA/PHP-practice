@@ -9,18 +9,27 @@
 
     $editingMode = false;
     $archiveView = false;
-    $showNewNote = true;
+    $singleCategory = false;
     // $notesFound = true;
+    $searchStrLength = 0;
 
 ?>
 
-<?php require "notesnav.php"; ?>
+<?php 
+    require "notesnav.php"; 
+?>
+<main>
+    <?php 
+        require "newnote.php";
+    ?>
+</main>
 
 <section id="notes-main-section">
-<?php
-    require "innernotes.php";
-?>
+    <?php
+        require "innernotes.php";
+    ?>
 </section>
+
 <!-- <div class="bgdec" id="background-decoration"></div> -->
 <div class="bgdec" id="background-decoration0"></div>
 <div class="bgdec" id="background-decoration1"></div>
@@ -55,12 +64,12 @@
 <!-- ======================================================== -->
 <!-- ======================================================== -->
 <!-- Sorting, lightmode switch, the footer, the sign up, delete categories -->
-<!-- Search, animations, mobile responsive, button lamps gradient/glowing  -->
-<!-- Get this thing to a point where it's usable -->
+<!-- animations, mobile responsive, button lamps gradient/glowing  -->
 <!-- Deploy on heroku -->
+<!-- Category delete full refresh, lightmode switch, layout switch, card menu styling, footer styling, new note category selector-->
 <!-- ======================================================== -->
 
-<!-- <div class="bgdec" id="background-decoration"></div> -->
+<div class="bgdec" id="background-decoration"></div>
 
 <!-- 
     CREATE TABLE notes (

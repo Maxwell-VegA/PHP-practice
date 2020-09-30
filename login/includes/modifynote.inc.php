@@ -19,15 +19,13 @@
             $rawProc    =   explode(',', $raw);
             $category   =   $rawProc[0];
             $color      =   $rawProc[1];
-            // $sql = "UPDATE notes SET noteTitle = '$title', noteText = '$text', noteSubText = '$subtext', lastModified = now(), category = '$category', categoryColor = '$color' WHERE id = $noteId";
-            $sql = "UPDATE notes SET noteTitle = ?, noteText = ?, noteSubText = ?, lastModified = now(), category = ?, categoryColor = ? WHERE id = $noteId";
+            $sql = "UPDATE notes SET noteTitle = ?, noteText = ?, noteSubText = ?, lastModified = now(), category = ?, categoryColor = ? WHERE id = $noteId AND createdBy = $createdBy";
             $stmt = mysqli_stmt_init($conn);
             if(!mysqli_stmt_prepare($stmt, $sql)) {
                 echo "SQL statement failed";
             }
             else {
                 mysqli_stmt_bind_param($stmt, "sssss", $title, $text, $subtext, $category, $color);
-                // mysqli_stmt_bind_param();
                 mysqli_stmt_execute($stmt);
                 header("Location: ../notes.php?update=sucess");             
             }

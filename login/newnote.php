@@ -11,13 +11,22 @@
                 <select name="categoryAndColor">
                     <?php 
                     foreach ($categoryArr as $aCategory) {
-                            if ($category === $aCategory['categoryName']) {
-                                echo "<option class='category-in-options'" . " style='color: " . $aCategory['color'] . ";' value='" . $aCategory['categoryName'] . "," . $aCategory['color'] . "'>" . $aCategory['categoryName'] . "</option>";
+                            if ($category !== "all") { 
+                                if ($category === $aCategory['categoryName']) {
+                                    echo "<option class='category-in-options'" . " style='color: " . $aCategory['color'] . ";' value='" . $aCategory['categoryName'] . "," . $aCategory['color'] . "'>" . $aCategory['categoryName'] . "</option>";
+                                }
                             }
                             elseif ($category === "all") {
                                 echo "<option class='category-in-options'" . " style='color: " . $aCategory['color'] . ";' value='" . $aCategory['categoryName'] . "," . $aCategory['color'] . "'>" . $aCategory['categoryName'] . "</option>";
                             }
                         }
+                    if ($category !== "all") { 
+                        foreach ($categoryArr as $aCategory) {
+                            if ($category !== $aCategory['categoryName']) {
+                                echo "<option class='category-in-options'" . " style='color: " . $aCategory['color'] . ";' value='" . $aCategory['categoryName'] . "," . $aCategory['color'] . "'>" . $aCategory['categoryName'] . "</option>";
+                            }
+                        }
+                    }
                     ?>
                 </select>
                 

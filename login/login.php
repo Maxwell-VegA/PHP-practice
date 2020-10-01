@@ -17,15 +17,15 @@
     else {
         ?>
         <main class="login-main">
-        <form action="includes/login.inc.php" method="POST" autocomplete="off">
-            <p>Username or E-mail:</p>
-            <input type="text" name="mailuid">
-            <p>Password:</p>
-            <input type="password" name="pwd">
-            <br>
-            <button type="submit" name="login-submit">Login</button>
-            <a href="signup.php">Sign Up</a>      
-        </form>
+            <form action="includes/login.inc.php" method="POST" autocomplete="off">
+                <p>Username or E-mail:</p>
+                <input type="text" name="mailuid">
+                <p>Password:</p>
+                <input type="password" name="pwd">
+                <br>
+                <button type="submit" name="login-submit">Login</button>
+                <a href="signup.php">Sign Up</a>      
+            </form>
         </main>
         <?php
     }
@@ -52,7 +52,7 @@
 
 
 <?php
-    require "footer.php";
+    // require "footer.php";
 ?>
 
 

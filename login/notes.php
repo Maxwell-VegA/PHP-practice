@@ -30,6 +30,12 @@
     ?>
 </section>
 
+<aside>
+    <?php
+        require "sidebar.php"
+    ?>
+</aside>
+
 <!-- <div class="bgdec" id="background-decoration"></div> -->
 <div class="bgdec" id="background-decoration0"></div>
 <div class="bgdec" id="background-decoration1"></div>

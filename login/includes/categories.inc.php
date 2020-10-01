@@ -16,7 +16,7 @@
     }
 
     if ($showCategories) {
-        $sql = "SELECT * FROM categories WHERE createdBy = '$currentUser' OR categoryName = 'unsorted';";
+        $sql = "SELECT * FROM categories WHERE createdBy = '$currentUser' OR categoryName = 'unsorted' ORDER BY FIELD (categoryName, 'unsorted') DESC, categoryName ASC;";
         mysqli_stmt_prepare($stmt, $sql);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);

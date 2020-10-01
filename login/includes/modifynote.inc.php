@@ -19,7 +19,7 @@
             $rawProc    =   explode(',', $raw);
             $category   =   $rawProc[0];
             $color      =   $rawProc[1];
-            $sql = "UPDATE notes SET noteTitle = ?, noteText = ?, noteSubText = ?, lastModified = now(), category = ?, categoryColor = ? WHERE id = $noteId AND createdBy = $createdBy";
+            $sql = "UPDATE notes SET noteTitle = ?, noteText = ?, noteSubText = ?, lastModified = now(), category = ?, categoryColor = ? WHERE id = $noteId AND createdBy = '$createdBy'";
             $stmt = mysqli_stmt_init($conn);
             if(!mysqli_stmt_prepare($stmt, $sql)) {
                 echo "SQL statement failed";

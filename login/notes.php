@@ -65,7 +65,16 @@
 <!-- The category selector looks rather bad in lightmode and borders aren't enough -->
 <!-- Add the option to place the footer as a sidebar on the left / combine with tv layout maybe -->
 <!-- An empty archive displays the wrong message BUG -->
-<!-- After exiting search mode category select for new note doesn't work -->
+<!-- Add the ability to make text bold?-->
+<!-- Perhaps the ability to insert html in a note can be a strength instead of a bug? -->
+<!-- Create category color select doesn't work in sidebar -->
+<!-- Set a min height for the sidebar and test it on less tall displays -->
+<!-- Use the css orb somewhere. Perhaps inside of a some default note or as an easter egg (someone writes div class=orb)-->
+<!-- Make a settings menu with a bunch of those cool toggles -->
+<!-- Z index problems persist at the top of the page -->
+<!-- Would it be possible for you to make the table per user upgrade? -->
+<!-- Active category styling -->
+<!-- A button for switching the side on which the sidebar appears -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->

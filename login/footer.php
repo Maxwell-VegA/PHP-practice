@@ -3,11 +3,7 @@
     <footer>
         <div id="search">
             <span>Search notes:</span>
-            <!-- <label for="searchByTitle">title</label>
-            <input type="checkbox" name="searchByTitle" id="searchByTitle">
-            <label for="searchByText">text</label>
-            <input type="checkbox" name="searchByText" id="searchByText"> -->
-            <input type="text" name="searchbox" id="searchbox">
+            <input type="text" name="searchbox" id="searchbox" autocomplete="off">
         </div>
         <script>
             $(document).ready(function () {

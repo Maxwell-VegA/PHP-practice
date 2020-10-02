@@ -3,7 +3,7 @@
     <!-- ======================================================================== -->
 
 <div id="search">
-    <input type="text" name="searchbox" placeholder="Search..." id="searchbox">
+    <input type="text" name="searchbox" placeholder="Search..." id="searchbox" autocomplete="off">
 </div>
 <script>
     $(document).ready(function () {
@@ -153,6 +153,7 @@
 
 <div id="delete-category">
     <select id="category-to-delete" name="category">
+            <option value=""></option>
         <?php 
             foreach ($categoryArr as $aCategory) {
                 if ($aCategory['categoryName'] !== "unsorted") {
@@ -161,7 +162,7 @@
             }
         ?>
     </select>
-    <button id="deleteCategory">Delete Selected Category</button>
+    <button id="deleteCategory">Delete Selected <br> Category</button>
     <script>
         $(document).ready(function () {
             selectedCategory = "";
@@ -195,54 +196,44 @@
 
     <!-- ======================================================================== -->
 
-<div id="archive">
+<div id="toggles">
     <?php
         if ($editingMode === true) {
-            ?> <a href="notes.php">Archiving mode: on</a> <?php
-            // The exit btn should likely be highlighted when in archiving mode
+            ?><a class="a-btn-on" href="notes.php"><b>Archiving mode</b><i></i><div></div></a> <?php
         }
         else {
-            ?> <a href="archive.php?a">Archiving mode: off</a> <?php
+            ?><a class="a-btn-off" href="archive.php?a"><b>Archiving mode</b><i></i><div></div></a> <?php
         }
+
         if ($archiveView === false) {
-            ?> <a href="archivednotes.php?b">Viewing: active notes</a> <?php
+            ?> <a class='a-btn-off' href="archivednotes.php?b"><b>Archived notes</b><i></i><div></div></a> <?php
         }
         else {
-            ?> <a href="notes.php">Viewing: archived notes</a> <?php
+            ?> <a class='a-btn-on' href="notes.php"><b>Archived notes</b><div></div></a> <?php
+        }
+        if (false) {
+            ?> <a class='a-btn-off' href="#"><b>Darkmode</b><i></i><div></div></a> <?php
+        }
+        else {
+            ?> <a class='a-btn-on' href="#"><b>Darkmode</b><i></i><div></div></a> <?php
         }
     ?>            
 </div>
 
     <!-- ======================================================================== -->
 
-<div id="darkmode">
-    <?php
-        if ($darkmode === true) {
-            echo "<button>Darkmode</button>";
-        }
-        else {
-            echo "<button>Lightmode</button>";
-        }
-        // darkmode is warm, lightmode is cool
-        // if user darkmode = d {require darkmode.sass}
-        // All buttons have a kind of glowing bar underneeth them which activates when they are toggled
-    ?>
-</div>  
-
-    <!-- ======================================================================== -->
-
 <form action="includes/logout.inc.php" method="POST" id="logout">
+    <button type="submit" name="logout-submit">Log Out</button>
     <div id="permissions">
         <?php
             if ($adminPermissions === true) {
                 echo "<span>User Class - Admin</span>";
             }
             else {
-                echo "<span>Signed in as: mx-vega</span>";
+                echo "<span>Signed in as: " . $_SESSION['userUid'] . "</span>";
             }
         ?>
     </div>
-    <button type="submit" name="logout-submit">Log Out</button>
 </form> 
 
 

@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP-Practice</title>
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+
+    <nav>
+        <div class="nav-container">
+            <a href="login.php">Home</a>
+        </div>
+    </nav>
+    <header>
+        <div class="notes-leftside-options-container">
+            <form action="includes/createcategory.inc.php" method="POST" autocomplete="off">
+                <input type="text" name="newCategoryName" placeholder="New category..." maxlength="14">
+                <label class="color-example" for="clr">color</label>
+                <input id="clr" type="color" name="newCategoryColor" value="#8f8f8f">
+                <button id="category-create-btn" type="submit" name="newCategorySubmit">Create</button>
+                <script>
+                    $(document).ready(function () {
+                        $("#clr").change(function (e) {
+                            var currentColor = $(this).val();
+                            // console.log(currentColor);
+                            $(".color-example").css("border-color", currentColor);
+                        });
+                    });
+                </script>
+            </form>
+        </div>
+
+        <!-- <div class="categories-bar-overlay">
+        <div></div>
+        <div class="categories-overlay-middle"></div>
+        <div></div>
+    </div> -->
+
+        <div class="categories-container">
+            <div class="inner-categories-container">
+                <a class='category c-all'>All</a>
+                <script>
+                    $(document).ready(function () {
+                        $(".c-all").click(function (e) {
+                            $.get("innernotes.php",
+                                function (data, status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                        });
+                    });
+                </script>
+
+                <a class='category categoryBtn categoryBtn1' style='border-color: #ff0000;'>unsorted</a>
+                <script>
+                    var valueCategory1 = 'unsorted';
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('.categoryBtn1').click(function () {
+                            $.get("innernotes.php?categoryname=" + valueCategory1, function (data,
+                                status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+                <a class='category categoryBtn categoryBtn2' style='border-color: #20ff25;'>asdasd</a>
+                <script>
+                    var valueCategory2 = 'asdasd';
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('.categoryBtn2').click(function () {
+                            $.get("innernotes.php?categoryname=" + valueCategory2, function (data,
+                                status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+                <a class='category categoryBtn categoryBtn3' style='border-color: #00ffff;'>B-team</a>
+                <script>
+                    var valueCategory3 = 'B-team';
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('.categoryBtn3').click(function () {
+                            $.get("innernotes.php?categoryname=" + valueCategory3, function (data,
+                                status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+                <a class='category categoryBtn categoryBtn4' style='border-color: #8f8f8f;'>Green-category</a>
+                <script>
+                    var valueCategory4 = 'Green-category';
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('.categoryBtn4').click(function () {
+                            $.get("innernotes.php?categoryname=" + valueCategory4, function (data,
+                                status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+                <a class='category categoryBtn categoryBtn5' style='border-color: #800000;'>hello</a>
+                <script>
+                    var valueCategory5 = 'hello';
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('.categoryBtn5').click(function () {
+                            $.get("innernotes.php?categoryname=" + valueCategory5, function (data,
+                                status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+                <a class='category categoryBtn categoryBtn6' style='border-color: #8f8f8f;'>IDEAS</a>
+                <script>
+                    var valueCategory6 = 'IDEAS';
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('.categoryBtn6').click(function () {
+                            $.get("innernotes.php?categoryname=" + valueCategory6, function (data,
+                                status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+                <a class='category categoryBtn categoryBtn7' style='border-color: #ffffff;'>New category!</a>
+                <script>
+                    var valueCategory7 = 'New category!';
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('.categoryBtn7').click(function () {
+                            $.get("innernotes.php?categoryname=" + valueCategory7, function (data,
+                                status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+                <a class='category categoryBtn categoryBtn8' style='border-color: #ff2025;'>RED</a>
+                <script>
+                    var valueCategory8 = 'RED';
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('.categoryBtn8').click(function () {
+                            $.get("innernotes.php?categoryname=" + valueCategory8, function (data,
+                                status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+                <a class='category categoryBtn categoryBtn9' style='border-color: #8f8f8f;'>sdfafasdf</a>
+                <script>
+                    var valueCategory9 = 'sdfafasdf';
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('.categoryBtn9').click(function () {
+                            $.get("innernotes.php?categoryname=" + valueCategory9, function (data,
+                                status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+                <a class='category categoryBtn categoryBtn10' style='border-color: #8f8f8f;'>t-----category</a>
+                <script>
+                    var valueCategory10 = 't-----category';
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('.categoryBtn10').click(function () {
+                            $.get("innernotes.php?categoryname=" + valueCategory10, function (data,
+                                status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+                <a class='category categoryBtn categoryBtn11' style='border-color: #004284;'>Very Sorted</a>
+                <script>
+                    var valueCategory11 = 'Very Sorted';
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('.categoryBtn11').click(function () {
+                            $.get("innernotes.php?categoryname=" + valueCategory11, function (data,
+                                status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+
+        <div class="notes-rightside-options-container">
+            <label for="select-category-dropdown">Category:</label>
+            <select name="" id="select-category-dropdown">
+                <option id="cio-1" class="category-in-options cio-1">All</option>
+                <script>
+                    $(document).ready(function () {
+                        $(".cio-1").click(function (e) {
+                            // window.location = "notes.php";
+                            $.get("innernotes.php",
+                                function (data, status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                        });
+                    });
+                </script>
+                <option class='category-in-options' style='color: #ff0000;'>unsorted</option>
+                <script>
+                    $(document).ready(function () {
+                        $('#select-category-dropdown').on('change', function () {
+                            var value = $(this).val();
+                            $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+                <option class='category-in-options' style='color: #20ff25;'>asdasd</option>
+                <script>
+                    $(document).ready(function () {
+                        $('#select-category-dropdown').on('change', function () {
+                            var value = $(this).val();
+                            $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+                <option class='category-in-options' style='color: #00ffff;'>B-team</option>
+                <script>
+                    $(document).ready(function () {
+                        $('#select-category-dropdown').on('change', function () {
+                            var value = $(this).val();
+                            $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+                <option class='category-in-options' style='color: #8f8f8f;'>Green-category</option>
+                <script>
+                    $(document).ready(function () {
+                        $('#select-category-dropdown').on('change', function () {
+                            var value = $(this).val();
+                            $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+                <option class='category-in-options' style='color: #800000;'>hello</option>
+                <script>
+                    $(document).ready(function () {
+                        $('#select-category-dropdown').on('change', function () {
+                            var value = $(this).val();
+                            $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+                <option class='category-in-options' style='color: #8f8f8f;'>IDEAS</option>
+                <script>
+                    $(document).ready(function () {
+                        $('#select-category-dropdown').on('change', function () {
+                            var value = $(this).val();
+                            $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+                <option class='category-in-options' style='color: #ffffff;'>New category!</option>
+                <script>
+                    $(document).ready(function () {
+                        $('#select-category-dropdown').on('change', function () {
+                            var value = $(this).val();
+                            $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+                <option class='category-in-options' style='color: #ff2025;'>RED</option>
+                <script>
+                    $(document).ready(function () {
+                        $('#select-category-dropdown').on('change', function () {
+                            var value = $(this).val();
+                            $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+                <option class='category-in-options' style='color: #8f8f8f;'>sdfafasdf</option>
+                <script>
+                    $(document).ready(function () {
+                        $('#select-category-dropdown').on('change', function () {
+                            var value = $(this).val();
+                            $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+                <option class='category-in-options' style='color: #8f8f8f;'>t-----category</option>
+                <script>
+                    $(document).ready(function () {
+                        $('#select-category-dropdown').on('change', function () {
+                            var value = $(this).val();
+                            $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+                <option class='category-in-options' style='color: #004284;'>Very Sorted</option>
+                <script>
+                    $(document).ready(function () {
+                        $('#select-category-dropdown').on('change', function () {
+                            var value = $(this).val();
+                            $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        });
+                    });
+                </script>
+            </select>
+
+            <label for="order-by">Order by:</label>
+            <select name="" id="order-by">
+                <option value="0">Last modified</option>
+                <option value="1">Last created</option>
+                <option value="2">First created</option>
+                <option value="3">Alphabetically</option>
+            </select>
+            <script>
+                $(document).ready(function () {
+                    $('#order-by').on('change', function () {
+                        var result = $(this).val();
+                        // alert("includes/notes.inc.php?sort=" + result);
+                        // current issue seems to be that the include isn't picking up the sort variable
+
+                        $.get("includes/notes.inc.php?sort=" + result, {}, function (data, status) {
+                            $("#notes-main-section").html(data);
+                        })
+
+                    })
+
+                });
+                // using the gets might cause conflicts to arise because one get is setting the sort and the category gets are ignoring it and reseting it to their own thing. We'll see.
+            </script>
+            <!-- 
+            All categories.
+            Sort by. 
+            Color theme?
+            Delete categories?
+            Quick delete toggle.
+            Trashed notes page.
+        How do I make this as few clicks as possible? -->
+        </div>
+    </header>
+    <main>
+        <form class="note-input span3" action="includes/createnote.inc.php" method="POST" autocomplete="off">
+            <input type="text" name="noteTitle" placeholder="Note Title" maxlength="40">
+            <textarea name="noteText" placeholder="Note text"></textarea>
+            <input type="text" name="noteSubtext" placeholder="Note hidden text">
+            <select name="categoryAndColor">
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>14</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>15</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>14</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>15</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>14</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>15</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>14</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>15</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>14</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>15</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>14</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>15</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>14</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>15</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>14</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>15</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>14</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>15</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>14</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>15</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>14</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>15</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>23</b><br />
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>25</b><br />
+                <option class='category-in-options' style='color: #ff0000;' value='unsorted,#ff0000'>unsorted</option>
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>25</b><br />
+                <option class='category-in-options' style='color: #20ff25;' value='asdasd,#20ff25'>asdasd</option><br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>25</b><br />
+                <option class='category-in-options' style='color: #00ffff;' value='B-team,#00ffff'>B-team</option><br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>25</b><br />
+                <option class='category-in-options' style='color: #8f8f8f;' value='Green-category,#8f8f8f'>
+                    Green-category</option><br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>25</b><br />
+                <option class='category-in-options' style='color: #800000;' value='hello,#800000'>hello</option><br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>25</b><br />
+                <option class='category-in-options' style='color: #8f8f8f;' value='IDEAS,#8f8f8f'>IDEAS</option><br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>25</b><br />
+                <option class='category-in-options' style='color: #ffffff;' value='New category!,#ffffff'>New category!
+                </option><br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>25</b><br />
+                <option class='category-in-options' style='color: #ff2025;' value='RED,#ff2025'>RED</option><br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>25</b><br />
+                <option class='category-in-options' style='color: #8f8f8f;' value='sdfafasdf,#8f8f8f'>sdfafasdf</option>
+                <br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>25</b><br />
+                <option class='category-in-options' style='color: #8f8f8f;' value='t-----category,#8f8f8f'>
+                    t-----category</option><br />
+                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
+                line <b>25</b><br />
+                <option class='category-in-options' style='color: #004284;' value='Very Sorted,#004284'>Very Sorted
+                </option>
+            </select>
+
+            <button type="submit" name="createNote">Log note!</button>
+        </form>
+        <div class="pointer-events-none"></div>
+        <div class="pointer-events-none"></div>
+        <div class="pointer-events-none"></div>
+        <div class="pointer-events-none"></div>
+        <div class="pointer-events-none"></div>
+        <div class="pointer-events-none"></div>
+        <div class="pointer-events-none"></div>
+        <div class="pointer-events-none"></div>
+        <div class="pointer-events-none"></div>
+        <div class="pointer-events-none"></div>
+    </main>
+
+    <section id="notes-main-section">
+        <script>
+            $(document).ready(function () {
+                $.ajax({
+                    type: "post",
+                    url: "newnote.php",
+                    data: {
+                        sortingByCategory: 'all'
+                    },
+                    dataType: "text",
+                    success: function (response) {
+                        $('main').html(response);
+                    }
+                });
+            });
+        </script>
+
+
+
+        <div class="span3"></div>
+        <div class='note-container span5 borderFalse'>
+            <h2 class='i-title'>The Ultra Long Note Legendary Edition</h2>
+            <p class='i-text'>Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. Sit amet, consectetur adipiscing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
+                Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua. Sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p><b class='i-options'
+                id='card1'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>2/10/2020</span>
+            <div class='i-category'><i style='border-color: #800000;'>hello</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=18">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card1').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span3 borderFalse'>
+            <h2 class='i-title'>Is this pinned?</h2>
+            <p class='i-text'>I must wonder...</p><b class='i-options' id='card2'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>2/10/2020</span>
+            <div class='i-category'><i style='border-color: #ffffff;'>New category!</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=40">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card2').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span4 borderFalse'>
+            <h2 class='i-title'>Lorem ipsum dolor</h2>
+            <p class='i-text'>Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.</p><b class='i-options' id='card3'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>2/10/2020</span>
+            <div class='i-category'><i style='border-color: #ff2025;'>RED</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=14">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card3').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span3 borderFalse'>
+            <h2 class='i-title'>Lorem ipsum</h2>
+            <p class='i-text'>Sit amet, consectetur adipiscing elit.</p><b class='i-options' id='card4'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>21/9/2020</span>
+            <div class='i-category'><i style='border-color: #004284;'>Very Sorted</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=19">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card4').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span2 borderFalse'>
+            <h2 class='i-title'>Have I solved the problem?</h2>
+            <p class='i-text'></p><b class='i-options' id='card5'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>2/10/2020</span>
+            <div class='i-category'><i style='border-color: #8f8f8f;'>t-----category</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=59">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card5').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span6 borderFalse'>
+            <h2 class='i-title'>New note</h2>
+            <p class='i-text'>Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. Sit amet, consectetur adipiscing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
+                Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua. Sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+
+
+                <div class="nav-container">
+                    <a href="login.php">Home</a>
+                </div>
+
+
+                incididunt ut labore et dolore magna <b> aliqua. Ut enim </b> ad minim veniam, quis nostrud. Sit amet,
+                consectetur. Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                magna aliqua. Ut enim ad minim veniam, quis nostrud. <i> aliqua. Ut enim </i> Sit amet, consectetur. Ut
+                enim ad minim veniam, quis nostrud.</p><b class='i-options' id='card6'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>2/10/2020</span>
+            <div class='i-category'><i style='border-color: #ff0000;'>unsorted</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=42">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card6').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span2 borderFalse'>
+            <h2 class='i-title'>Log into a new account for the showcase</h2>
+            <p class='i-text'></p><b class='i-options' id='card7'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>2/10/2020</span>
+            <div class='i-category'><i style='border-color: #00ffff;'>B-team</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=29">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card7').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span3 borderFalse'>
+            <h2 class='i-title'>test title</h2>
+            <p class='i-text'>test title</p><b class='i-options' id='card8'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>2/10/2020</span>
+            <div class='i-category'><i style='border-color: #8f8f8f;'>t-----category</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=39">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card8').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span3 borderFalse'>
+            <h2 class='i-title'>What</h2>
+            <p class='i-text'>Modified just now</p><b class='i-options' id='card9'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>2/10/2020</span>
+            <div class='i-category'><i style='border-color: #8f8f8f;'>sdfafasdf</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=26">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card9').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span3 borderFalse'>
+            <h2 class='i-title'>New Note</h2>
+            <p class='i-text'>asdpojaspdoaspod</p><b class='i-options' id='card10'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>2/10/2020</span>
+            <div class='i-category'><i style='border-color: #00ffff;'>B-team</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=43">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card10').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span2 borderFalse'>
+            <h2 class='i-title'>NOT ARC</h2>
+            <p class='i-text'></p><b class='i-options' id='card11'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>2/10/2020</span>
+            <div class='i-category'><i style='border-color: #800000;'>hello</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=49">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card11').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span2 borderFalse'>
+            <h2 class='i-title'>Delete category</h2>
+            <p class='i-text'></p><b class='i-options' id='card12'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>2/10/2020</span>
+            <div class='i-category'><i style='border-color: #ffffff;'>New category!</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=57">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card12').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span2 borderFalse'>
+            <h2 class='i-title'>How are you doing friend???Maxing title.</h2>
+            <p class='i-text'></p><b class='i-options' id='card13'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>1/10/2020</span>
+            <div class='i-category'><i style='border-color: #8f8f8f;'>t-----category</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=58">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card13').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span3 borderFalse'>
+            <h2 class='i-title'>Cool note</h2>
+            <p class='i-text'>Green and stuff</p><b class='i-options' id='card14'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>29/9/2020</span>
+            <div class='i-category'><i style='border-color: #FF0000;'>unsorted</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=56">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card14').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span2 borderFalse'>
+            <h2 class='i-title'>New Note</h2>
+            <p class='i-text'></p><b class='i-options' id='card15'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>29/9/2020</span>
+            <div class='i-category'><i style='border-color: #ff0000;'>unsorted</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=47">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card15').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span2 borderFalse'>
+            <h2 class='i-title'>Is this vissible?</h2>
+            <p class='i-text'></p><b class='i-options' id='card16'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>29/9/2020</span>
+            <div class='i-category'><i style='border-color: #ff0000;'>unsorted</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=46">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card16').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span3 borderFalse'>
+            <h2 class='i-title'>Ideas note</h2>
+            <p class='i-text'>sdasdasd</p><b class='i-options' id='card17'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>28/9/2020</span>
+            <div class='i-category'><i style='border-color: #FF0000;'>unsorted</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=41">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card17').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span3 borderFalse'>
+            <h2 class='i-title'>NEEEEEW!!!</h2>
+            <p class='i-text'>asdasdasdasd</p><b class='i-options' id='card18'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>28/9/2020</span>
+            <div class='i-category'><i style='border-color: #ffffff;'>New category!</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=35">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card18').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span2 borderFalse'>
+            <h2 class='i-title'>Test visibility</h2>
+            <p class='i-text'></p><b class='i-options' id='card19'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>26/9/2020</span>
+            <div class='i-category'><i style='border-color: #FF0000;'>unsorted</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=36">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card19').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span5 borderFalse'>
+            <h2 class='i-title'>The Long Note</h2>
+            <p class='i-text'>Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. Sit amet, consectetur adipiscing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
+                Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua. Ut enim ad minim veniam, quis nostrud.</p><b class='i-options' id='card20'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>21/9/2020</span>
+            <div class='i-category'><i style='border-color: #800000;'>hello</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=17">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card20').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span3 borderFalse'>
+            <h2 class='i-title'>The Yellow Note</h2>
+            <p class='i-text'>Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.</p><b class='i-options' id='card21'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>21/9/2020</span>
+            <div class='i-category'><i style='border-color: #FF0000;'>unsorted</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=15">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card21').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span2 borderFalse'>
+            <h2 class='i-title'>Decimal</h2>
+            <p class='i-text'></p><b class='i-options' id='card22'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>21/9/2020</span>
+            <div class='i-category'><i style='border-color: #800000;'>hello</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=27">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card22').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class='note-container span3 borderFalse'>
+            <h2 class='i-title'>The Hello Note</h2>
+            <p class='i-text'>Entering some text. I've been working for a while now. Really enjoying it.</p><b
+                class='i-options' id='card23'>...</b>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+
+            <span class='i-date'>20/9/2020</span>
+            <div class='i-category'><i style='border-color: #FF0000;'>unsorted</i></div> <b><a class='i-btn'
+                    href="fullnote.php?note=20">View full note</a></b>
+            <script>
+                $(document).ready(function () {
+                    $('#card23').click(function (e) {
+                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                    });
+                });
+            </script>
+        </div>
+        <div class="span3"></div>
+    </section>
+
+    <aside>
+        <div class="sidebar-container">
+
+            <!-- ======================================================================== -->
+
+            <div id="search">
+                <input type="text" name="searchbox" placeholder="Search..." id="searchbox" autocomplete="off">
+            </div>
+            <script>
+                $(document).ready(function () {
+                    $("#searchbox").keyup(function (e) {
+                        var input = $(this).val();
+                        if (input.length > -1) {
+                            $.ajax({
+                                type: "post",
+                                url: "innernotes.php",
+                                data: {
+                                    search: input
+                                },
+                                dataType: "text",
+                                success: function (data) {
+                                    $('#notes-main-section').html(data);
+                                }
+                            });
+                        }
+                    });
+                });
+            </script>
+
+            <!-- ======================================================================== -->
+
+            <div class="categories-container">
+                <div class="inner-categories-container">
+                    <a class='category c-all'>All</a>
+                    <script>
+                        $(document).ready(function () {
+                            $(".c-all").click(function (e) {
+                                $.get("innernotes.php",
+                                    function (data, status) {
+                                        $("#notes-main-section").html(data);
+                                    })
+                            });
+                        });
+                    </script>
+
+                    <a class='category categoryBtn categoryBtn1' style='border-color: #ff0000;'>unsorted</a>
+                    <script>
+                        var valueCategory1 = 'unsorted';
+                    </script>
+                    <script>
+                        $(document).ready(function () {
+                            $('.categoryBtn1').click(function () {
+                                $.get("innernotes.php?categoryname=" + valueCategory1, function (data,
+                                    status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                    <a class='category categoryBtn categoryBtn2' style='border-color: #20ff25;'>asdasd</a>
+                    <script>
+                        var valueCategory2 = 'asdasd';
+                    </script>
+                    <script>
+                        $(document).ready(function () {
+                            $('.categoryBtn2').click(function () {
+                                $.get("innernotes.php?categoryname=" + valueCategory2, function (data,
+                                    status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                    <a class='category categoryBtn categoryBtn3' style='border-color: #00ffff;'>B-team</a>
+                    <script>
+                        var valueCategory3 = 'B-team';
+                    </script>
+                    <script>
+                        $(document).ready(function () {
+                            $('.categoryBtn3').click(function () {
+                                $.get("innernotes.php?categoryname=" + valueCategory3, function (data,
+                                    status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                    <a class='category categoryBtn categoryBtn4' style='border-color: #8f8f8f;'>Green-category</a>
+                    <script>
+                        var valueCategory4 = 'Green-category';
+                    </script>
+                    <script>
+                        $(document).ready(function () {
+                            $('.categoryBtn4').click(function () {
+                                $.get("innernotes.php?categoryname=" + valueCategory4, function (data,
+                                    status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                    <a class='category categoryBtn categoryBtn5' style='border-color: #800000;'>hello</a>
+                    <script>
+                        var valueCategory5 = 'hello';
+                    </script>
+                    <script>
+                        $(document).ready(function () {
+                            $('.categoryBtn5').click(function () {
+                                $.get("innernotes.php?categoryname=" + valueCategory5, function (data,
+                                    status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                    <a class='category categoryBtn categoryBtn6' style='border-color: #8f8f8f;'>IDEAS</a>
+                    <script>
+                        var valueCategory6 = 'IDEAS';
+                    </script>
+                    <script>
+                        $(document).ready(function () {
+                            $('.categoryBtn6').click(function () {
+                                $.get("innernotes.php?categoryname=" + valueCategory6, function (data,
+                                    status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                    <a class='category categoryBtn categoryBtn7' style='border-color: #ffffff;'>New category!</a>
+                    <script>
+                        var valueCategory7 = 'New category!';
+                    </script>
+                    <script>
+                        $(document).ready(function () {
+                            $('.categoryBtn7').click(function () {
+                                $.get("innernotes.php?categoryname=" + valueCategory7, function (data,
+                                    status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                    <a class='category categoryBtn categoryBtn8' style='border-color: #ff2025;'>RED</a>
+                    <script>
+                        var valueCategory8 = 'RED';
+                    </script>
+                    <script>
+                        $(document).ready(function () {
+                            $('.categoryBtn8').click(function () {
+                                $.get("innernotes.php?categoryname=" + valueCategory8, function (data,
+                                    status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                    <a class='category categoryBtn categoryBtn9' style='border-color: #8f8f8f;'>sdfafasdf</a>
+                    <script>
+                        var valueCategory9 = 'sdfafasdf';
+                    </script>
+                    <script>
+                        $(document).ready(function () {
+                            $('.categoryBtn9').click(function () {
+                                $.get("innernotes.php?categoryname=" + valueCategory9, function (data,
+                                    status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                    <a class='category categoryBtn categoryBtn10' style='border-color: #8f8f8f;'>t-----category</a>
+                    <script>
+                        var valueCategory10 = 't-----category';
+                    </script>
+                    <script>
+                        $(document).ready(function () {
+                            $('.categoryBtn10').click(function () {
+                                $.get("innernotes.php?categoryname=" + valueCategory10, function (data,
+                                    status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                    <a class='category categoryBtn categoryBtn11' style='border-color: #004284;'>Very Sorted</a>
+                    <script>
+                        var valueCategory11 = 'Very Sorted';
+                    </script>
+                    <script>
+                        $(document).ready(function () {
+                            $('.categoryBtn11').click(function () {
+                                $.get("innernotes.php?categoryname=" + valueCategory11, function (data,
+                                    status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+
+            <!-- ======================================================================== -->
+
+            <div class="dropdown-category-select">
+                <label for="select-category-dropdown">Category:</label>
+                <select name="" id="select-category-dropdown">
+                    <option id="cio-1" class="category-in-options cio-1">All</option>
+                    <script>
+                        $(document).ready(function () {
+                            $(".cio-1").click(function (e) {
+                                // window.location = "notes.php";
+                                $.get("innernotes.php",
+                                    function (data, status) {
+                                        $("#notes-main-section").html(data);
+                                    })
+                            });
+                        });
+                    </script>
+                    <option class='category-in-options' style='color: #ff0000;'>unsorted</option>
+                    <script>
+                        $(document).ready(function () {
+                            $('#select-category-dropdown').on('change', function () {
+                                var value = $(this).val();
+                                $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                    <option class='category-in-options' style='color: #20ff25;'>asdasd</option>
+                    <script>
+                        $(document).ready(function () {
+                            $('#select-category-dropdown').on('change', function () {
+                                var value = $(this).val();
+                                $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                    <option class='category-in-options' style='color: #00ffff;'>B-team</option>
+                    <script>
+                        $(document).ready(function () {
+                            $('#select-category-dropdown').on('change', function () {
+                                var value = $(this).val();
+                                $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                    <option class='category-in-options' style='color: #8f8f8f;'>Green-category</option>
+                    <script>
+                        $(document).ready(function () {
+                            $('#select-category-dropdown').on('change', function () {
+                                var value = $(this).val();
+                                $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                    <option class='category-in-options' style='color: #800000;'>hello</option>
+                    <script>
+                        $(document).ready(function () {
+                            $('#select-category-dropdown').on('change', function () {
+                                var value = $(this).val();
+                                $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                    <option class='category-in-options' style='color: #8f8f8f;'>IDEAS</option>
+                    <script>
+                        $(document).ready(function () {
+                            $('#select-category-dropdown').on('change', function () {
+                                var value = $(this).val();
+                                $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                    <option class='category-in-options' style='color: #ffffff;'>New category!</option>
+                    <script>
+                        $(document).ready(function () {
+                            $('#select-category-dropdown').on('change', function () {
+                                var value = $(this).val();
+                                $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                    <option class='category-in-options' style='color: #ff2025;'>RED</option>
+                    <script>
+                        $(document).ready(function () {
+                            $('#select-category-dropdown').on('change', function () {
+                                var value = $(this).val();
+                                $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                    <option class='category-in-options' style='color: #8f8f8f;'>sdfafasdf</option>
+                    <script>
+                        $(document).ready(function () {
+                            $('#select-category-dropdown').on('change', function () {
+                                var value = $(this).val();
+                                $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                    <option class='category-in-options' style='color: #8f8f8f;'>t-----category</option>
+                    <script>
+                        $(document).ready(function () {
+                            $('#select-category-dropdown').on('change', function () {
+                                var value = $(this).val();
+                                $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                    <option class='category-in-options' style='color: #004284;'>Very Sorted</option>
+                    <script>
+                        $(document).ready(function () {
+                            $('#select-category-dropdown').on('change', function () {
+                                var value = $(this).val();
+                                $.get("innernotes.php?categoryname=" + value, function (data, status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            });
+                        });
+                    </script>
+                </select>
+
+                <label for="order-by">Order by:</label>
+                <select name="" id="order-by">
+                    <option value="0">Last modified</option>
+                    <option value="1">Last created</option>
+                    <option value="2">First created</option>
+                    <option value="3">Alphabetically</option>
+                </select>
+                <script>
+                    $(document).ready(function () {
+                        $('#order-by').on('change', function () {
+                            var result = $(this).val();
+                            $.get("includes/notes.inc.php?sort=" + result, {}, function (data, status) {
+                                $("#notes-main-section").html(data);
+                            })
+                        })
+                    });
+                </script>
+            </div>
+
+            <!-- ======================================================================== -->
+
+            <div class="new-category">
+                <form action="includes/createcategory.inc.php" method="POST" autocomplete="off">
+                    <input type="text" name="newCategoryName" placeholder="New category..." maxlength="14">
+                    <label class="color-example" for="clr">color</label>
+                    <input id="clr" type="color" name="newCategoryColor" value="#8f8f8f">
+                    <button id="category-create-btn" type="submit" name="newCategorySubmit">Create</button>
+                    <script>
+                        $(document).ready(function () {
+                            $("#clr").change(function (e) {
+                                var currentColor = $(this).val();
+                                // console.log(currentColor);
+                                $(".color-example").css("border-color", currentColor);
+                            });
+                        });
+                    </script>
+                </form>
+            </div>
+
+            <!-- ======================================================================== -->
+
+            <div id="delete-category">
+                <select id="category-to-delete" name="category">
+                    <option value=""></option>
+                    <option class='category-in-options' style='color: #20ff25;' value=asdasd>asdasd</option>
+                    <option class='category-in-options' style='color: #00ffff;' value=B-team>B-team</option>
+                    <option class='category-in-options' style='color: #8f8f8f;' value=Green-category>Green-category
+                    </option>
+                    <option class='category-in-options' style='color: #800000;' value=hello>hello</option>
+                    <option class='category-in-options' style='color: #8f8f8f;' value=IDEAS>IDEAS</option>
+                    <option class='category-in-options' style='color: #ffffff;' value=New category!>New category!
+                    </option>
+                    <option class='category-in-options' style='color: #ff2025;' value=RED>RED</option>
+                    <option class='category-in-options' style='color: #8f8f8f;' value=sdfafasdf>sdfafasdf</option>
+                    <option class='category-in-options' style='color: #8f8f8f;' value=t-----category>t-----category
+                    </option>
+                    <option class='category-in-options' style='color: #004284;' value=Very Sorted>Very Sorted</option>
+                </select>
+                <button id="deleteCategory">Delete Selected <br> Category</button>
+                <script>
+                    $(document).ready(function () {
+                        selectedCategory = "";
+                        $(".category-in-options").click(function (e) {
+                            // Change the underline of the delete button to an active state
+                        });
+                        $('#deleteCategory').click(function (e) {
+                            var selectedCategory = $("#category-to-delete").val();
+                            $.ajax({
+                                type: "POST",
+                                url: "includes/deletecategory.inc.php",
+                                data: {
+                                    category: selectedCategory
+                                },
+                                dataType: "text",
+                                success: function (response) {
+                                    var input = "";
+                                    $.ajax({
+                                        type: "post",
+                                        url: "innernotes.php",
+                                        data: {
+                                            search: input
+                                        },
+                                        dataType: "text",
+                                        success: function (data) {
+                                            $('#notes-main-section').html(data);
+                                        }
+                                    });
+                                }
+                            });
+                        });
+                    });
+                </script>
+            </div>
+
+            <!-- ======================================================================== -->
+
+            <div id="toggles">
+                <a class="a-btn-off" href="archive.php?a"><b>Archiving mode</b><i></i>
+                    <div></div>
+                </a> <a class='a-btn-off' href="archivednotes.php?b"><b>Archived notes</b><i></i>
+                    <div></div>
+                </a> <a class='a-btn-on' href="#"><b>Darkmode</b><i></i>
+                    <div></div>
+                </a>
+            </div>
+
+            <!-- ======================================================================== -->
+
+            <form action="includes/logout.inc.php" method="POST" id="logout">
+                <button type="submit" name="logout-submit">Log Out</button>
+                <div id="permissions">
+                    <span>Signed in as: Aero.K</span> </div>
+            </form>
+
+
+        </div>
+    </aside>
+
+    <!-- <div class="bgdec" id="background-decoration"></div> -->
+    <div class="bgdec" id="background-decoration0"></div>
+    <div class="bgdec" id="background-decoration1"></div>
+
+
+
+
+    <footer>
+        <div id="search">
+            <span>Search notes:</span>
+            <input type="text" name="searchbox" id="searchbox" autocomplete="off">
+        </div>
+        <script>
+            $(document).ready(function () {
+                $("#searchbox").keyup(function (e) {
+                    var input = $(this).val();
+                    if (input.length > -1) {
+                        $.ajax({
+                            type: "post",
+                            url: "innernotes.php",
+                            data: {
+                                search: input
+                            },
+                            dataType: "text",
+                            success: function (data) {
+                                $('#notes-main-section').html(data);
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+        <!-- ======================================================================== -->
+        <form action="includes/logout.inc.php" method="POST" id="logout">
+            <button type="submit" name="logout-submit">Log Out</button>
+            <div id="permissions">
+                <span>User Class - User</span> </div>
+        </form>
+        <!-- ======================================================================== -->
+        <div id="darkmode">
+            <br />
+            <b>Notice</b>: Undefined variable: darkmode in <b>C:\xampp\htdocs\php_practice\login\footer.php</b> on line
+            <b>43</b><br />
+            <button>Lightmode</button> </div>
+        <!-- ======================================================================== -->
+        <div id="archive">
+            <a href="archive.php?a">Archiving mode: off</a> <a href="archivednotes.php?b">Viewing: active notes</a>
+
+        </div>
+        <!-- ======================================================================== -->
+        <!-- <form action="includes/deletecategory.inc.php" id="category" method="POST"> -->
+        <div>
+            <select id="category-to-delete" name="category">
+                <option class='category-in-options' style='color: #20ff25;' value=asdasd>asdasd</option>
+                <option class='category-in-options' style='color: #00ffff;' value=B-team>B-team</option>
+                <option class='category-in-options' style='color: #8f8f8f;' value=Green-category>Green-category</option>
+                <option class='category-in-options' style='color: #800000;' value=hello>hello</option>
+                <option class='category-in-options' style='color: #8f8f8f;' value=IDEAS>IDEAS</option>
+                <option class='category-in-options' style='color: #ffffff;' value=New category!>New category!</option>
+                <option class='category-in-options' style='color: #ff2025;' value=RED>RED</option>
+                <option class='category-in-options' style='color: #8f8f8f;' value=sdfafasdf>sdfafasdf</option>
+                <option class='category-in-options' style='color: #8f8f8f;' value=t-----category>t-----category</option>
+                <option class='category-in-options' style='color: #004284;' value=Very Sorted>Very Sorted</option>
+            </select>
+            <button id="deleteCategory">Delete Selected Category</button>
+            <script>
+                $(document).ready(function () {
+                    selectedCategory = "";
+                    $(".category-in-options").click(function (e) {
+                        // Change the underline of the delete button to an active state
+                    });
+                    $('#deleteCategory').click(function (e) {
+                        var selectedCategory = $("#category-to-delete").val();
+                        $.ajax({
+                            type: "POST",
+                            url: "includes/deletecategory.inc.php",
+                            data: {
+                                category: selectedCategory
+                            },
+                            dataType: "text",
+                            success: function (response) {
+                                var input = "";
+                                $.ajax({
+                                    type: "post",
+                                    url: "innernotes.php",
+                                    data: {
+                                        search: input
+                                    },
+                                    dataType: "text",
+                                    success: function (data) {
+                                        $('#notes-main-section').html(data);
+                                    }
+                                });
+                                // That manages to update the main section however the navigation and footer should be updated as well somehow.
+                            }
+                        });
+                    });
+                });
+            </script>
+        </div>
+        <!-- </form> -->
+    </footer>
+</body>
+
+</html>
+
+<!-- Signout, color switch, archive switch, archive page,  -->
+
+
+<!-- move date up to the category line and view full note can take the full with of the note card -->
+<!-- not a necessary feature --- If a note has subtext display a hoverable "s" or an "i" on the card which will show the subtext -->
+<!-- The delete toggle may be done using JS -->
+<!-- Create a simple toggle for switching between five and three rows on desktop (perhaps place it in the footer) -->
+<!-- not a necessary feature --- Clicking on a note's category allows you to change it to a different one. This should be done as a dropdown list. -->
+<!-- not a necessary feature --- add in multi category select if it isn't too hard -->
+<!-- not a necessary feature --- Ability to add photos to notes? -->
+<!-- not a necessary feature --- Options for how to sort categories -->
+<!-- create note categories aren't showing up when I'm sorting by a certain category. When in a category that category should be the default for a new note -->
+<!-- Create a section for a constant message stream that archives anything older than a week? -->
+<!-- The notes come in floating up from the bottom  -->
+<!-- Using LIMIT in sql it would be easy to only return a certain amount of notes per load - and load more later -->
+
+<!-- Remember that retro tv design idea? Where on the left side are a bunch of options and on the right there is a viewport into the scene. Could do something like that here. -->
+<!-- All dropdown option doesn't work in chrome BUG-->
+<!-- The category selector looks rather bad in lightmode and borders aren't enough -->
+<!-- Add the option to place the footer as a sidebar on the left / combine with tv layout maybe -->
+<!-- An empty archive displays the wrong message BUG -->
+<!-- Add the ability to make text bold?-->
+<!-- Perhaps the ability to insert html in a note can be a strength instead of a bug? -->
+<!-- Create category color select doesn't work in sidebar -->
+<!-- Set a min height for the sidebar and test it on less tall displays -->
+<!-- Use the css orb somewhere. Perhaps inside of a some default note or as an easter egg (someone writes div class=orb)-->
+<!-- Make a settings menu with a bunch of those cool toggles -->
+<!-- Z index problems persist at the top of the page -->
+<!-- Would it be possible for you to make the table per user upgrade? -->
+<!-- Active category styling -->
+<!-- ======================================================== -->
+<!-- ======================================================== -->
+<!-- ======================================================== -->
+<!-- Sorting, lightmode switch, the footer, the sign up, delete categories -->
+<!-- animations, mobile responsive, button lamps gradient/glowing  -->
+<!-- Deploy on heroku -->
+<!-- Category delete full refresh, lightmode switch, layout switch, card menu styling, footer styling, new note category selector-->
+<!-- ======================================================== -->
+
+<div class="bgdec" id="background-decoration"></div>
+
+<!-- 
+    CREATE TABLE notes (
+	id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    createdBy TINYTEXT NOT NULL,
+    noteTitle TINYTEXT NOT NULL,
+    noteText LONGTEXT,
+    noteSubText LONGTEXT,
+	created DATETIME NOT NULL,
+    lastModified DATETIME NOT NULL
+);
+
+    ALTER TABLE notes
+    ADD category TINYTEXT NOT NULL,
+    ADD allCategories TINYTEXT
+;
+
+    ALTER TABLE `notes` 
+    DROP `allCategories`
+;
+ -->
+
+<!-- 
+    Sort by:
+    Last modified (default)
+    First created / reverse
+    By title alphabetically / reverse
+    By text length?
+    
+
+  -->

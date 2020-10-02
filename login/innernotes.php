@@ -101,16 +101,16 @@
         $index = 0;
         foreach ($noteArr as $note) {
             $noteTextLength = strlen($note['noteText']);
-            if ($noteTextLength > 0 && $noteTextLength <= 140) {
+            if ($noteTextLength > 0 && $noteTextLength <= 200) {
                 $spanRows = 'span3';
             }
-            elseif ($noteTextLength > 140 && $noteTextLength <= 290) {
+            elseif ($noteTextLength > 200 && $noteTextLength <= 410) {
                 $spanRows = 'span4';
             }
-            elseif ($noteTextLength > 290 && $noteTextLength <= 440) {
+            elseif ($noteTextLength > 410 && $noteTextLength <= 540) {
                 $spanRows = 'span5';
             }           
-            elseif ($noteTextLength > 440) {
+            elseif ($noteTextLength > 540) {
                 $spanRows = 'span6';
             }      
             elseif ($noteTextLength === 0) {
@@ -126,21 +126,35 @@
             elseif ($editingMode === true) {
                 $borderClass = "borderTrue";
             }
+
+            $dateSrc = date_parse($note['lastModified']);
+            $date = $dateSrc['day'] . "/" . $dateSrc['month'] . "/" . $dateSrc['year'];
+
             $index++;
             echo "<div class='note-container $spanRows $borderClass'>";
-            echo "<h2>" . $note['noteTitle']    . "</h2>";
-            echo "<b id='card$index'>"      . "..."                 . "</b>"; //archive, delete, pin, date created
-            echo "<p>"      . $note['noteText']     . "</p>";
-            echo "<span>"   . $note['lastModified'] . "</span>";
-            echo "<div><i style='border-color: " . $note['categoryColor'] . ";'>" . $note['category'] . "</i></div>";
+            echo "<h2 class='i-title'>"     . $note['noteTitle']    . "</h2>";
+            echo "<p class='i-text'>"      . $note['noteText']     . "</p>";
+            // =====
+            echo "<b class='i-options' id='card$index'>"      . "..." . "</b>"; 
+            ?>
+            <div class="expanded-options">
+                <button>Pin</button>
+                <button>Archive</button>
+                <button>Delete</button>
+            </div>
+            
+            <?php
+            // =====
+            echo "<span class='i-date'>"   . $date                 . "</span>";
+            echo "<div class='i-category'><i style='border-color: "    . $note['categoryColor'] . ";'>" . $note['category'] . "</i></div>";
             if ($editingMode === false && $archiveView === false) {
-                ?> <b><a href="fullnote.php?note=<?php echo $note['id']; ?>">View full note</a></b><?php
+                ?> <b><a class='i-btn' href="fullnote.php?note=<?php echo $note['id']; ?>">View full note</a></b><?php
             }
             elseif ($editingMode === true) {
-                ?> <b><a href="includes/archivenote.inc.php?note=<?php echo $note['id']; ?>">Archive note</a></b><?php
+                ?> <b><a class='i-btn' href="includes/archivenote.inc.php?note=<?php echo $note['id']; ?>">Archive note</a></b><?php
             }
             elseif ($archiveView === true) {
-                ?> <b><a href="includes/archivenote.inc.php?note=<?php echo $note['id'];?>&restore=true">Restore note</a></b><?php
+                ?> <b><a class='i-btn' href="includes/archivenote.inc.php?note=<?php echo $note['id'];?>&restore=true">Restore note</a></b><?php
             }
             ?>
                 <script>

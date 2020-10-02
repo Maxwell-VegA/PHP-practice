@@ -10,16 +10,21 @@ select:hover,
 select:focus 
     -moz-appearance: number-input
 input::-webkit-inner-spin-button 
-    display: none !important
-    margin: 0 !important
+    // display: none !important
+    // margin: 0 !important
 
 .categories-bar-overlay
     display: none
 
+.pointer-events-none
+    // pointer-events: none
+    // z-index: -100
+    // visibility: hidden
+
 // @media (max-width: $lg)
 header
     position: fixed
-    z-index: 2
+    z-index: 1000
     display: grid
     grid-template-columns: $hGrid
     grid-template-areas: "left mid right"
@@ -175,13 +180,13 @@ header
 
 
 
-// ======================================================
-// ======================================================
-// ======================================================
+// ==========================================================================================
+// ==========================================================================================
+// ==========================================================================================
 // @media (max-width: $lg)
 main
     position: absolute
-    z-index: 1
+    z-index: 90
     display: grid
     grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr))
     grid-auto-rows: 6rem
@@ -191,8 +196,9 @@ main
     width: 80%
     max-width: 80rem
     .note-input
+        position: relative
+        z-index: 100
         display: grid
-        // display: none
         grid-template-columns: 50% 50%
         grid-template-rows: 4rem 1fr 3rem 3rem
         grid-template-areas: "title title" "content content" "category category" "date full"
@@ -201,43 +207,74 @@ main
         border-radius: $border-r
         box-shadow: 5px 5px 5px 3px $c0, -5px -5px 5px 3px $c33
         input
+            z-index: 110
             grid-column: 1/3
             color: $c5
             width: 93%
             padding: 3.5%
             background: $c3
             border: none
+            border: 1px solid $c3
+            &:focus
+                z-index: 200
+                border: 1px solid $caa !important
+            &:hover
+                background: $c33
+                border-color: $c33
+                cursor: pointer
         input:nth-child(1)
             font-size: 1.4rem
             font-weight: bold
             border-top-left-radius: $border-r
             border-top-right-radius: $border-r
         textarea
+            z-index: 130
             grid-column: 1/3
             color: $c5
             width: 93%
+            margin: -1px 0
             padding: 3.5%
             background: $c3
             border: none
             resize: none
+            border: 1px solid $c3
             border-top: 1px $c5 dashed
             border-bottom: 1px $c5 dashed
+            &:focus
+                z-index: 200
+                border: 1px solid $caa !important
+            &:hover
+                border-right-color: $c33 
+                border-left-color: $c33 
+                background: $c33
+                cursor: pointer
         input:nth-child(3)
             border-bottom: 1px $c5 dashed
+            &:focus
+                z-index: 200
+                border: 1px solid $caa !important
         select:nth-child(4)
+            padding: 0 .75rem
             background: $c3
             border: none
             border-bottom-left-radius: $border-r
             outline: none
             option
+                background: $c3 !important
+            &:hover
+                background: $c33
+                cursor: pointer
 
         button:nth-child(5)
             border-bottom-right-radius: $border-r
+            &:hover
+                background: $c33
+                cursor: pointer
 section
+    z-index: 1
     display: grid
     grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr))
     grid-auto-rows: 6rem
-    // grid-auto-flow: dense
     grid-gap: 2.2rem
     width: 80%
     max-width: 80rem
@@ -259,31 +296,47 @@ section
         border: 2px solid $ca
 
     .note-container
+        position: relative
+        z-index: 300
         display: grid
         grid-template-columns: 35% 65%
         grid-template-rows: 3rem 1fr 2rem 2rem
-        grid-template-areas: "title title" "content content" "category category" "date full"
-        grid-row-gap: 1rem
-        padding: 1.5rem
-        padding-bottom: 3rem
+        grid-template-areas: "title title" "content content" "options category" "date full"
+        grid-row-gap: .75rem
+        padding: 1.15rem
+        padding-bottom: 2.5rem
         background: $c3
         border-radius: $border-r
         box-shadow: 5px 5px 5px 3px $c0, -5px -5px 5px 3px $c33
-        h2
+        .i-title
             grid-column: 1/3
-            font-size: 1.4rem
+            font-size: 1.32rem
             font-weight: bold
             overflow: hidden
-        p
+        .i-text
             color: $c4
             grid-area: content
             overflow: hidden
-        span
+        .i-options
+            grid-area: options
+        .expanded-options
+            position: absolute
+            z-index: 400
+            // display: none
+            background: $c3b
+            width: 80%
+            bottom: 8rem
+            padding: .75rem 10%
+            button
+
+
+        .i-date
             grid-area: date
-        div
-            grid-column: 2/3
+        .i-category
+            grid-area: category
             overflow: hidden
             i
+                font-size: .95rem
                 display: block
                 float: right
                 color: $c5
@@ -299,7 +352,7 @@ section
                     color: $c6
                     text-shadow: 0px 0px 7px $c6
 
-        a
+        .i-btn
             grid-area: full
             float: right
             color: $caa
@@ -318,11 +371,12 @@ section
 
 
 @media (max-width: 1280)
-    *
-        font-size: 12.5px
     aside
         display: none !important
-
+        position: fixed 
+        background: red
+    *
+        font-size: 12.5px
 @media screen and ( min-width: 1281px )
     header
         display: none !important
@@ -347,132 +401,183 @@ section
             // grid-template-columns: 20% 20% 20% 20% 20% 
             // grid-template-areas: "search search search search search" "categories categories categories categories categories" "categories categories categories categories categories" "select select select select select" "select select select select select" "create create create create create" "delete delete delete delete delete" "archive archive archive archive archive" "darkmode darkmode darkmode darkmode darkmode" "logout-span logout-span logout-span logout-btn logout-btn"
             grid-template-rows: 1fr 15vh 15vh 1fr 1fr 2.5fr 1fr 1fr 1fr 1fr
-            grid-template-areas: "search" "categories" "categories" "select" "select" "create" "delete" "archive" "darkmode" "logout"
+            grid-template-areas: "search" "categories" "categories" "select" "select" "create" "delete" "archive" "archive" "logout"
             grid-row-gap: 2vh
             width: 28vw
             max-width: 33.25rem
             height: 100vh
             left: 1.75rem
-            // left: 15.75vw
-            // transform: translateX(-50%)
 
-
-        #search
-            margin-left: 1.75rem
-            grid-area: search
-            margin-top: 2rem
-            input
+            #search
+                margin-left: 1.75rem
+                grid-area: search
+                margin-top: 2rem
+                input
+                    position: relative
+                    width: 100%
+                    margin-left: -1.85rem
+                    padding: 1rem  0
+                    padding-left: 1.75rem
+                    background: $c3
+                    border: 1px solid $c3
+                    border-radius: $border-r
+                    box-shadow: inset 5px 5px 5px 3px $c0, inset -5px -5px 5px 3px $c33
+                    &:hover
+                        // something
+                    &:focus
+                        border: 1px solid $caa
+            // ==============================================================
+            .categories-container
                 position: relative
+                grid-area: categories
                 width: 100%
-                margin-left: -1.85rem
-                padding: 1rem  0
-                padding-left: 1.75rem
-                background: $c3
-                border: 1px solid $c3
-                border-radius: $border-r
-                box-shadow: inset 5px 5px 5px 3px $c0, inset -5px -5px 5px 3px $c33
-                &:hover
-                    // something
-                &:focus
-                    border: 1px solid $caa
-        // ==============================================================
-        .categories-container
-            position: relative
-            grid-area: categories
-            width: 100%
-            height: 100%
-            overflow: hidden
-            .inner-categories-container::-webkit-scrollbar
-                display: none;
-            .inner-categories-container
-                z-index: 2
-                background: $c3
-                height: 24vh
-                padding: 1rem 2rem 5rem 2rem
-                overflow-y: scroll
-                border-radius: $border-r
-                box-shadow: inset 5px 5px 5px 3px $c0, inset -5px -5px 5px 3px $c33
-                -ms-overflow-style: none;
-                scrollbar-width: none; 
-                .category
-                    display: block
-                    z-index: -1
-                    float: left
-                    font-style: italic
-                    margin: .5rem
-                    padding: .25rem 1.5rem
-                    background: $c3
-                    border-radius: 9999px
-                    border: $ca 2px solid
-                    transition-duration: $t2
-
-                .category:hover
-                    text-decoration: underline
-                    text-shadow: 0px 0px 7px $c6
-                    cursor: pointer
-        // ==============================================================
-        .dropdown-category-select
-            grid-area: select
-            z-index: 3
-            display: grid
-            grid-template-columns: 22% 78%
-            grid-template-rows: 1fr 1fr
-            grid-template-areas: "label1 select1" "label2 select2"
-            align-items: center
-            justify-items: left
-            height: 100%
-            // padding: 1.5rem 2.5rem
-            background: $c3
-            select
-                width: 100%
-                height: 65%
-                padding: 0.75rem
-                background: $c3
-                border: 1px solid $c3
-                border-radius: $border-r
-                box-shadow: inset 5px 5px 5px 3px $c0, inset -5px -5px 5px 3px $c33
-                &:focus
-                    border: 1px solid $caa
-                &:nth-child(2)
-                    grid-area: select1
-                &:nth-child(4)
-                    grid-area: select2
-                option
-                    background: $c3  !important
-                    &:hover
-                        background: $ca
-        // ==============================================================
-        .new-category
-            grid-area: create
-            z-index: 3
-            form
-                display: grid
-                grid-template-columns: 40% 10% 50%
-                grid-template-rows: 3fr 3fr
-                grid-template-areas: "input input input" "label . create" "color . ."
-                grid-row-gap: .5rem
                 height: 100%
-                label
-                    font-size: 1.15rem
-                    justify-self: center
-                    align-self: center
-                    font-style: italic
-                    padding: .25rem 3.25rem
+                overflow: hidden
+                .inner-categories-container::-webkit-scrollbar
+                    display: none;
+                .inner-categories-container
+                    z-index: 2
                     background: $c3
-                    border-radius: 9999px
-                    border:#8f8f8f 2px solid
-                    &:hover
-                        color: $c6
+                    height: 24vh
+                    padding: 1rem 2rem 5rem 2rem
+                    overflow-y: scroll
+                    border-radius: $border-r
+                    box-shadow: inset 5px 5px 5px 3px $c0, inset -5px -5px 5px 3px $c33
+                    -ms-overflow-style: none;
+                    scrollbar-width: none; 
+                    .category
+                        display: block
+                        z-index: -1
+                        float: left
+                        font-style: italic
+                        margin: .5rem
+                        padding: .25rem 1.5rem
+                        background: $c3
+                        border-radius: 9999px
+                        border: $ca 2px solid
+                        transition-duration: $t2
+
+                    .category:hover
                         text-decoration: underline
                         text-shadow: 0px 0px 7px $c6
                         cursor: pointer
+            // ==============================================================
+            .dropdown-category-select
+                grid-area: select
+                z-index: 3
+                display: grid
+                grid-template-columns: 22% 78%
+                grid-template-rows: 1fr 1fr
+                grid-template-areas: "label1 select1" "label2 select2"
+                align-items: center
+                justify-items: left
+                height: 100%
+                // padding: 1.5rem 2.5rem
+                background: $c3
+                select
+                    width: 100%
+                    height: 65%
+                    padding: 0.75rem
+                    background: $c3
+                    border: 1px solid $c3
+                    border-radius: $border-r
+                    box-shadow: inset 5px 5px 5px 3px $c0, inset -5px -5px 5px 3px $c33
+                    &:focus
+                        border: 1px solid $caa
+                    &:nth-child(2)
+                        grid-area: select1
+                    &:nth-child(4)
+                        grid-area: select2
+                    option
+                        background: $c3  !important
+                        &:hover
+                            background: $ca
+            // ==============================================================
+            .new-category
+                grid-area: create
+                z-index: 3
+                form
+                    display: grid
+                    grid-template-columns: 40% 10% 50%
+                    grid-template-rows: 3fr 3fr
+                    grid-template-areas: "input input input" "label . create" "color . ."
+                    grid-row-gap: .5rem
+                    height: 100%
+                    label
+                        font-size: 1.15rem
+                        justify-self: center
+                        align-self: center
+                        font-style: italic
+                        padding: .25rem 3.25rem
+                        background: $c3
+                        border-radius: 9999px
+                        border:#8f8f8f 2px solid
+                        &:hover
+                            color: $c6
+                            text-decoration: underline
+                            text-shadow: 0px 0px 7px $c6
+                            cursor: pointer
+                    button
+                        grid-area: create
+                        color: $caa
+                        font-weight: bold
+                        font-size: 1.15rem
+                        height: 80%
+                        align-self: center
+                        transition-duration: $t1
+                        border-radius: $border-r
+                        box-shadow:  3px 3px 3px 3px $c0,  -3px -3px 3px 3px $c33
+                        &:hover
+                            color: $ca
+                            text-decoration: underline
+                            text-shadow: 0px 0px 7px $ca
+                            cursor: pointer
+                        &:active
+                            box-shadow: inset -3px -3px 3px 3px $c33, inset 3px 3px 3px 3px $c0
+                    input
+                        padding: 0.25rem
+                        background: $c3
+                        border-radius: $border-r
+                        
+                        &:nth-child(1)
+                            grid-area: input
+                            padding: .75rem 0rem .25rem 1.5rem
+                            border: 1px solid $c3t
+                            box-shadow: inset 5px 5px 5px 3px $c0, inset -5px -5px 5px 3px $c33
+                            &:focus
+                                border: 1px solid $caa
+                        &:nth-child(3)
+                            visibility: hidden
+                            grid-area: color
+                            background: $c3t !important
+                            height: 30px
+                            width: 100%
+                            width: 0px
+                            height: 0px
+                            margin: 0
+                            &:hover
+                                cursor: pointer
+
+            
+            
+            
+            // ==============================================================
+            #delete-category
+                grid-area: delete
+                select
+                    width: 55%
+                    padding: 1rem
+                    background: $c3
+                    border: 1px solid $c3t
+                    border-radius: $border-r
+                    box-shadow: inset 5px 5px 5px 3px $c0, inset -5px -5px 5px 3px $c33
+                    &:focus
+                        border: 1px solid $caa
                 button
-                    grid-area: create
+                    float: right
                     color: $caa
                     font-weight: bold
-                    font-size: 1.15rem
-                    height: 75%
-                    align-self: center
+                    padding: .75rem 1.25rem
                     transition-duration: $t1
                     border-radius: $border-r
                     box-shadow:  3px 3px 3px 3px $c0,  -3px -3px 3px 3px $c33
@@ -481,77 +586,106 @@ section
                         text-decoration: underline
                         text-shadow: 0px 0px 7px $ca
                         cursor: pointer
-                input
-                    padding: 0.25rem
-                    background: $c3
-                    border-radius: $border-r
-                    
-                    &:nth-child(1)
-                        grid-area: input
-                        padding: .75rem 0rem .25rem 1.5rem
-                        border: 1px solid $c3t
-                        box-shadow: inset 5px 5px 5px 3px $c0, inset -5px -5px 5px 3px $c33
-                        &:focus
-                            border: 1px solid $caa
-                    &:nth-child(3)
-                        visibility: hidden
-                        grid-area: color
-                        background: $c3t !important
-                        height: 30px
-                        width: 100%
-                        width: 0px
-                        height: 0px
-                        margin: 0
-                        &:hover
-                            cursor: pointer
+                    &:active
+                        box-shadow: inset -3px -3px 3px 3px $c33, inset 3px 3px 3px 3px $c0
 
-        
-        
-        
-        // ==============================================================
-        #delete-category
-            grid-area: delete
-        // ==============================================================
-        #archive
-            grid-area: archive
-        // ==============================================================
-        #darkmode
-            grid-area: darkmode
-        // ==============================================================
-        #logout
-            grid-area: logout
-            align-items: center
-            span
-                margin: 0 2rem
-            button
-                padding: .75rem 1.5rem 
-                background: $c3
-                border-radius: $border-r
-                box-shadow:  3px 3px 3px 3px $c0,  -3px -3px 3px 3px $c33
+            // ==============================================================
+            #toggles
+                grid-area: archive
+                display: grid
+                grid-template-columns: 1fr 1fr 1fr
+                grid-gap: 1.5rem
+                width: 100%
+                a
+                    display: grid
+                    grid-template-rows: 17px 6px                    
+                    width: 80%
+                    height: 30%
+                    align-self: center
+                    justify-self: center
+                    padding: 1rem 1rem
+                    transition-duration: $t1
+                    border-radius: $border-r
+                    border: 1px solid $c3
+                    box-shadow: 3px 3px 3px 3px $c0, -3px -3px 3px 3px $c33
+                    &:active
+                        box-shadow: inset 3px 3px 3px 3px $c0, inset -3px -3px 3px 3px $c33
+                    &:hover
+                        color: $c5
+                        text-decoration: underline
+                        text-shadow: 0px 0px 7px $c5
+                        cursor: pointer
+                b
+                    font-size: .9rem
+                    display: inline
+                div
+                    width: 100%
+                    height: 5px
+                    margin-top: .75rem
+                    background: $cab
+                    border-radius: 9999px
+                i
+                    display: inline
+                    // visibility: hidden
+                    pointer-events: none
+
+                .a-btn-on
+                    border: 1px solid $caa
+                    div
+                        background: $caa
+                        box-shadow: 0px 0px 8px 4px $cat
+
+            // ==============================================================
+            #logout
+                grid-area: logout
+                display: grid
+                grid-template-columns: 1fr 3fr
+                span
+                    margin: 0 2rem
+                button
+                    margin: auto
+                    margin-bottom: 2rem
+                    padding: .75rem 1.5rem 
+                    background: $c3
+                    transition-duration: $t1
+                    border-radius: $border-r
+                    box-shadow:  3px 3px 3px 3px $c0,  -3px -3px 3px 3px $c33
+                    &:active
+                        box-shadow: inset 3px 3px 3px 3px $c0, inset -3px -3px 3px 3px $c33
+                    &:hover
+                        color: $ca
+                        text-decoration: underline
+                        text-shadow: 0px 0px 7px $ca
+                        cursor: pointer
     
 
     main
         position: absolute
-        z-index: 1
+        z-index: 120
         display: grid
         grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr))
         grid-auto-rows: 6rem
         grid-gap: 2.2rem
-        width: 60%
+        width: 58vw
         max-width: none
-        left: 66%
-        transform: translateX(-50%)
+        left: 62%
+        transform: translateX(-46%)
         margin-top: 4rem
+        .note-input
+            position: relative
+            z-index: 110
+        
     section
         position: absolute
+        z-index: 100
         display: grid
         grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr))
         grid-auto-rows: 6rem
         grid-gap: 2.2rem
-        width: 60%
+        width: 58vw
         max-width: none
-        left: 66%
-        transform: translateX(-50%)
+        left: 62%
+        transform: translateX(-46%)
         margin-top: 4rem
 
 

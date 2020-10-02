@@ -32,5 +32,13 @@
                 
                 <button type="submit" name="createNote">Log note!</button>
             </form>    
-    <div></div>
-    <div></div>
+    <div class="pointer-events-none"></div>
+    <div class="pointer-events-none"></div>
+    <div class="pointer-events-none"></div>
+    <div class="pointer-events-none"></div>
+    <div class="pointer-events-none"></div>
+    <div class="pointer-events-none"></div>
+    <div class="pointer-events-none"></div>
+    <div class="pointer-events-none"></div>
+    <div class="pointer-events-none"></div>
+    <div class="pointer-events-none"></div>

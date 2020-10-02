@@ -122,6 +122,7 @@ nav {
 
 footer {
   position: fixed;
+  z-index: 1000;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 320px 1fr 320px;
@@ -165,8 +166,7 @@ footer #archive {
 
 footer #category {
   -ms-grid-row: 3;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
+  -ms-grid-column: 2;
   grid-area: category;
 }
 
@@ -179,18 +179,13 @@ select:focus {
   -moz-appearance: number-input;
 }
 
-input::-webkit-inner-spin-button {
-  display: none !important;
-  margin: 0 !important;
-}
-
 .categories-bar-overlay {
   display: none;
 }
 
 header {
   position: fixed;
-  z-index: 2;
+  z-index: 1000;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 320px 1fr 320px;
@@ -415,7 +410,7 @@ header .notes-rightside-options-container select option:hover {
 
 main {
   position: absolute;
-  z-index: 1;
+  z-index: 90;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (minmax(19rem, 1fr))[auto-fit];
@@ -430,6 +425,8 @@ main {
 }
 
 main .note-input {
+  position: relative;
+  z-index: 100;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 50% 50%;
@@ -445,6 +442,7 @@ main .note-input {
 }
 
 main .note-input input {
+  z-index: 110;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   grid-column: 1/3;
@@ -453,6 +451,18 @@ main .note-input input {
   padding: 3.5%;
   background: #081616;
   border: none;
+  border: 1px solid #081616;
+}
+
+main .note-input input:focus {
+  z-index: 200;
+  border: 1px solid #dd0000 !important;
+}
+
+main .note-input input:hover {
+  background: #18292992;
+  border-color: #18292992;
+  cursor: pointer;
 }
 
 main .note-input input:nth-child(1) {
@@ -463,35 +473,71 @@ main .note-input input:nth-child(1) {
 }
 
 main .note-input textarea {
+  z-index: 130;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   grid-column: 1/3;
   color: #dceeee;
   width: 93%;
+  margin: -1px 0;
   padding: 3.5%;
   background: #081616;
   border: none;
   resize: none;
+  border: 1px solid #081616;
   border-top: 1px #dceeee dashed;
   border-bottom: 1px #dceeee dashed;
+}
+
+main .note-input textarea:focus {
+  z-index: 200;
+  border: 1px solid #dd0000 !important;
+}
+
+main .note-input textarea:hover {
+  border-right-color: #18292992;
+  border-left-color: #18292992;
+  background: #18292992;
+  cursor: pointer;
 }
 
 main .note-input input:nth-child(3) {
   border-bottom: 1px #dceeee dashed;
 }
 
+main .note-input input:nth-child(3):focus {
+  z-index: 200;
+  border: 1px solid #dd0000 !important;
+}
+
 main .note-input select:nth-child(4) {
+  padding: 0 .75rem;
   background: #081616;
   border: none;
   border-bottom-left-radius: 12px;
   outline: none;
 }
 
+main .note-input select:nth-child(4) option {
+  background: #081616 !important;
+}
+
+main .note-input select:nth-child(4):hover {
+  background: #18292992;
+  cursor: pointer;
+}
+
 main .note-input button:nth-child(5) {
   border-bottom-right-radius: 12px;
 }
 
+main .note-input button:nth-child(5):hover {
+  background: #18292992;
+  cursor: pointer;
+}
+
 section {
+  z-index: 1;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (minmax(19rem, 1fr))[auto-fit];
@@ -532,32 +578,34 @@ section .borderTrue {
 }
 
 section .note-container {
+  position: relative;
+  z-index: 300;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 35% 65%;
       grid-template-columns: 35% 65%;
   -ms-grid-rows: 3rem 1fr 2rem 2rem;
       grid-template-rows: 3rem 1fr 2rem 2rem;
-      grid-template-areas: "title title" "content content" "category category" "date full";
-  grid-row-gap: 1rem;
-  padding: 1.5rem;
-  padding-bottom: 3rem;
+      grid-template-areas: "title title" "content content" "options category" "date full";
+  grid-row-gap: .75rem;
+  padding: 1.15rem;
+  padding-bottom: 2.5rem;
   background: #081616;
   border-radius: 12px;
   -webkit-box-shadow: 5px 5px 5px 3px #0e000092, -5px -5px 5px 3px #18292992;
           box-shadow: 5px 5px 5px 3px #0e000092, -5px -5px 5px 3px #18292992;
 }
 
-section .note-container h2 {
+section .note-container .i-title {
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   grid-column: 1/3;
-  font-size: 1.4rem;
+  font-size: 1.32rem;
   font-weight: bold;
   overflow: hidden;
 }
 
-section .note-container p {
+section .note-container .i-text {
   color: #919b9b;
   -ms-grid-row: 2;
   -ms-grid-column: 1;
@@ -566,20 +614,36 @@ section .note-container p {
   overflow: hidden;
 }
 
-section .note-container span {
+section .note-container .i-options {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: options;
+}
+
+section .note-container .expanded-options {
+  position: absolute;
+  z-index: 400;
+  background: #203838;
+  width: 80%;
+  bottom: 8rem;
+  padding: .75rem 10%;
+}
+
+section .note-container .i-date {
   -ms-grid-row: 4;
   -ms-grid-column: 1;
   grid-area: date;
 }
 
-section .note-container div {
+section .note-container .i-category {
+  -ms-grid-row: 3;
   -ms-grid-column: 2;
-  -ms-grid-column-span: 1;
-  grid-column: 2/3;
+  grid-area: category;
   overflow: hidden;
 }
 
-section .note-container div i {
+section .note-container .i-category i {
+  font-size: .95rem;
   display: block;
   float: right;
   color: #dceeee;
@@ -593,12 +657,12 @@ section .note-container div i {
           transition-duration: 0.2s;
 }
 
-section .note-container div i:hover {
+section .note-container .i-category i:hover {
   color: #f2ffff;
   text-shadow: 0px 0px 7px #f2ffff;
 }
 
-section .note-container a {
+section .note-container .i-btn {
   -ms-grid-row: 4;
   -ms-grid-column: 2;
   grid-area: full;
@@ -608,7 +672,7 @@ section .note-container a {
           transition-duration: 0.1s;
 }
 
-section .note-container a:hover {
+section .note-container .i-btn:hover {
   color: #ff0000;
   text-decoration: underline;
   text-shadow: 0px 0px 7px #ff0000;
@@ -616,11 +680,13 @@ section .note-container a:hover {
 }
 
 @media (max-width: 1280) {
-  * {
-    font-size: 12.5px;
-  }
   aside {
     display: none !important;
+    position: fixed;
+    background: red;
+  }
+  * {
+    font-size: 12.5px;
   }
 }
 
@@ -650,21 +716,21 @@ section .note-container a:hover {
     display: grid;
     -ms-grid-rows: 1fr 15vh 15vh 1fr 1fr 2.5fr 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr 15vh 15vh 1fr 1fr 2.5fr 1fr 1fr 1fr 1fr;
-        grid-template-areas: "search" "categories" "categories" "select" "select" "create" "delete" "archive" "darkmode" "logout";
+        grid-template-areas: "search" "categories" "categories" "select" "select" "create" "delete" "archive" "archive" "logout";
     grid-row-gap: 2vh;
     width: 28vw;
     max-width: 33.25rem;
     height: 100vh;
     left: 1.75rem;
   }
-  aside #search {
+  aside .sidebar-container #search {
     margin-left: 1.75rem;
     -ms-grid-row: 1;
     -ms-grid-column: 1;
     grid-area: search;
     margin-top: 2rem;
   }
-  aside #search input {
+  aside .sidebar-container #search input {
     position: relative;
     width: 100%;
     margin-left: -1.85rem;
@@ -676,10 +742,10 @@ section .note-container a:hover {
     -webkit-box-shadow: inset 5px 5px 5px 3px #0e000092, inset -5px -5px 5px 3px #18292992;
             box-shadow: inset 5px 5px 5px 3px #0e000092, inset -5px -5px 5px 3px #18292992;
   }
-  aside #search input:focus {
+  aside .sidebar-container #search input:focus {
     border: 1px solid #dd0000;
   }
-  aside .categories-container {
+  aside .sidebar-container .categories-container {
     position: relative;
     -ms-grid-row: 2;
     -ms-grid-row-span: 2;
@@ -689,10 +755,10 @@ section .note-container a:hover {
     height: 100%;
     overflow: hidden;
   }
-  aside .categories-container .inner-categories-container::-webkit-scrollbar {
+  aside .sidebar-container .categories-container .inner-categories-container::-webkit-scrollbar {
     display: none;
   }
-  aside .categories-container .inner-categories-container {
+  aside .sidebar-container .categories-container .inner-categories-container {
     z-index: 2;
     background: #081616;
     height: 24vh;
@@ -704,7 +770,7 @@ section .note-container a:hover {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  aside .categories-container .inner-categories-container .category {
+  aside .sidebar-container .categories-container .inner-categories-container .category {
     display: block;
     z-index: -1;
     float: left;
@@ -717,12 +783,12 @@ section .note-container a:hover {
     -webkit-transition-duration: 0.2s;
             transition-duration: 0.2s;
   }
-  aside .categories-container .inner-categories-container .category:hover {
+  aside .sidebar-container .categories-container .inner-categories-container .category:hover {
     text-decoration: underline;
     text-shadow: 0px 0px 7px #f2ffff;
     cursor: pointer;
   }
-  aside .dropdown-category-select {
+  aside .sidebar-container .dropdown-category-select {
     -ms-grid-row: 4;
     -ms-grid-row-span: 2;
     -ms-grid-column: 1;
@@ -742,7 +808,7 @@ section .note-container a:hover {
     height: 100%;
     background: #081616;
   }
-  aside .dropdown-category-select select {
+  aside .sidebar-container .dropdown-category-select select {
     width: 100%;
     height: 65%;
     padding: 0.75rem;
@@ -752,32 +818,32 @@ section .note-container a:hover {
     -webkit-box-shadow: inset 5px 5px 5px 3px #0e000092, inset -5px -5px 5px 3px #18292992;
             box-shadow: inset 5px 5px 5px 3px #0e000092, inset -5px -5px 5px 3px #18292992;
   }
-  aside .dropdown-category-select select:focus {
+  aside .sidebar-container .dropdown-category-select select:focus {
     border: 1px solid #dd0000;
   }
-  aside .dropdown-category-select select:nth-child(2) {
+  aside .sidebar-container .dropdown-category-select select:nth-child(2) {
     -ms-grid-row: 1;
     -ms-grid-column: 2;
     grid-area: select1;
   }
-  aside .dropdown-category-select select:nth-child(4) {
+  aside .sidebar-container .dropdown-category-select select:nth-child(4) {
     -ms-grid-row: 2;
     -ms-grid-column: 2;
     grid-area: select2;
   }
-  aside .dropdown-category-select select option {
+  aside .sidebar-container .dropdown-category-select select option {
     background: #081616 !important;
   }
-  aside .dropdown-category-select select option:hover {
+  aside .sidebar-container .dropdown-category-select select option:hover {
     background: #ff0000;
   }
-  aside .new-category {
+  aside .sidebar-container .new-category {
     -ms-grid-row: 2;
     -ms-grid-column: 3;
     grid-area: create;
     z-index: 3;
   }
-  aside .new-category form {
+  aside .sidebar-container .new-category form {
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 40% 10% 50%;
@@ -788,7 +854,7 @@ section .note-container a:hover {
     grid-row-gap: .5rem;
     height: 100%;
   }
-  aside .new-category form label {
+  aside .sidebar-container .new-category form label {
     font-size: 1.15rem;
     -ms-grid-column-align: center;
         justify-self: center;
@@ -801,20 +867,20 @@ section .note-container a:hover {
     border-radius: 9999px;
     border: #8f8f8f 2px solid;
   }
-  aside .new-category form label:hover {
+  aside .sidebar-container .new-category form label:hover {
     color: #f2ffff;
     text-decoration: underline;
     text-shadow: 0px 0px 7px #f2ffff;
     cursor: pointer;
   }
-  aside .new-category form button {
+  aside .sidebar-container .new-category form button {
     -ms-grid-row: 2;
     -ms-grid-column: 3;
     grid-area: create;
     color: #dd0000;
     font-weight: bold;
     font-size: 1.15rem;
-    height: 75%;
+    height: 80%;
     -ms-flex-item-align: center;
         -ms-grid-row-align: center;
         align-self: center;
@@ -824,18 +890,22 @@ section .note-container a:hover {
     -webkit-box-shadow: 3px 3px 3px 3px #0e000092, -3px -3px 3px 3px #18292992;
             box-shadow: 3px 3px 3px 3px #0e000092, -3px -3px 3px 3px #18292992;
   }
-  aside .new-category form button:hover {
+  aside .sidebar-container .new-category form button:hover {
     color: #ff0000;
     text-decoration: underline;
     text-shadow: 0px 0px 7px #ff0000;
     cursor: pointer;
   }
-  aside .new-category form input {
+  aside .sidebar-container .new-category form button:active {
+    -webkit-box-shadow: inset -3px -3px 3px 3px #18292992, inset 3px 3px 3px 3px #0e000092;
+            box-shadow: inset -3px -3px 3px 3px #18292992, inset 3px 3px 3px 3px #0e000092;
+  }
+  aside .sidebar-container .new-category form input {
     padding: 0.25rem;
     background: #081616;
     border-radius: 12px;
   }
-  aside .new-category form input:nth-child(1) {
+  aside .sidebar-container .new-category form input:nth-child(1) {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
     -ms-grid-column-span: 3;
@@ -845,10 +915,10 @@ section .note-container a:hover {
     -webkit-box-shadow: inset 5px 5px 5px 3px #0e000092, inset -5px -5px 5px 3px #18292992;
             box-shadow: inset 5px 5px 5px 3px #0e000092, inset -5px -5px 5px 3px #18292992;
   }
-  aside .new-category form input:nth-child(1):focus {
+  aside .sidebar-container .new-category form input:nth-child(1):focus {
     border: 1px solid #dd0000;
   }
-  aside .new-category form input:nth-child(3) {
+  aside .sidebar-container .new-category form input:nth-child(3) {
     visibility: hidden;
     -ms-grid-row: 3;
     -ms-grid-column: 1;
@@ -860,71 +930,178 @@ section .note-container a:hover {
     height: 0px;
     margin: 0;
   }
-  aside .new-category form input:nth-child(3):hover {
+  aside .sidebar-container .new-category form input:nth-child(3):hover {
     cursor: pointer;
   }
-  aside #delete-category {
+  aside .sidebar-container #delete-category {
     -ms-grid-row: 7;
     -ms-grid-column: 1;
     grid-area: delete;
   }
-  aside #archive {
-    -ms-grid-row: 8;
-    -ms-grid-column: 1;
-    grid-area: archive;
-  }
-  aside #darkmode {
-    -ms-grid-row: 9;
-    -ms-grid-column: 1;
-    grid-area: darkmode;
-  }
-  aside #logout {
-    -ms-grid-row: 10;
-    -ms-grid-column: 1;
-    grid-area: logout;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-  aside #logout span {
-    margin: 0 2rem;
-  }
-  aside #logout button {
-    padding: .75rem 1.5rem;
+  aside .sidebar-container #delete-category select {
+    width: 55%;
+    padding: 1rem;
     background: #081616;
+    border: 1px solid #08161600;
+    border-radius: 12px;
+    -webkit-box-shadow: inset 5px 5px 5px 3px #0e000092, inset -5px -5px 5px 3px #18292992;
+            box-shadow: inset 5px 5px 5px 3px #0e000092, inset -5px -5px 5px 3px #18292992;
+  }
+  aside .sidebar-container #delete-category select:focus {
+    border: 1px solid #dd0000;
+  }
+  aside .sidebar-container #delete-category button {
+    float: right;
+    color: #dd0000;
+    font-weight: bold;
+    padding: .75rem 1.25rem;
+    -webkit-transition-duration: 0.1s;
+            transition-duration: 0.1s;
     border-radius: 12px;
     -webkit-box-shadow: 3px 3px 3px 3px #0e000092, -3px -3px 3px 3px #18292992;
             box-shadow: 3px 3px 3px 3px #0e000092, -3px -3px 3px 3px #18292992;
   }
+  aside .sidebar-container #delete-category button:hover {
+    color: #ff0000;
+    text-decoration: underline;
+    text-shadow: 0px 0px 7px #ff0000;
+    cursor: pointer;
+  }
+  aside .sidebar-container #delete-category button:active {
+    -webkit-box-shadow: inset -3px -3px 3px 3px #18292992, inset 3px 3px 3px 3px #0e000092;
+            box-shadow: inset -3px -3px 3px 3px #18292992, inset 3px 3px 3px 3px #0e000092;
+  }
+  aside .sidebar-container #toggles {
+    -ms-grid-row: 8;
+    -ms-grid-row-span: 2;
+    -ms-grid-column: 1;
+    grid-area: archive;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1.5rem;
+    width: 100%;
+  }
+  aside .sidebar-container #toggles a {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-rows: 17px 6px;
+        grid-template-rows: 17px 6px;
+    width: 80%;
+    height: 30%;
+    -ms-grid-row-align: center;
+        align-self: center;
+    -ms-grid-column-align: center;
+        justify-self: center;
+    padding: 1rem 1rem;
+    -webkit-transition-duration: 0.1s;
+            transition-duration: 0.1s;
+    border-radius: 12px;
+    border: 1px solid #081616;
+    -webkit-box-shadow: 3px 3px 3px 3px #0e000092, -3px -3px 3px 3px #18292992;
+            box-shadow: 3px 3px 3px 3px #0e000092, -3px -3px 3px 3px #18292992;
+  }
+  aside .sidebar-container #toggles a:active {
+    -webkit-box-shadow: inset 3px 3px 3px 3px #0e000092, inset -3px -3px 3px 3px #18292992;
+            box-shadow: inset 3px 3px 3px 3px #0e000092, inset -3px -3px 3px 3px #18292992;
+  }
+  aside .sidebar-container #toggles a:hover {
+    color: #dceeee;
+    text-decoration: underline;
+    text-shadow: 0px 0px 7px #dceeee;
+    cursor: pointer;
+  }
+  aside .sidebar-container #toggles b {
+    font-size: .9rem;
+    display: inline;
+  }
+  aside .sidebar-container #toggles div {
+    width: 100%;
+    height: 5px;
+    margin-top: .75rem;
+    background: #461212;
+    border-radius: 9999px;
+  }
+  aside .sidebar-container #toggles i {
+    display: inline;
+    pointer-events: none;
+  }
+  aside .sidebar-container #toggles .a-btn-on {
+    border: 1px solid #dd0000;
+  }
+  aside .sidebar-container #toggles .a-btn-on div {
+    background: #dd0000;
+    -webkit-box-shadow: 0px 0px 8px 4px #ff000079;
+            box-shadow: 0px 0px 8px 4px #ff000079;
+  }
+  aside .sidebar-container #logout {
+    -ms-grid-row: 10;
+    -ms-grid-column: 1;
+    grid-area: logout;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 3fr;
+        grid-template-columns: 1fr 3fr;
+  }
+  aside .sidebar-container #logout span {
+    margin: 0 2rem;
+  }
+  aside .sidebar-container #logout button {
+    margin: auto;
+    margin-bottom: 2rem;
+    padding: .75rem 1.5rem;
+    background: #081616;
+    -webkit-transition-duration: 0.1s;
+            transition-duration: 0.1s;
+    border-radius: 12px;
+    -webkit-box-shadow: 3px 3px 3px 3px #0e000092, -3px -3px 3px 3px #18292992;
+            box-shadow: 3px 3px 3px 3px #0e000092, -3px -3px 3px 3px #18292992;
+  }
+  aside .sidebar-container #logout button:active {
+    -webkit-box-shadow: inset 3px 3px 3px 3px #0e000092, inset -3px -3px 3px 3px #18292992;
+            box-shadow: inset 3px 3px 3px 3px #0e000092, inset -3px -3px 3px 3px #18292992;
+  }
+  aside .sidebar-container #logout button:hover {
+    color: #ff0000;
+    text-decoration: underline;
+    text-shadow: 0px 0px 7px #ff0000;
+    cursor: pointer;
+  }
   main {
     position: absolute;
-    z-index: 1;
+    z-index: 120;
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: (minmax(20rem, 1fr))[auto-fit];
         grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     grid-auto-rows: 6rem;
     grid-gap: 2.2rem;
-    width: 60%;
+    width: 58vw;
     max-width: none;
-    left: 66%;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+    left: 62%;
+    -webkit-transform: translateX(-46%);
+            transform: translateX(-46%);
     margin-top: 4rem;
+  }
+  main .note-input {
+    position: relative;
+    z-index: 110;
   }
   section {
     position: absolute;
+    z-index: 100;
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: (minmax(20rem, 1fr))[auto-fit];
         grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     grid-auto-rows: 6rem;
     grid-gap: 2.2rem;
-    width: 60%;
+    width: 58vw;
     max-width: none;
-    left: 66%;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+    left: 62%;
+    -webkit-transform: translateX(-46%);
+            transform: translateX(-46%);
     margin-top: 4rem;
   }
 }

@@ -44,7 +44,6 @@
                     else {
                         $index = 0;
                         foreach ($categoryArr as $aCategory) {
-                            // echo "<a class='category categoryBtn'" . " style='background-color: " . $aCategory['color'] . ";'" . "href='notes.php?categoryname=" . $aCategory['categoryName'] . "'>" . $aCategory['categoryName'] . "</a>";
                             $index++;
                             $cName = $aCategory['categoryName'];
                             echo "<a class='category categoryBtn categoryBtn$index' ";

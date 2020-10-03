@@ -127,13 +127,21 @@
                 $borderClass = "borderTrue";
             }
 
+            if ($note['pinned'] === 'yes') {
+                // $notePinned = true;
+                $pinnedTitle = 'pinned-title';
+            }
+            else {
+                // $notePinned = false;
+                $pinnedTitle = '';
+            }
+
             $dateSrc = date_parse($note['lastModified']);
             $date = $dateSrc['day'] . "/" . $dateSrc['month'] . "/" . $dateSrc['year'];
 
-            $index++;
             echo "<div class='note-container $spanRows $borderClass'>";
-            echo "<h2 class='i-title'>"     . $note['noteTitle']    . "</h2>";
-            echo "<p class='i-text'>"      . $note['noteText']     . "</p>";
+            echo "<h2 class='i-title " . $pinnedTitle . "'>" . $note['noteTitle'] . "</h2>";
+            echo "<p class='i-text'>" . $note['noteText'] . "</p>";
             // =====
             echo "<b class='i-options' id='card$index'>"      . "..." . "</b>"; 
             ?>
@@ -142,13 +150,30 @@
                 <button>Archive</button>
                 <button>Delete</button>
             </div>
-            
             <?php
             // =====
-            echo "<span class='i-date'>"   . $date                 . "</span>";
-            echo "<div class='i-category'><i style='border-color: "    . $note['categoryColor'] . ";'>" . $note['category'] . "</i></div>";
+            echo "<span class='i-date'>" . $date . "</span>";
+            echo "<div class='i-category'><i style='border-color: " . $note['categoryColor'] . ";'>" . $note['category'] . "</i></div>";
             if ($editingMode === false && $archiveView === false) {
-                ?> <b><a class='i-btn' href="fullnote.php?note=<?php echo $note['id']; ?>">View full note</a></b><?php
+                ?> 
+                <!-- <b><a class='i-btn' href="fullnote.php?note=<?php echo $note['id']; ?>">View full note</a></b> -->
+                <b><a class='i-btn' id="open-fn-<?php echo $note['id']; ?>">View full note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-<?php echo $note['id']; ?>").click(function (e) { 
+                            $.ajax({
+                                type: "get",
+                                url: "fullnoteside.php",
+                                data: {note:<?php echo $note['id']; ?>},
+                                dataType: "text",
+                                success: function (response) {
+                                    $('#fullnote-insert').html(response);
+                                }
+                            });                            
+                        });
+                    });
+                </script>
+                <?php
             }
             elseif ($editingMode === true) {
                 ?> <b><a class='i-btn' href="includes/archivenote.inc.php?note=<?php echo $note['id']; ?>">Archive note</a></b><?php
@@ -166,6 +191,8 @@
                 </script>
             <?php
             ?> </div> <?php
+
+            $index++;
         }
     }
 ?>

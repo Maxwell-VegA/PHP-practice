@@ -1,6 +1,5 @@
 <?php
     require "header.php";
-    // require "includes/notes.inc.php";
     require "includes/categories.inc.php";
 
     if ($auth === false) {
@@ -10,7 +9,6 @@
     $editingMode = false;
     $archiveView = false;
     $singleCategory = false;
-    // $notesFound = true;
     $searchStrLength = 0;
 
 ?>
@@ -32,10 +30,15 @@
 
 <aside>
     <?php
-        require "sidebar.php"
+        require "sidebar.php";
     ?>
 </aside>
 
+<div id="fullnote-insert">
+    <?php
+        require "fullnoteside.php";
+    ?>
+</div>
 <!-- <div class="bgdec" id="background-decoration"></div> -->
 <div class="bgdec" id="background-decoration0"></div>
 <div class="bgdec" id="background-decoration1"></div>
@@ -47,41 +50,27 @@
 
 
 
-<!-- move date up to the category line and view full note can take the full with of the note card -->
-<!-- not a necessary feature --- If a note has subtext display a hoverable "s" or an "i" on the card which will show the subtext -->
-<!-- The delete toggle may be done using JS -->
-<!-- Create a simple toggle for switching between five and three rows on desktop (perhaps place it in the footer) -->
 <!-- not a necessary feature --- Clicking on a note's category allows you to change it to a different one. This should be done as a dropdown list. -->
-<!-- not a necessary feature --- add in multi category select if it isn't too hard -->
+<!-- not a necessary feature --- add in multi category select -->
 <!-- not a necessary feature --- Ability to add photos to notes? -->
-<!-- not a necessary feature --- Options for how to sort categories -->
-<!-- create note categories aren't showing up when I'm sorting by a certain category. When in a category that category should be the default for a new note -->
-<!-- Create a section for a constant message stream that archives anything older than a week? -->
 <!-- The notes come in floating up from the bottom  -->
 <!-- Using LIMIT in sql it would be easy to only return a certain amount of notes per load - and load more later -->
-
-<!-- Remember that retro tv design idea? Where on the left side are a bunch of options and on the right there is a viewport into the scene. Could do something like that here. -->
-<!-- All dropdown option doesn't work in chrome BUG-->
 <!-- The category selector looks rather bad in lightmode and borders aren't enough -->
 <!-- Add the option to place the footer as a sidebar on the left / combine with tv layout maybe -->
 <!-- An empty archive displays the wrong message BUG -->
-<!-- Add the ability to make text bold?-->
 <!-- Perhaps the ability to insert html in a note can be a strength instead of a bug? -->
-<!-- Create category color select doesn't work in sidebar -->
 <!-- Set a min height for the sidebar and test it on less tall displays -->
-<!-- Use the css orb somewhere. Perhaps inside of a some default note or as an easter egg (someone writes div class=orb)-->
-<!-- Make a settings menu with a bunch of those cool toggles -->
-<!-- Z index problems persist at the top of the page -->
 <!-- Would it be possible for you to make the table per user upgrade? -->
 <!-- Active category styling -->
 <!-- A button for switching the side on which the sidebar appears -->
+<!-- Add a character counter in fullnotes?, a, b, i tags. -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->
-<!-- Sorting, lightmode switch, the footer, the sign up, delete categories -->
-<!-- animations, mobile responsive, button lamps gradient/glowing  -->
+<!-- Sorting, lightmode switch, the sign up -->
+<!-- animations, mobile responsive, -->
 <!-- Deploy on heroku -->
-<!-- Category delete full refresh, lightmode switch, layout switch, card menu styling, footer styling, new note category selector-->
+<!-- Category delete full refresh, lightmode switch, layout switch -->
 <!-- ======================================================== -->
 
 <div class="bgdec" id="background-decoration"></div>

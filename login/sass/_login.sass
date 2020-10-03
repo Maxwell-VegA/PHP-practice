@@ -1,32 +1,38 @@
 .login-message
     text-align: center
     margin-top: 2.5rem
-    font-size: 2rem
-    
+    p
+        font-size: 1.25rem
+body    
+    background: $c3
+
 .login-main
-    position: absolute
+    position: relative
     left: 50%
     transform: translateX(-50%)
-    width: 30%
-    height: 16rem
+    max-width: 15%
+    // height: 16rem
     margin-top: 7rem
     padding: 2.5rem 4rem 4rem 4rem
     background: $c3
     color: red
-    border-radius: 8px
+    border-radius: $border-r
+    box-shadow: 5px 5px 5px 3px $c0, -5px -5px 5px 3px $c33
+    // box-shadow: inset 0 0 50px $ca, inset 20px 0 80px $c1, inset -20px 0 80px #ff009d, inset 20px 0 300px $c1, inset -20px 0 300px $c1, 0 0 50px $ca, -10px 0 80px $c1, 10px 0 80px #ff009d;
+
 
     form
         input
+            width: 88%
             margin: .75rem 0
-            padding: .75rem 1rem
+            padding: .75rem 6%
             font-size: 1.5rem
             background: $c4
             border: none
             border-radius: 4px
-
         p
+            font-weight: 300
             font-size: 1.75rem
-
         button
             float: right
             padding: .75rem 1.5rem

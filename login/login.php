@@ -8,31 +8,6 @@
         }
 ?>
 
-<?php
-    if ($auth === true) {
-        ?>
-
-        <?php
-    }
-    else {
-        ?>
-        <main class="login-main">
-            <form action="includes/login.inc.php" method="POST" autocomplete="off">
-                <p>Username or E-mail:</p>
-                <input type="text" name="mailuid">
-                <p>Password:</p>
-                <input type="password" name="pwd">
-                <br>
-                <button type="submit" name="login-submit">Login</button>
-                <a href="signup.php">Sign Up</a>      
-            </form>
-        </main>
-        <?php
-    }
-?>
-
-
-
 
 <div class="login-message">
     <?php
@@ -45,15 +20,26 @@
         echo '<p>Log in or register</p>';
     }
     ?>
-
-    
 </div>
 
-
-
 <?php
-    // require "footer.php";
+    if ($auth === false) {
+        ?>
+            <div class="login-main">
+                <form action="includes/login.inc.php" method="POST" autocomplete="off">
+                    <p>Username or E-mail:</p>
+                    <input type="text" name="mailuid">
+                    <p>Password:</p>
+                    <input type="password" name="pwd">
+                    <br>
+                    <button type="submit" name="login-submit">Login</button>
+                    <a href="signup.php">Sign Up</a>      
+                </form>
+            </div>
+        <?php
+    }
 ?>
+
 
 
 
@@ -74,14 +60,6 @@ CREATE TABLE todos (
 	completed BOOLEAN NOT NULL
 );
  -->
-<!-- 
- // $sql = "SELECT * FROM users";
-// $result = mysqli_query($conn, $sql);
-// if (mysqli_num_rows($result) > 0) {
-//     while($row = mysqli_fetch_assoc($result)) {
-//         $output[] = $row;
-//     }
-// } -->
 
 <!-- 
     CREATE TABLE notes (

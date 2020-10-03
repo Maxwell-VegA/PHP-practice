@@ -151,48 +151,19 @@
 
     <!-- ======================================================================== -->
 
-<div id="delete-category">
+<form id="delete-category">
     <select id="category-to-delete" name="category">
             <option value=""></option>
-        <?php 
-            foreach ($categoryArr as $aCategory) {
-                if ($aCategory['categoryName'] !== "unsorted") {
-                    echo "<option class='category-in-options' style='color: " . $aCategory['color'] . ";' value=" . $aCategory['categoryName'] . ">" . $aCategory['categoryName'] . "</option>";  
+            <?php 
+                foreach ($categoryArr as $aCategory) {
+                    if ($aCategory['categoryName'] !== "unsorted") {
+                        echo "<option class='category-in-options' style='color: " . $aCategory['color'] . ";' value=" . $aCategory['categoryName'] . ">" . $aCategory['categoryName'] . "</option>";  
+                    }
                 }
-            }
-        ?>
+            ?>
     </select>
     <button id="deleteCategory">Delete Selected <br> Category</button>
-    <script>
-        $(document).ready(function () {
-            selectedCategory = "";
-            $(".category-in-options").click(function (e) { 
-                // Change the underline of the delete button to an active state
-            });
-            $('#deleteCategory').click(function (e) {
-                var selectedCategory = $("#category-to-delete").val();
-                $.ajax({
-                    type: "POST",
-                    url: "includes/deletecategory.inc.php",
-                    data: {category:selectedCategory},
-                    dataType: "text",
-                    success: function (response) {
-                        var input = "";
-                        $.ajax({
-                            type: "post",
-                            url: "innernotes.php",
-                            data: {search:input},
-                            dataType: "text",
-                            success: function (data) {
-                                $('#notes-main-section').html(data);
-                            }
-                        });
-                    }
-                });
-            });
-        });
-    </script>
-</div>
+</form>
 
     <!-- ======================================================================== -->
 
@@ -211,11 +182,11 @@
         else {
             ?> <a class='a-btn-on' href="notes.php"><b>Archived notes</b><div></div></a> <?php
         }
-        if (false) {
-            ?> <a class='a-btn-off' href="#"><b>Darkmode</b><i></i><div></div></a> <?php
+        if (true) {
+            ?> <a class='a-btn-off' href="#"><b>Lightmode</b><i></i><div></div></a> <?php
         }
         else {
-            ?> <a class='a-btn-on' href="#"><b>Darkmode</b><i></i><div></div></a> <?php
+            ?> <a class='a-btn-on' href="#"><b>Lightmode</b><i></i><div></div></a> <?php
         }
     ?>            
 </div>

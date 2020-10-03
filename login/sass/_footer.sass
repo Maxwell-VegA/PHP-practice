@@ -3,7 +3,8 @@ footer
     z-index: 1000
     display: grid
     grid-template-columns: $hGrid
-    grid-template-areas: "search search logout" "archive category color"
+    grid-template-areas: "search category logout" "archive archive color"
+    grid-template-columns: 2fr 1.5fr 1.5fr
     grid-template-rows: 3fr 2fr
     width: 100%
     height: 165px
@@ -13,12 +14,91 @@ footer
     box-shadow: 0px -5px 13px 5px $c0
     #search
         grid-area: search
-    #logout
+        input
+            position: relative
+            left: 8%
+            width: 70%
+            margin-top: 1rem
+            padding: 1rem  0
+            padding-left: 1.75rem
+            background: $c3
+            border: 1px solid $c3
+            border-radius: $border-r
+            box-shadow: inset 5px 5px 5px 3px $c0, inset -5px -5px 5px 3px $c33
+            &:hover
+                // something
+            &:focus
+                border: 1px solid $caa
+    #logout-b
         grid-area: logout
+        display: grid
+        grid-template-columns: 1fr 3fr
+        span
+            // margin: 0 2rem
+        button
+            margin: auto
+            margin-bottom: 2rem
+            padding: .75rem 1.5rem 
+            background: $c3
+            transition-duration: $t1
+            border-radius: $border-r
+            box-shadow:  3px 3px 3px 3px $c0,  -3px -3px 3px 3px $c33
+            &:active
+                box-shadow: inset 3px 3px 3px 3px $c0, inset -3px -3px 3px 3px $c33
+            &:hover
+                color: $ca
+                text-decoration: underline
+                text-shadow: 0px 0px 7px $ca
+                cursor: pointer
     #darkmode
         grid-area: color
     #archive
         grid-area: archive
+        display: grid
+        grid-template-columns: 1fr 1fr 1fr
+        grid-gap: 1.5rem
+        width: 100%
+        a
+            display: grid
+            grid-template-rows: 17px 6px                    
+            width: 80%
+            height: 30%
+            align-self: center
+            justify-self: center
+            padding: 1rem 1rem
+            transition-duration: $t1
+            border-radius: $border-r
+            border: 1px solid $c3
+            box-shadow: 3px 3px 3px 3px $c0, -3px -3px 3px 3px $c33
+            &:active
+                box-shadow: inset 3px 3px 3px 3px $c0, inset -3px -3px 3px 3px $c33
+            &:hover
+                color: $c5
+                text-decoration: underline
+                text-shadow: 0px 0px 7px $c5
+                cursor: pointer
+        b
+            font-size: .9rem
+            display: inline
+        div
+            width: 100%
+            height: 5px
+            margin-top: .75rem
+            background: $cab
+            border-radius: 9999px
+        i
+            display: inline
+            // visibility: hidden
+            pointer-events: none
+
+        .a-btn-on
+            border: 1px solid $caa
+            div
+                background: $caa
+                box-shadow: 0px 0px 8px 4px $cat
     #category
         grid-area: category
+
+    
+    
 

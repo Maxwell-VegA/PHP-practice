@@ -7,23 +7,20 @@
 </div>
 <script>
     $(document).ready(function () {
-        var width = $( window ).width();
-        if (width > 1480) {
-            $("#searchbox").keyup(function (e) { 
-                var input = $(this).val();
-                if (input.length > -1) {
-                    $.ajax({
-                        type: "post",
-                        url: "innernotes.php",
-                        data: {search:input},
-                        dataType: "text",
-                        success: function (data) {
-                            $('#notes-main-section').html(data);
-                        }
-                    });
-                }
-            });
-        }
+        $("#searchbox").keyup(function (e) { 
+            var input = $(this).val();
+            if (input.length > -1) {
+                $.ajax({
+                    type: "post",
+                    url: "innernotes.php",
+                    data: {search:input},
+                    dataType: "text",
+                    success: function (data) {
+                        $('#notes-main-section').html(data);
+                    }
+                });
+            }
+        });
     });
 </script>
 

@@ -663,6 +663,17 @@ section .note-container .i-btn:hover {
   cursor: pointer;
 }
 
+@media screen and (max-width: 1480px) {
+  section .note-container:hover {
+    border: 1px solid #081616;
+    cursor: default;
+  }
+  section .note-container:active {
+    -webkit-box-shadow: 5px 5px 5px 3px #0e000092, -5px -5px 5px 3px #18292992;
+            box-shadow: 5px 5px 5px 3px #0e000092, -5px -5px 5px 3px #18292992;
+  }
+}
+
 @media screen and (max-width: 450px) {
   main, section {
     -ms-grid-columns: (minmax(16rem, 1fr))[auto-fit];
@@ -763,7 +774,6 @@ section .note-container .i-btn:hover {
     margin-left: 1.75rem;
     -ms-grid-row: 1;
     -ms-grid-column: 1;
-    -ms-grid-column-span: 2;
     grid-area: search;
     margin-top: 2rem;
   }
@@ -1014,6 +1024,7 @@ section .note-container .i-btn:hover {
   aside .sidebar-container #toggles {
     -ms-grid-row: 2;
     -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
     grid-area: archive;
     display: -ms-grid;
     display: grid;
@@ -1114,7 +1125,9 @@ footer {
   display: grid;
   -ms-grid-columns: 320px 1fr 320px;
       grid-template-columns: 320px 1fr 320px;
-      grid-template-areas: "search search logout" "archive category color";
+      grid-template-areas: "search category logout" "archive archive color";
+  -ms-grid-columns: 2fr 1.5fr 1.5fr;
+      grid-template-columns: 2fr 1.5fr 1.5fr;
   -ms-grid-rows: 3fr 2fr;
       grid-template-rows: 3fr 2fr;
   width: 100%;
@@ -1129,14 +1142,59 @@ footer {
 footer #search {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
   grid-area: search;
 }
 
-footer #logout {
+footer #search input {
+  position: relative;
+  left: 8%;
+  width: 70%;
+  margin-top: 1rem;
+  padding: 1rem  0;
+  padding-left: 1.75rem;
+  background: #081616;
+  border: 1px solid #081616;
+  border-radius: 12px;
+  -webkit-box-shadow: inset 5px 5px 5px 3px #0e000092, inset -5px -5px 5px 3px #18292992;
+          box-shadow: inset 5px 5px 5px 3px #0e000092, inset -5px -5px 5px 3px #18292992;
+}
+
+footer #search input:focus {
+  border: 1px solid #ddbc00;
+}
+
+footer #logout-b {
   -ms-grid-row: 1;
   -ms-grid-column: 3;
   grid-area: logout;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 3fr;
+      grid-template-columns: 1fr 3fr;
+}
+
+footer #logout-b button {
+  margin: auto;
+  margin-bottom: 2rem;
+  padding: .75rem 1.5rem;
+  background: #081616;
+  -webkit-transition-duration: 0.1s;
+          transition-duration: 0.1s;
+  border-radius: 12px;
+  -webkit-box-shadow: 3px 3px 3px 3px #0e000092, -3px -3px 3px 3px #18292992;
+          box-shadow: 3px 3px 3px 3px #0e000092, -3px -3px 3px 3px #18292992;
+}
+
+footer #logout-b button:active {
+  -webkit-box-shadow: inset 3px 3px 3px 3px #0e000092, inset -3px -3px 3px 3px #18292992;
+          box-shadow: inset 3px 3px 3px 3px #0e000092, inset -3px -3px 3px 3px #18292992;
+}
+
+footer #logout-b button:hover {
+  color: #ffd900;
+  text-decoration: underline;
+  text-shadow: 0px 0px 7px #ffd900;
+  cursor: pointer;
 }
 
 footer #darkmode {
@@ -1148,7 +1206,74 @@ footer #darkmode {
 footer #archive {
   -ms-grid-row: 2;
   -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
   grid-area: archive;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1.5rem;
+  width: 100%;
+}
+
+footer #archive a {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 17px 6px;
+      grid-template-rows: 17px 6px;
+  width: 80%;
+  height: 30%;
+  -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  padding: 1rem 1rem;
+  -webkit-transition-duration: 0.1s;
+          transition-duration: 0.1s;
+  border-radius: 12px;
+  border: 1px solid #081616;
+  -webkit-box-shadow: 3px 3px 3px 3px #0e000092, -3px -3px 3px 3px #18292992;
+          box-shadow: 3px 3px 3px 3px #0e000092, -3px -3px 3px 3px #18292992;
+}
+
+footer #archive a:active {
+  -webkit-box-shadow: inset 3px 3px 3px 3px #0e000092, inset -3px -3px 3px 3px #18292992;
+          box-shadow: inset 3px 3px 3px 3px #0e000092, inset -3px -3px 3px 3px #18292992;
+}
+
+footer #archive a:hover {
+  color: #dceeee;
+  text-decoration: underline;
+  text-shadow: 0px 0px 7px #dceeee;
+  cursor: pointer;
+}
+
+footer #archive b {
+  font-size: .9rem;
+  display: inline;
+}
+
+footer #archive div {
+  width: 100%;
+  height: 5px;
+  margin-top: .75rem;
+  background: #464112;
+  border-radius: 9999px;
+}
+
+footer #archive i {
+  display: inline;
+  pointer-events: none;
+}
+
+footer #archive .a-btn-on {
+  border: 1px solid #ddbc00;
+}
+
+footer #archive .a-btn-on div {
+  background: #ddbc00;
+  -webkit-box-shadow: 0px 0px 8px 4px #ffd90079;
+          box-shadow: 0px 0px 8px 4px #ffd90079;
 }
 
 footer #category {

@@ -5,7 +5,7 @@
         require 'dbh.inc.php';
         $createdBy  =   $_SESSION['userUid'];
         $category   =   $_POST['category'];
-        $sql = "UPDATE notes SET category = 'unsorted', categoryColor = '#FF0000' WHERE category = '$category' AND createdBy = '$createdBy'";
+        $sql = "UPDATE notes SET category = 'unsorted', categoryColor = '#ffd900' WHERE category = '$category' AND createdBy = '$createdBy'";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $sql)) {
             echo "SQL statement failed";

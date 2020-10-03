@@ -156,20 +156,22 @@
             echo "<div class='i-category'><i style='border-color: " . $note['categoryColor'] . ";'>" . $note['category'] . "</i></div>";
             if ($editingMode === false && $archiveView === false) {
                 ?> 
-                <b><a class='i-btn' href="fullnote.php?note=<?php echo $note['id']; ?>">View note</a></b>
-                <!-- <b><a class='i-btn' id="open-fn-<?php echo $note['id']; ?>">View full note</a></b> -->
+                <b><a class='i-btn' href="fullnote.php?note=<?php echo $note['id']; ?>">Edit note</a></b>
                 <script>
                     $(document).ready(function () {
                         $("#open-fn-<?php echo $note['id']; ?>").click(function (e) { 
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {note:<?php echo $note['id']; ?>},
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {note:<?php echo $note['id']; ?>},
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
                         });
                     });
                 </script>

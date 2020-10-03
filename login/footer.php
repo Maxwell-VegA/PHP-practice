@@ -2,8 +2,7 @@
 
     <footer>
         <div id="search">
-            <span>Search notes:</span>
-            <input type="text" name="searchbox" id="searchbox-b" autocomplete="off">
+            <input type="text" name="searchbox" id="searchbox-b" placeholder="Search..." autocomplete="off">
         </div>
         <script>
             $(document).ready(function () {
@@ -35,7 +34,7 @@
                         echo "<span>User Class - Admin</span>";
                     }
                     else {
-                        echo "<span>User Class - User</span>";
+                        echo "<span>Signed in as: " . $_SESSION['userUid'] . "</span>";
                     }
                 ?>
             </div>
@@ -58,68 +57,41 @@
         <div id="archive">
             <?php
                 if ($editingMode === true) {
-                    ?> <a href="notes.php">Archiving mode: on</a> <?php
-                    // The exit btn should likely be highlighted when in archiving mode
+                    ?><a class="a-btn-on" href="notes.php"><b>Archiving mode</b><i></i><div></div></a> <?php
                 }
                 else {
-                    ?> <a href="archive.php?a">Archiving mode: off</a> <?php
+                    ?><a class="a-btn-off" href="archive.php?a"><b>Archiving mode</b><i></i><div></div></a> <?php
                 }
+
                 if ($archiveView === false) {
-                    ?> <a href="archivednotes.php?b">Viewing: active notes</a> <?php
+                    ?> <a class='a-btn-off' href="archivednotes.php?b"><b>Archived notes</b><i></i><div></div></a> <?php
                 }
                 else {
-                    ?> <a href="notes.php">Viewing: archived notes</a> <?php
+                    ?> <a class='a-btn-on' href="notes.php"><b>Archived notes</b><div></div></a> <?php
                 }
-
-?>
-
-            
+                if (true) {
+                    ?> <a class='a-btn-off' href="#"><b>Lightmode</b><i></i><div></div></a> <?php
+                }
+                else {
+                    ?> <a class='a-btn-on' href="#"><b>Lightmode</b><i></i><div></div></a> <?php
+                }
+            ?>            
         </div>
         <!-- ======================================================================== -->
-        <!-- <form action="includes/deletecategory.inc.php" id="category" method="POST"> -->
-        <div>
-            <select id="category-to-delete" name="category">
-                <?php 
-                    foreach ($categoryArr as $aCategory) {
-                        if ($aCategory['categoryName'] !== "unsorted") {
-                            echo "<option class='category-in-options' style='color: " . $aCategory['color'] . ";' value=" . $aCategory['categoryName'] . ">" . $aCategory['categoryName'] . "</option>";  
-                        }
-                    }
-                ?>
-            </select>
-            <button id="deleteCategory">Delete Selected Category</button>
-            <script>
-                $(document).ready(function () {
-                    selectedCategory = "";
-                    $(".category-in-options").click(function (e) { 
-                        // Change the underline of the delete button to an active state
-                    });
-                    $('#deleteCategory').click(function (e) {
-                        var selectedCategory = $("#category-to-delete").val();
-                        $.ajax({
-                            type: "POST",
-                            url: "includes/deletecategory.inc.php",
-                            data: {category:selectedCategory},
-                            dataType: "text",
-                            success: function (response) {
-                                var input = "";
-                                $.ajax({
-                                    type: "post",
-                                    url: "innernotes.php",
-                                    data: {search:input},
-                                    dataType: "text",
-                                    success: function (data) {
-                                        $('#notes-main-section').html(data);
-                                    }
-                                });
-                                // That manages to update the main section however the navigation and footer should be updated as well somehow.
+        <form id="category">
+            <select id="category-to-delete-b" name="category">
+                    <option value=""></option>
+                    <?php 
+                        foreach ($categoryArr as $aCategory) {
+                            if ($aCategory['categoryName'] !== "unsorted") {
+                                echo "<option class='category-in-options' style='color: " . $aCategory['color'] . ";' value=" . $aCategory['categoryName'] . ">" . $aCategory['categoryName'] . "</option>";  
                             }
-                        });
-                    });
-                });
-            </script>
-        </div>
-        <!-- </form> -->
+                        }
+                    ?>
+            </select>
+            <button id="deleteCategory-b">Delete Selected <br> Category</button>
+        </form>
+
     </footer>
 </body>
 </html>

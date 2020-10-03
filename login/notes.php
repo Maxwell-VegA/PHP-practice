@@ -84,7 +84,6 @@
 <!-- ======================================================== -->
 <!-- Sorting, lightmode switch, the sign up -->
 <!-- animations, mobile responsive, -->
-<!-- Deploy on heroku -->
 <!-- Category delete full refresh, lightmode switch, layout switch -->
 <!-- ======================================================== -->
 
@@ -105,18 +104,16 @@
     ADD category TINYTEXT NOT NULL,
     ADD allCategories TINYTEXT
 ;
-
     ALTER TABLE `notes` 
     DROP `allCategories`
 ;
- -->
 
- <!-- 
+-->
+
+<!-- 
     Sort by:
     Last modified (default)
     First created / reverse
     By title alphabetically / reverse
     By text length?
-    
-
-  -->
+-->

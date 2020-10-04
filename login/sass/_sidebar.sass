@@ -24,38 +24,28 @@
 
 
 
-@media screen and (max-width: 1280)
-    aside
+@media screen and (max-width: 1480px)
+    aside, #fullnote-insert
         display: none !important
-        position: fixed 
-        background: red
+
+@media screen and (min-width: 1481px)
     *
-        font-size: 12.5px
-@media screen and ( min-width: 1281px )
+        font-size: 13px
+
     header
         display: none !important
     
     footer
         display: none !important
-    
-
-@media screen and (min-width: 1281px) //& display orientation = horizontal
-    *
-        font-size: 13px
 
     body
-        // position: fixed
         display: grid
         grid-template-columns: 35rem 3rem auto 3rem 35rem
-        // minmax(32vw 38rem)
         grid-template-areas: "left ds mid sd right"
-        grid-column-gap:
     #fullnote-insert
         grid-area: right
-        // visibility: hidden
         position: fixed
-        width: 29vw
-        max-width: 35rem
+        width: 35rem
         height: 100vh
         right: 0
         background: $c3
@@ -96,8 +86,7 @@
     aside
         // grid-area: left
         position: fixed
-        width: 29vw
-        max-width: 35rem
+        width: 35rem
         height: 100vh
         background: $c3
         box-shadow: 0px 0px 10px 7px $c0
@@ -107,9 +96,9 @@
             grid-template-rows: 1fr 15vh 15vh 1fr 1fr 2.5fr 1fr 1fr 1fr 1fr
             grid-template-areas: "search" "categories" "categories" "select" "select" "create" "delete" "archive" "archive" "logout"
             grid-row-gap: 2vh
-            width: 25vw
+            width: 31rem
             // width: 80%
-            max-width: 31.25rem
+            // max-width: 31.25rem
             height: 100vh
             left: 1.75rem
 
@@ -243,6 +232,8 @@
                         padding: 0.25rem
                         background: $c3
                         border-radius: $border-r
+                        &:hover
+                            color: $c44
                         
                         &:nth-child(1)
                             grid-area: input

@@ -139,7 +139,7 @@
             $dateSrc = date_parse($note['lastModified']);
             $date = $dateSrc['day'] . "/" . $dateSrc['month'] . "/" . $dateSrc['year'];
 
-            echo "<div class='note-container $spanRows $borderClass'>";
+            echo "<div id='open-fn-" . $note['id'] . "' class='note-container $spanRows $borderClass'>";
             echo "<h2 class='i-title " . $pinnedTitle . "'>" . $note['noteTitle'] . "</h2>";
             echo "<p class='i-text'>" . $note['noteText'] . "</p>";
             // =====
@@ -156,8 +156,8 @@
             echo "<div class='i-category'><i style='border-color: " . $note['categoryColor'] . ";'>" . $note['category'] . "</i></div>";
             if ($editingMode === false && $archiveView === false) {
                 ?> 
-                <!-- <b><a class='i-btn' href="fullnote.php?note=<?php echo $note['id']; ?>">View full note</a></b> -->
-                <b><a class='i-btn' id="open-fn-<?php echo $note['id']; ?>">View full note</a></b>
+                <b><a class='i-btn' href="fullnote.php?note=<?php echo $note['id']; ?>">View note</a></b>
+                <!-- <b><a class='i-btn' id="open-fn-<?php echo $note['id']; ?>">View full note</a></b> -->
                 <script>
                     $(document).ready(function () {
                         $("#open-fn-<?php echo $note['id']; ?>").click(function (e) { 
@@ -169,7 +169,7 @@
                                 success: function (response) {
                                     $('#fullnote-insert').html(response);
                                 }
-                            });                            
+                            });
                         });
                     });
                 </script>

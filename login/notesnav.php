@@ -2,12 +2,12 @@
     <div class="notes-leftside-options-container">
         <form action="includes/createcategory.inc.php" method="POST" autocomplete="off">
             <input type="text" name="newCategoryName" placeholder="New category..." maxlength="14">
-            <label class="color-example" for="clr">color</label>
-            <input id="clr" type="color" name="newCategoryColor" value="#8f8f8f">
-            <button id="category-create-btn" type="submit" name="newCategorySubmit">Create</button>
+            <label class="color-example" for="clr-b">color</label>
+            <input id="clr-b" type="color" name="newCategoryColor" value="#8f8f8f">
+            <button id="category-create-btn-b" type="submit" name="newCategorySubmit">Create</button>
             <script>
                 $(document).ready(function () {
-                    $("#clr").change(function (e) { 
+                    $("#clr-b").change(function (e) { 
                         var currentColor = $(this).val();
                         // console.log(currentColor);
                         $(".color-example").css("border-color", currentColor);

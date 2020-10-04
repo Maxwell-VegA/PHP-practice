@@ -3,28 +3,31 @@
     <footer>
         <div id="search">
             <span>Search notes:</span>
-            <input type="text" name="searchbox" id="searchbox" autocomplete="off">
+            <input type="text" name="searchbox" id="searchbox-b" autocomplete="off">
         </div>
         <script>
             $(document).ready(function () {
-                $("#searchbox").keyup(function (e) { 
-                    var input = $(this).val();
-                    if (input.length > -1) {
-                        $.ajax({
-                            type: "post",
-                            url: "innernotes.php",
-                            data: {search:input},
-                            dataType: "text",
-                            success: function (data) {
-                                $('#notes-main-section').html(data);
-                            }
-                        });
-                    }
-                });
+                var width = $( window ).width();
+                if (width < 1481) {
+                    $("#searchbox-b").keyup(function (e) { 
+                        var input = $(this).val();
+                        if (input.length > -1) {
+                            $.ajax({
+                                type: "post",
+                                url: "innernotes.php",
+                                data: {search:input},
+                                dataType: "text",
+                                success: function (data) {
+                                    $('#notes-main-section').html(data);
+                                }
+                            });
+                        }
+                    });
+                }
             });
         </script>
         <!-- ======================================================================== -->
-        <form action="includes/logout.inc.php" method="POST" id="logout">
+        <form action="includes/logout.inc.php" method="POST" id="logout-b">
             <button type="submit" name="logout-submit">Log Out</button>
             <div id="permissions">
                 <?php

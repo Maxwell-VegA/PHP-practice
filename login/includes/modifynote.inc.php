@@ -27,7 +27,8 @@
             else {
                 mysqli_stmt_bind_param($stmt, "sssss", $title, $text, $subtext, $category, $color);
                 mysqli_stmt_execute($stmt);
-                header("Location: ../notes.php?update=sucess");             
+                // header("Location: ../notes.php?update=sucess");             
+                header("Location: ../notes.php");             
             }
         }
     }

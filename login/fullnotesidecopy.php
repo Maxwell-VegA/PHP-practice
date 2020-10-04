@@ -11,14 +11,10 @@
             require "includes/notes.inc.php";
         }
     }
-    else {
-        // require "includes/latestid.inc.php";
-        // $noteId = $row['id'];
-        $noteId = 41;
-    }
-    if (isset($_GET['last'])) {
-        echo "last";
-    }
+    // else {
+    //     require "includes/latestid.inc.php";
+    //     $noteId = $row['id'];
+    // }
 
     // require "includes/latestid.inc.php";
     // $noteId = $row['id'];
@@ -44,7 +40,8 @@
         }
         ?> 
         <div class="full-note"> 
-            <form action="includes/modifynote.inc.php?note=<?php echo $_GET['note']; ?>" method="POST" autocomplete="off">
+            <!-- <form action="includes/modifynote.inc.php?note=<?php echo $_GET['note']; ?>" method="POST" autocomplete="off"> -->
+            <div class="form-div">
                 
         <?php
         echo "<input type='text' name='noteTitle' maxlength='40' required placeholder='Title' value='"  . $title    . "'>";
@@ -62,13 +59,28 @@
                     }
                     ?>
                 </select>
-                <button id="save-btn" type="submit" name="saveNote">Save</button>
+                <button id="save-btn-aj" type="submit" name="saveNote">Save</button>
+                <script>
+                    $(document).ready(function () {
+                       $("#save-btn-aj").click(function (e) { 
+                           $.ajax({
+                               type: "get",
+                               url: "includes/modifynote.inc.php?saveNote",
+                               data: {note:<?php echo $note['id']; ?>},
+                               dataType: "dataType",
+                               success: function (response) {
+                                   
+                               }
+                           });
+                       }); 
+                    });
+                </script>
                 <div>
                     <a href="includes/archivenote.inc.php?note=<?php echo $note['id']; ?>&update=archived">Archive</a>
                     <a href="includes/deletenote.inc.php?note=<?php echo $note['id']; ?>&update=deleted">Delete</a>
                     <button>Pin</button>
                 </div>
-            </form>
+            </div>
         </div> <!-- closes the full-note div --> 
         <?php
     }

@@ -130,7 +130,7 @@ header .inner-categories-container .category {
   padding: .25rem 1.5rem;
   background: #081616;
   border-radius: 9999px;
-  border: #ff0000 2px solid;
+  border: #ffd900 2px solid;
   -webkit-transition-duration: 0.2s;
           transition-duration: 0.2s;
 }
@@ -158,7 +158,7 @@ header .notes-leftside-options-container form {
       grid-template-columns: 40% 10% 50%;
   -ms-grid-rows: 3fr 3fr;
       grid-template-rows: 3fr 3fr;
-      grid-template-areas: "input input input" "label . create" "color . .";
+      grid-template-areas: "input input input" "label label create" "color . .";
   grid-gap: .75rem;
   width: 100%;
   height: 120%;
@@ -166,13 +166,13 @@ header .notes-leftside-options-container form {
 
 header .notes-leftside-options-container label {
   font-size: 1.15rem;
-  -ms-grid-column-align: center;
-      justify-self: center;
+  -ms-grid-column-align: start;
+      justify-self: start;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
   font-style: italic;
-  padding: .25rem 3.25rem;
+  padding: .25rem 2.5rem;
   background: #081616;
   border-radius: 9999px;
   border: #8f8f8f 2px solid;
@@ -189,7 +189,7 @@ header .notes-leftside-options-container button {
   -ms-grid-row: 2;
   -ms-grid-column: 3;
   grid-area: create;
-  color: #ff0000;
+  color: #ffd900;
   font-weight: bold;
   font-size: 1.15rem;
   height: 75%;
@@ -204,9 +204,9 @@ header .notes-leftside-options-container button {
 }
 
 header .notes-leftside-options-container button:hover {
-  color: #ff0000;
+  color: #ffd900;
   text-decoration: underline;
-  text-shadow: 0px 0px 7px #ff0000;
+  text-shadow: 0px 0px 7px #ffd900;
   cursor: pointer;
 }
 
@@ -228,7 +228,7 @@ header .notes-leftside-options-container input:nth-child(1) {
 }
 
 header .notes-leftside-options-container input:nth-child(1):focus {
-  border: 1px solid #dd0000;
+  border: 1px solid #ddbc00;
 }
 
 header .notes-leftside-options-container input:nth-child(3) {
@@ -296,17 +296,66 @@ header .notes-rightside-options-container select option {
 }
 
 header .notes-rightside-options-container select option:hover {
-  background: #ff0000;
+  background: #ffd900;
+}
+
+@media screen and (max-width: 840px) {
+  * {
+    font-size: 12px;
+  }
+  header {
+    -ms-grid-columns: 50% 50%;
+        grid-template-columns: 50% 50%;
+        grid-template-areas: "left right";
+    height: 165px;
+  }
+  header .categories-container {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1480px) {
+  * {
+    font-size: 12.5px;
+  }
+  body {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+        grid-template-areas: "mid";
+    margin-top: 12.5rem;
+  }
+  main {
+    z-index: 120;
+  }
+  main .note-input {
+    position: relative;
+    z-index: 110;
+  }
+  section {
+    z-index: 100;
+  }
+  main, section {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: mid;
+    position: relative;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (minmax(19rem, 1fr))[auto-fit];
+        grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+    grid-auto-rows: 6rem;
+    grid-gap: 2.2rem;
+    width: 94vw;
+    max-width: 80rem;
+    margin: auto;
+    margin-bottom: 16rem;
+  }
 }
 
 main {
-  z-index: 90;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (minmax(19rem, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
-  grid-auto-rows: 6rem;
-  grid-gap: 2.2rem;
+  margin-top: 3.5rem;
   pointer-events: none;
 }
 
@@ -343,13 +392,13 @@ main .note-input input {
 
 main .note-input input:focus {
   z-index: 200;
-  border: 1px solid #dd0000 !important;
+  border: 1px solid #ddbc00 !important;
 }
 
 main .note-input input:hover {
   background: #18292992;
   border-color: #18292992;
-  cursor: pointer;
+  cursor: text;
 }
 
 main .note-input input:nth-child(1) {
@@ -378,14 +427,14 @@ main .note-input textarea {
 
 main .note-input textarea:focus {
   z-index: 200;
-  border: 1px solid #dd0000 !important;
+  border: 1px solid #ddbc00 !important;
 }
 
 main .note-input textarea:hover {
   border-right-color: #18292992;
   border-left-color: #18292992;
   background: #18292992;
-  cursor: pointer;
+  cursor: text;
 }
 
 main .note-input input:nth-child(3) {
@@ -394,7 +443,7 @@ main .note-input input:nth-child(3) {
 
 main .note-input input:nth-child(3):focus {
   z-index: 200;
-  border: 1px solid #dd0000 !important;
+  border: 1px solid #ddbc00 !important;
 }
 
 main .note-input select:nth-child(4) {
@@ -424,13 +473,7 @@ main .note-input button:nth-child(5):hover {
 }
 
 section {
-  z-index: 1;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (minmax(19rem, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
-  grid-auto-rows: 6rem;
-  grid-gap: 2.2rem;
+  margin-top: 3.5rem;
 }
 
 section .span2 {
@@ -458,7 +501,7 @@ section .borderFalse {
 }
 
 section .borderTrue {
-  border: 2px solid #ff0000;
+  border: 2px solid #ffd900;
 }
 
 section .note-container {
@@ -476,8 +519,21 @@ section .note-container {
   padding-bottom: 2.5rem;
   background: #081616;
   border-radius: 12px;
+  border: 1px solid #081616;
   -webkit-box-shadow: 5px 5px 5px 3px #0e000092, -5px -5px 5px 3px #18292992;
           box-shadow: 5px 5px 5px 3px #0e000092, -5px -5px 5px 3px #18292992;
+  -webkit-transition-duration: .05s;
+          transition-duration: .05s;
+}
+
+section .note-container:hover {
+  border: 1px solid #464112;
+  cursor: pointer;
+}
+
+section .note-container:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 section .note-container .i-title {
@@ -503,7 +559,7 @@ section .note-container .i-text {
 }
 
 section .note-container .i-text i {
-  color: #dd0000;
+  color: #ddbc00;
   font-weight: bold;
   font-style: italic;
 }
@@ -511,7 +567,7 @@ section .note-container .i-text i {
 section .note-container .i-text b {
   color: #f2ffff;
   font-weight: bold;
-  background: #dd0000;
+  background: #ddbc00;
 }
 
 section .note-container .i-text img {
@@ -533,8 +589,8 @@ section .note-container .i-text span {
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   border-radius: 9999px;
-  -webkit-box-shadow: inset 0 0 50px #ff0000, inset 20px 0 80px #000c0c, inset -20px 0 80px #ff009d, inset 20px 0 300px #000c0c, inset -20px 0 300px #000c0c, 0 0 50px #ff0000, -10px 0 80px #000c0c, 10px 0 80px #ff009d;
-          box-shadow: inset 0 0 50px #ff0000, inset 20px 0 80px #000c0c, inset -20px 0 80px #ff009d, inset 20px 0 300px #000c0c, inset -20px 0 300px #000c0c, 0 0 50px #ff0000, -10px 0 80px #000c0c, 10px 0 80px #ff009d;
+  -webkit-box-shadow: inset 0 0 50px #ffd900, inset 20px 0 80px #000c0c, inset -20px 0 80px #ff009d, inset 20px 0 300px #000c0c, inset -20px 0 300px #000c0c, 0 0 50px #ffd900, -10px 0 80px #000c0c, 10px 0 80px #ff009d;
+          box-shadow: inset 0 0 50px #ffd900, inset 20px 0 80px #000c0c, inset -20px 0 80px #ff009d, inset 20px 0 300px #000c0c, inset -20px 0 300px #000c0c, 0 0 50px #ffd900, -10px 0 80px #000c0c, 10px 0 80px #ff009d;
 }
 
 section .note-container .i-options {
@@ -580,7 +636,7 @@ section .note-container .i-category i {
   padding: .25rem 1.5rem;
   background: #081616;
   border-radius: 9999px;
-  border: #ff0000 2px solid;
+  border: #ffd900 2px solid;
   -webkit-transition-duration: 0.2s;
           transition-duration: 0.2s;
 }
@@ -595,41 +651,44 @@ section .note-container .i-btn {
   -ms-grid-column: 2;
   grid-area: full;
   float: right;
-  color: #dd0000;
+  color: #ddbc00;
   -webkit-transition-duration: 0.1s;
           transition-duration: 0.1s;
 }
 
 section .note-container .i-btn:hover {
-  color: #ff0000;
+  color: #ffd900;
   text-decoration: underline;
-  text-shadow: 0px 0px 7px #ff0000;
+  text-shadow: 0px 0px 7px #ffd900;
   cursor: pointer;
 }
 
-@media screen and (max-width: 1280) {
-  aside {
-    display: none !important;
-    position: fixed;
-    background: red;
+@media screen and (max-width: 450px) {
+  main, section {
+    -ms-grid-columns: (minmax(16rem, 1fr))[auto-fit];
+        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   }
-  * {
-    font-size: 12.5px;
+  main .note-container .i-category i, section .note-container .i-category i {
+    font-size: .8rem;
+    padding: .25rem .75rem;
   }
 }
 
-@media screen and (min-width: 1281px) {
+@media screen and (max-width: 1480px) {
+  aside, #fullnote-insert {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 1481px) {
+  * {
+    font-size: 13px;
+  }
   header {
     display: none !important;
   }
   footer {
     display: none !important;
-  }
-}
-
-@media screen and (min-width: 1281px) {
-  * {
-    font-size: 13px;
   }
   body {
     display: -ms-grid;
@@ -643,8 +702,7 @@ section .note-container .i-btn:hover {
     -ms-grid-column: 5;
     grid-area: right;
     position: fixed;
-    width: 29vw;
-    max-width: 35rem;
+    width: 35rem;
     height: 100vh;
     right: 0;
     background: #081616;
@@ -683,8 +741,7 @@ section .note-container .i-btn:hover {
   }
   aside {
     position: fixed;
-    width: 29vw;
-    max-width: 35rem;
+    width: 35rem;
     height: 100vh;
     background: #081616;
     -webkit-box-shadow: 0px 0px 10px 7px #0e000092;
@@ -698,8 +755,7 @@ section .note-container .i-btn:hover {
         grid-template-rows: 1fr 15vh 15vh 1fr 1fr 2.5fr 1fr 1fr 1fr 1fr;
         grid-template-areas: "search" "categories" "categories" "select" "select" "create" "delete" "archive" "archive" "logout";
     grid-row-gap: 2vh;
-    width: 25vw;
-    max-width: 31.25rem;
+    width: 31rem;
     height: 100vh;
     left: 1.75rem;
   }
@@ -724,7 +780,7 @@ section .note-container .i-btn:hover {
             box-shadow: inset 5px 5px 5px 3px #0e000092, inset -5px -5px 5px 3px #18292992;
   }
   aside .sidebar-container #search input:focus {
-    border: 1px solid #dd0000;
+    border: 1px solid #ddbc00;
   }
   aside .sidebar-container .categories-container {
     position: relative;
@@ -760,7 +816,7 @@ section .note-container .i-btn:hover {
     padding: .25rem 1.5rem;
     background: #081616;
     border-radius: 9999px;
-    border: #ff0000 2px solid;
+    border: #ffd900 2px solid;
     -webkit-transition-duration: 0.2s;
             transition-duration: 0.2s;
   }
@@ -800,7 +856,7 @@ section .note-container .i-btn:hover {
             box-shadow: inset 5px 5px 5px 3px #0e000092, inset -5px -5px 5px 3px #18292992;
   }
   aside .sidebar-container .dropdown-category-select select:focus {
-    border: 1px solid #dd0000;
+    border: 1px solid #ddbc00;
   }
   aside .sidebar-container .dropdown-category-select select:nth-child(2) {
     -ms-grid-row: 1;
@@ -816,7 +872,7 @@ section .note-container .i-btn:hover {
     background: #081616 !important;
   }
   aside .sidebar-container .dropdown-category-select select option:hover {
-    background: #ff0000;
+    background: #ffd900;
   }
   aside .sidebar-container .new-category {
     -ms-grid-row: 2;
@@ -886,6 +942,9 @@ section .note-container .i-btn:hover {
     background: #081616;
     border-radius: 12px;
   }
+  aside .sidebar-container .new-category form input:hover {
+    color: #bbcccc;
+  }
   aside .sidebar-container .new-category form input:nth-child(1) {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
@@ -897,7 +956,7 @@ section .note-container .i-btn:hover {
             box-shadow: inset 5px 5px 5px 3px #0e000092, inset -5px -5px 5px 3px #18292992;
   }
   aside .sidebar-container .new-category form input:nth-child(1):focus {
-    border: 1px solid #dd0000;
+    border: 1px solid #ddbc00;
   }
   aside .sidebar-container .new-category form input:nth-child(3) {
     visibility: hidden;
@@ -929,7 +988,7 @@ section .note-container .i-btn:hover {
             box-shadow: inset 5px 5px 5px 3px #0e000092, inset -5px -5px 5px 3px #18292992;
   }
   aside .sidebar-container #delete-category select:focus {
-    border: 1px solid #dd0000;
+    border: 1px solid #ddbc00;
   }
   aside .sidebar-container #delete-category button {
     float: right;
@@ -999,7 +1058,7 @@ section .note-container .i-btn:hover {
     width: 100%;
     height: 5px;
     margin-top: .75rem;
-    background: #461212;
+    background: #464112;
     border-radius: 9999px;
   }
   aside .sidebar-container #toggles i {
@@ -1007,12 +1066,12 @@ section .note-container .i-btn:hover {
     pointer-events: none;
   }
   aside .sidebar-container #toggles .a-btn-on {
-    border: 1px solid #dd0000;
+    border: 1px solid #ddbc00;
   }
   aside .sidebar-container #toggles .a-btn-on div {
-    background: #dd0000;
-    -webkit-box-shadow: 0px 0px 8px 4px #ff000079;
-            box-shadow: 0px 0px 8px 4px #ff000079;
+    background: #ddbc00;
+    -webkit-box-shadow: 0px 0px 8px 4px #ffd90079;
+            box-shadow: 0px 0px 8px 4px #ffd90079;
   }
   aside .sidebar-container #logout {
     -ms-grid-row: 1;
@@ -1041,9 +1100,9 @@ section .note-container .i-btn:hover {
             box-shadow: inset 3px 3px 3px 3px #0e000092, inset -3px -3px 3px 3px #18292992;
   }
   aside .sidebar-container #logout button:hover {
-    color: #ff0000;
+    color: #ffd900;
     text-decoration: underline;
-    text-shadow: 0px 0px 7px #ff0000;
+    text-shadow: 0px 0px 7px #ffd900;
     cursor: pointer;
   }
 }
@@ -1107,10 +1166,10 @@ footer #category {
 #fullnote-sidebar form {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 1.5rem auto 1fr 6fr 2fr auto 1fr 1fr;
-      grid-template-rows: 1.5rem auto 1fr 6fr 2fr auto 1fr 1fr;
+  -ms-grid-rows: 1.5rem auto 3rem 6fr 2fr auto 1fr 1fr;
+      grid-template-rows: 1.5rem auto 3rem 6fr 2fr auto 1fr 1fr;
       grid-template-areas: "." "title" "category" "text" "subtext" "date" "save" "btns";
-  grid-row-gap: .5rem;
+  grid-row-gap: 1rem;
   width: 76%;
   height: 100vh;
   margin: 0 8%;
@@ -1133,18 +1192,32 @@ footer #category {
 
 #fullnote-sidebar form input:hover {
   color: #bbcccc;
+  border: 1px solid #464112;
 }
 
 #fullnote-sidebar form input:focus {
   color: #dceeee;
-  border: 1px solid #dd0000;
+  border: 1px solid #ddbc00;
 }
 
 #fullnote-sidebar form select {
   -ms-grid-row: 3;
   -ms-grid-column: 1;
   grid-area: category;
+  padding: .5rem;
   background: #081616;
+  border: 1px solid #081616;
+  border-radius: 12px;
+  -webkit-box-shadow: inset 5px 5px 5px 3px #0e000092, inset -5px -5px 5px 3px #18292992;
+          box-shadow: inset 5px 5px 5px 3px #0e000092, inset -5px -5px 5px 3px #18292992;
+}
+
+#fullnote-sidebar form select:hover {
+  border: 1px solid #464112;
+}
+
+#fullnote-sidebar form select:focus {
+  border: 1px solid #ddbc00;
 }
 
 #fullnote-sidebar form textarea {
@@ -1164,7 +1237,7 @@ footer #category {
 #fullnote-sidebar form textarea:focus {
   z-index: 400;
   color: #dceeee;
-  border: 1px solid #dd0000;
+  border: 1px solid #ddbc00;
 }
 
 #fullnote-sidebar form #text {
@@ -1223,7 +1296,15 @@ footer #category {
   grid-area: btns;
 }
 
-#fullnote-sidebar input, #fullnote-sidebar textarea, #fullnote-sidebar select, #fullnote-sidebar button, #fullnote-sidebar a, #fullnote-sidebar div {
-  color: #dceeee;
+@media screen and (max-width: 450px) {
+  * {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  body {
+    resize: scroll;
+  }
 }
 /*# sourceMappingURL=styles.css.map */

@@ -36,8 +36,22 @@
 
 <div id="fullnote-insert">
     <?php
-        require "fullnoteside.php";
+        require "includes/latestid.inc.php";
+        $noteId = $row['id'];
     ?>
+    <script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "get",
+            url: "fullnoteside.php",
+            data: {note:<?php echo $noteId ?>},
+            dataType: "text",
+            success: function (response) {
+                $('#fullnote-insert').html(response);
+            }
+        });
+    });
+    </script>
 </div>
 <!-- <div class="bgdec" id="background-decoration"></div> -->
 <div class="bgdec" id="background-decoration0"></div>
@@ -64,6 +78,7 @@
 <!-- Active category styling -->
 <!-- A button for switching the side on which the sidebar appears -->
 <!-- Add a character counter in fullnotes?, a, b, i tags. -->
+<!-- footer searchbar doesn't work -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->

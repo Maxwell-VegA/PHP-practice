@@ -17,26 +17,28 @@
             font-weight: bold
             font-size: 1.75rem
             background: $c3
-            border: 1px solid $c3
+            border: $borderPX $borderType $c3
             border-radius: $border-r
             box-shadow: inset 5px 5px 5px 3px $c0, inset -5px -5px 5px 3px $c33
             &:hover
                 color: $c44
-                border: 1px solid $cab
+                // border: $borderPX $borderType $cab
             &:focus
                 color: $c5
-                border: 1px solid $caa  
+                border: $borderPX $borderType $caa  
         select
             grid-area: category
             padding: .5rem
             background: $c3
-            border: 1px solid $c3
+            border: $borderPX $borderType $c3
             border-radius: $border-r
             box-shadow: inset 5px 5px 5px 3px $c0, inset -5px -5px 5px 3px $c33
             &:hover
-                border: 1px solid $cab
+                // border: $borderPX $borderType $cab
             &:focus
-                border: 1px solid $caa  
+                border: $borderPX $borderType $caa  
+            option
+                color: $ca
 
 
         textarea
@@ -45,14 +47,15 @@
             padding: 5%
             background: $c3
             border-radius: $border-r
-            border: 1px solid $c3
+            border: $borderPX $borderType $c3
+            box-shadow: inset 5px 5px 5px 3px $c0, inset -5px -5px 5px 3px $c33
             resize: none
             &:hover
                 color: $c44
             &:focus
                 z-index: 400
                 color: $c5
-                border: 1px solid $caa  
+                border: $borderPX $borderType $caa  
         #text
             grid-area: text
         #subtext
@@ -73,9 +76,9 @@
             border-radius: $border-r
             box-shadow:  3px 3px 3px 3px $c0,  -3px -3px 3px 3px $c33
             &:hover
-                color: $c6
+                color: $caa
                 text-decoration: underline
-                text-shadow: 0px 0px 7px $c6
+                text-shadow: 0px 0px 7px $ca
                 cursor: pointer
             &:active
                 box-shadow: inset -3px -3px 3px 3px $c33, inset 3px 3px 3px 3px $c0
@@ -90,7 +93,7 @@
         // padding: 1rem
         // margin: 1rem
     //     height: 20%
-    //     border: 1px solid red
+    //     border: $borderPX $borderType red
         
     
     // .full-note

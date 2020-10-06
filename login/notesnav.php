@@ -3,7 +3,7 @@
         <form action="includes/createcategory.inc.php" method="POST" autocomplete="off">
             <input type="text" name="newCategoryName" placeholder="New category..." maxlength="14">
             <label class="color-example" for="clr-b">color</label>
-            <input id="clr-b" type="color" name="newCategoryColor" value="#8f8f8f">
+            <input id="clr-b" type="color" name="newCategoryColor" value="#ffffff">
             <button id="category-create-btn-b" type="submit" name="newCategorySubmit">Create</button>
             <script>
                 $(document).ready(function () {

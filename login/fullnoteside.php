@@ -1,4 +1,7 @@
 <?php
+    require "includes/viewmodes.inc.php";
+    if ($editingMode === false) {
+
     require "includes/categories.inc.php";
     if(isset($_GET['note'])) {
         $noteId = $_GET['note'];
@@ -12,9 +15,9 @@
         }
     }
     else {
-        // require "includes/latestid.inc.php";
-        // $noteId = $row['id'];
-        $noteId = 41;
+        require "includes/latestid.inc.php";
+        $noteId = $row['id'];
+        // $noteId = 41;
     }
     if (isset($_GET['last'])) {
         echo "last";
@@ -42,15 +45,21 @@
             $text    = $_GET['notetext'];
             $subText = $_GET['notesubtext'];
         }
+        $dateSrc = date_parse($note['lastModified']);
+        $date = $dateSrc['day'] . "/" . $dateSrc['month'] . "/" . $dateSrc['year'];
+        // if ($date === $today) {
+        //     $date = "today";
+        // }
+
         ?> 
         <div class="full-note"> 
             <form action="includes/modifynote.inc.php?note=<?php echo $_GET['note']; ?>" method="POST" autocomplete="off">
                 
         <?php
-        echo "<input type='text' name='noteTitle' maxlength='40' required placeholder='Title' value='"  . $title    . "'>";
-        echo "<textarea id='text' type='text' name='noteText' placeholder='Note text'>"                           . $text     . "</textarea>";
-        echo "<textarea id='subtext' type='text' name='noteSubText' placeholder='Hidden text'>"                      . $subText  . "</textarea>";
-        echo "<i>" . $note['lastModified'] . "</i>";
+        echo "<input type='text' name='noteTitle' maxlength='40' required placeholder='Title' value='" . $title . "'>";
+        echo "<textarea id='text' type='text' name='noteText' placeholder='Note text'>" . $text . "</textarea>";
+        echo "<textarea id='subtext' type='text' name='noteSubText' placeholder='Hidden text'>" . $subText . "</textarea>";
+        echo "<i>Last edited: " . $date . "</i>";
         ?>
                 <select name="categoryAndColor">
                     <?php
@@ -96,3 +105,5 @@
 ?>
 <!-- return without saving. JS alert asking are you sure, don't ask me again -->
 </div>    
+
+<?php }

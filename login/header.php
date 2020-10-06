@@ -26,25 +26,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHP-Practice</title>
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <?php if (isset($_SESSION['userId'])) {
+        if ($_SESSION['darkmode'] == 'd') {
+            ?>
+            <link href="css/styles.css" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+            <?php
+        }
+        else { 
+        ?> 
+        <link href="css/styles.light.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=B612+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+        <?php 
+        }
+    }
+    else { 
+        ?> 
+        <link href="css/styles.css" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+        <?php 
+    } ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-
-
-
-<nav>
-    <div class="nav-container">
-        <?php 
-            ?>
-            <a href="login.php">Home</a>
-            <?php
-            if ($auth === false) {
-                ?>
-                <a href="signup.php">Sign Up</a>
-                <?php
-            }
-        ?>
-    </div>
-</nav>

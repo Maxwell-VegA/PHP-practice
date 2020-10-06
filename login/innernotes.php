@@ -1,19 +1,17 @@
 <?php
-    // if (isset($_GET['categoryname'])) {
-        // header("href='notes.php?categoryname=" . $_GET['categoryname']);
-        // exit();
-    // }
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
 
-    if (!isset($archiveView)) {
-        $archiveView = false;
-    }
+    require "includes/viewmodes.inc.php";
+
+    // if (!isset($archiveView)) {
+    //     $archiveView = false;
+    // }
     
     $notesFound = true;
     $searchStrLength = 0;
-    if (!$archiveView) {
+    if ($archiveView === false && $editingMode === false) {
         if (isset($_POST['search'])) {
             $searchStrLength = strlen($_POST['search']);
             if ($searchStrLength > 0) {
@@ -27,19 +25,18 @@
             require "includes/notes.inc.php";
         }
     }
-
-    if (isset($_GET['a'])) {
-        $editingMode = true;
-        $archiveView = false;
+    elseif ($archiveView === true) {
+        require "includes/viewarchive.inc.php";
     }
-    elseif (isset($_GET['b'])) {
-        $editingMode = false;
-        $archiveView = true;
+    elseif ($editingMode === true) {
+            require "includes/notes.inc.php";
+    }
+
+    if (isset($_GET['a']) || isset($_GET['b'] )) {
+        $showNewNote = false;
     }
     else {
-        $editingMode = false;
-        $archiveView = false;
-
+        $showNewNote = true;
     }
     if (isset($_GET['categoryname'])) {
         $category = $_GET['categoryname'];
@@ -59,7 +56,7 @@
             </script>       
         <?php        
     }
-    else {
+    elseif ($showNewNote === true) {
         ?>
             <script>
                 $(document).ready(function () {
@@ -153,7 +150,7 @@
             <?php
             // =====
             echo "<span class='i-date'>" . $date . "</span>";
-            echo "<div class='i-category'><i style='border-color: " . $note['categoryColor'] . ";'>" . $note['category'] . "</i></div>";
+            echo "<div class='i-category'><i style='border-color: " . $note['categoryColor'] . "; background-color: " . $note['categoryColor'] . "'>" . $note['category'] . "</i></div>";
             if ($editingMode === false && $archiveView === false) {
                 ?> 
                 <b><a class='i-btn' href="fullnote.php?note=<?php echo $note['id']; ?>">Edit note</a></b>

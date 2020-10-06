@@ -1,1629 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP-Practice</title>
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,700;1,400&display=swap"
-        rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PHP-Practice</title>
 
-<body>
+        <link href="css/styles.light.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=B612+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+            rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
 
+    <body>
 
-
-    <nav>
-        <div class="nav-container">
-            <a href="login.php">Home</a>
-        </div>
-    </nav>
-    <header>
-        <div class="notes-leftside-options-container">
-            <form action="includes/createcategory.inc.php" method="POST" autocomplete="off">
-                <input type="text" name="newCategoryName" placeholder="New category..." maxlength="14">
-                <label class="color-example" for="clr-b">color</label>
-                <input id="clr-b" type="color" name="newCategoryColor" value="#8f8f8f">
-                <button id="category-create-btn-b" type="submit" name="newCategorySubmit">Create</button>
-                <script>
-                    $(document).ready(function () {
-                        $("#clr-b").change(function (e) {
-                            var currentColor = $(this).val();
-                            // console.log(currentColor);
-                            $(".color-example").css("border-color", currentColor);
+        <header>
+            <div class="notes-leftside-options-container">
+                <form action="includes/createcategory.inc.php" method="POST" autocomplete="off">
+                    <input type="text" name="newCategoryName" placeholder="New category..." maxlength="14">
+                    <label class="color-example" for="clr-b">color</label>
+                    <input id="clr-b" type="color" name="newCategoryColor" value="#ffffff">
+                    <button id="category-create-btn-b" type="submit" name="newCategorySubmit">Create</button>
+                    <script>
+                        $(document).ready(function () {
+                            $("#clr-b").change(function (e) {
+                                var currentColor = $(this).val();
+                                // console.log(currentColor);
+                                $(".color-example").css("border-color", currentColor);
+                            });
                         });
-                    });
-                </script>
-            </form>
-        </div>
+                    </script>
+                </form>
+            </div>
 
-        <!-- <div class="categories-bar-overlay">
+            <!-- <div class="categories-bar-overlay">
         <div></div>
         <div class="categories-overlay-middle"></div>
         <div></div>
     </div> -->
-
-        <div class="categories-container">
-            <div class="inner-categories-container">
-                <a class='category c-all'>All</a>
-                <script>
-                    $(document).ready(function () {
-                        $(".c-all").click(function (e) {
-                            $.get("innernotes.php",
-                                function (data, status) {
-                                    $("#notes-main-section").html(data);
-                                })
-                        });
-                    });
-                </script>
-
-                <a class='category categoryBtn categoryBtn1' style='border-color: ffd900;'>unsorted</a>
-                <script>
-                    var valueCategory1 = 'unsorted';
-                </script>
-                <script>
-                    $(document).ready(function () {
-                        $('.categoryBtn1').click(function () {
-                            $.get("innernotes.php?categoryname=" + valueCategory1, function (data,
-                                status) {
-                                $("#notes-main-section").html(data);
-                            })
-                        });
-                    });
-                </script>
-                <a class='category categoryBtn categoryBtn2' style='border-color: #00ffd5;'>Another-one</a>
-                <script>
-                    var valueCategory2 = 'Another-one';
-                </script>
-                <script>
-                    $(document).ready(function () {
-                        $('.categoryBtn2').click(function () {
-                            $.get("innernotes.php?categoryname=" + valueCategory2, function (data,
-                                status) {
-                                $("#notes-main-section").html(data);
-                            })
-                        });
-                    });
-                </script>
-                <a class='category categoryBtn categoryBtn3' style='border-color: #20ff25;'>asdasd</a>
-                <script>
-                    var valueCategory3 = 'asdasd';
-                </script>
-                <script>
-                    $(document).ready(function () {
-                        $('.categoryBtn3').click(function () {
-                            $.get("innernotes.php?categoryname=" + valueCategory3, function (data,
-                                status) {
-                                $("#notes-main-section").html(data);
-                            })
-                        });
-                    });
-                </script>
-                <a class='category categoryBtn categoryBtn4' style='border-color: #00ffff;'>B-team</a>
-                <script>
-                    var valueCategory4 = 'B-team';
-                </script>
-                <script>
-                    $(document).ready(function () {
-                        $('.categoryBtn4').click(function () {
-                            $.get("innernotes.php?categoryname=" + valueCategory4, function (data,
-                                status) {
-                                $("#notes-main-section").html(data);
-                            })
-                        });
-                    });
-                </script>
-                <a class='category categoryBtn categoryBtn5' style='border-color: #800000;'>hello</a>
-                <script>
-                    var valueCategory5 = 'hello';
-                </script>
-                <script>
-                    $(document).ready(function () {
-                        $('.categoryBtn5').click(function () {
-                            $.get("innernotes.php?categoryname=" + valueCategory5, function (data,
-                                status) {
-                                $("#notes-main-section").html(data);
-                            })
-                        });
-                    });
-                </script>
-                <a class='category categoryBtn categoryBtn6' style='border-color: #ffffff;'>New category!</a>
-                <script>
-                    var valueCategory6 = 'New category!';
-                </script>
-                <script>
-                    $(document).ready(function () {
-                        $('.categoryBtn6').click(function () {
-                            $.get("innernotes.php?categoryname=" + valueCategory6, function (data,
-                                status) {
-                                $("#notes-main-section").html(data);
-                            })
-                        });
-                    });
-                </script>
-                <a class='category categoryBtn categoryBtn7' style='border-color: #ff2025;'>RED</a>
-                <script>
-                    var valueCategory7 = 'RED';
-                </script>
-                <script>
-                    $(document).ready(function () {
-                        $('.categoryBtn7').click(function () {
-                            $.get("innernotes.php?categoryname=" + valueCategory7, function (data,
-                                status) {
-                                $("#notes-main-section").html(data);
-                            })
-                        });
-                    });
-                </script>
-                <a class='category categoryBtn categoryBtn8' style='border-color: #8f8f8f;'>t-----category</a>
-                <script>
-                    var valueCategory8 = 't-----category';
-                </script>
-                <script>
-                    $(document).ready(function () {
-                        $('.categoryBtn8').click(function () {
-                            $.get("innernotes.php?categoryname=" + valueCategory8, function (data,
-                                status) {
-                                $("#notes-main-section").html(data);
-                            })
-                        });
-                    });
-                </script>
-                <a class='category categoryBtn categoryBtn9' style='border-color: #004284;'>Very Sorted</a>
-                <script>
-                    var valueCategory9 = 'Very Sorted';
-                </script>
-                <script>
-                    $(document).ready(function () {
-                        $('.categoryBtn9').click(function () {
-                            $.get("innernotes.php?categoryname=" + valueCategory9, function (data,
-                                status) {
-                                $("#notes-main-section").html(data);
-                            })
-                        });
-                    });
-                </script>
-            </div>
-        </div>
-
-        <div class="notes-rightside-options-container">
-            <label for="select-category-dropdown">Category:</label>
-            <select name="" id="select-category-dropdown">
-                <option id="cio-1" class="category-in-options cio-1">All</option>
-                <script>
-                    $(document).ready(function () {
-                        $(".cio-1").click(function (e) {
-                            // window.location = "notes.php";
-                            $.get("innernotes.php",
-                                function (data, status) {
-                                    $("#notes-main-section").html(data);
-                                })
-                        });
-                    });
-                </script>
-                <option class='category-in-options' style='color: ffd900;'>unsorted</option>
-                <script>
-                    $(document).ready(function () {
-                        $('#select-category-dropdown').on('change', function () {
-                            var value = $(this).val();
-                            $.get("innernotes.php?categoryname=" + value, function (data, status) {
-                                $("#notes-main-section").html(data);
-                            })
-                        });
-                    });
-                </script>
-                <option class='category-in-options' style='color: #00ffd5;'>Another-one</option>
-                <script>
-                    $(document).ready(function () {
-                        $('#select-category-dropdown').on('change', function () {
-                            var value = $(this).val();
-                            $.get("innernotes.php?categoryname=" + value, function (data, status) {
-                                $("#notes-main-section").html(data);
-                            })
-                        });
-                    });
-                </script>
-                <option class='category-in-options' style='color: #20ff25;'>asdasd</option>
-                <script>
-                    $(document).ready(function () {
-                        $('#select-category-dropdown').on('change', function () {
-                            var value = $(this).val();
-                            $.get("innernotes.php?categoryname=" + value, function (data, status) {
-                                $("#notes-main-section").html(data);
-                            })
-                        });
-                    });
-                </script>
-                <option class='category-in-options' style='color: #00ffff;'>B-team</option>
-                <script>
-                    $(document).ready(function () {
-                        $('#select-category-dropdown').on('change', function () {
-                            var value = $(this).val();
-                            $.get("innernotes.php?categoryname=" + value, function (data, status) {
-                                $("#notes-main-section").html(data);
-                            })
-                        });
-                    });
-                </script>
-                <option class='category-in-options' style='color: #800000;'>hello</option>
-                <script>
-                    $(document).ready(function () {
-                        $('#select-category-dropdown').on('change', function () {
-                            var value = $(this).val();
-                            $.get("innernotes.php?categoryname=" + value, function (data, status) {
-                                $("#notes-main-section").html(data);
-                            })
-                        });
-                    });
-                </script>
-                <option class='category-in-options' style='color: #ffffff;'>New category!</option>
-                <script>
-                    $(document).ready(function () {
-                        $('#select-category-dropdown').on('change', function () {
-                            var value = $(this).val();
-                            $.get("innernotes.php?categoryname=" + value, function (data, status) {
-                                $("#notes-main-section").html(data);
-                            })
-                        });
-                    });
-                </script>
-                <option class='category-in-options' style='color: #ff2025;'>RED</option>
-                <script>
-                    $(document).ready(function () {
-                        $('#select-category-dropdown').on('change', function () {
-                            var value = $(this).val();
-                            $.get("innernotes.php?categoryname=" + value, function (data, status) {
-                                $("#notes-main-section").html(data);
-                            })
-                        });
-                    });
-                </script>
-                <option class='category-in-options' style='color: #8f8f8f;'>t-----category</option>
-                <script>
-                    $(document).ready(function () {
-                        $('#select-category-dropdown').on('change', function () {
-                            var value = $(this).val();
-                            $.get("innernotes.php?categoryname=" + value, function (data, status) {
-                                $("#notes-main-section").html(data);
-                            })
-                        });
-                    });
-                </script>
-                <option class='category-in-options' style='color: #004284;'>Very Sorted</option>
-                <script>
-                    $(document).ready(function () {
-                        $('#select-category-dropdown').on('change', function () {
-                            var value = $(this).val();
-                            $.get("innernotes.php?categoryname=" + value, function (data, status) {
-                                $("#notes-main-section").html(data);
-                            })
-                        });
-                    });
-                </script>
-            </select>
-
-            <label for="order-by">Order by:</label>
-            <select name="" id="order-by">
-                <option value="0">Last modified</option>
-                <option value="1">Last created</option>
-                <option value="2">First created</option>
-                <option value="3">Alphabetically</option>
-            </select>
-            <script>
-                $(document).ready(function () {
-                    $('#order-by').on('change', function () {
-                        var result = $(this).val();
-                        // alert("includes/notes.inc.php?sort=" + result);
-                        // current issue seems to be that the include isn't picking up the sort variable
-
-                        $.get("includes/notes.inc.php?sort=" + result, {}, function (data, status) {
-                            $("#notes-main-section").html(data);
-                        })
-
-                    })
-
-                });
-                // using the gets might cause conflicts to arise because one get is setting the sort and the category gets are ignoring it and reseting it to their own thing. We'll see.
-            </script>
-            <!-- 
-            All categories.
-            Sort by. 
-            Color theme?
-            Delete categories?
-            Quick delete toggle.
-            Trashed notes page.
-        How do I make this as few clicks as possible? -->
-        </div>
-    </header>
-    <main>
-        <form class="note-input span3" action="includes/createnote.inc.php" method="POST" autocomplete="off">
-            <input type="text" name="noteTitle" placeholder="Note Title" maxlength="40">
-            <textarea name="noteText" placeholder="Note text"></textarea>
-            <input type="text" name="noteSubtext" placeholder="Note hidden text">
-            <select name="categoryAndColor">
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>14</b><br />
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>15</b><br />
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>14</b><br />
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>15</b><br />
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>14</b><br />
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>15</b><br />
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>14</b><br />
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>15</b><br />
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>14</b><br />
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>15</b><br />
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>14</b><br />
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>15</b><br />
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>14</b><br />
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>15</b><br />
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>14</b><br />
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>15</b><br />
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>14</b><br />
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>15</b><br />
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>23</b><br />
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>25</b><br />
-                <option class='category-in-options' style='color: ffd900;' value='unsorted,ffd900'>unsorted</option>
-                <br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>25</b><br />
-                <option class='category-in-options' style='color: #00ffd5;' value='Another-one,#00ffd5'>Another-one
-                </option><br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>25</b><br />
-                <option class='category-in-options' style='color: #20ff25;' value='asdasd,#20ff25'>asdasd</option><br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>25</b><br />
-                <option class='category-in-options' style='color: #00ffff;' value='B-team,#00ffff'>B-team</option><br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>25</b><br />
-                <option class='category-in-options' style='color: #800000;' value='hello,#800000'>hello</option><br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>25</b><br />
-                <option class='category-in-options' style='color: #ffffff;' value='New category!,#ffffff'>New category!
-                </option><br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>25</b><br />
-                <option class='category-in-options' style='color: #ff2025;' value='RED,#ff2025'>RED</option><br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>25</b><br />
-                <option class='category-in-options' style='color: #8f8f8f;' value='t-----category,#8f8f8f'>
-                    t-----category</option><br />
-                <b>Notice</b>: Undefined variable: category in <b>C:\xampp\htdocs\php_practice\login\newnote.php</b> on
-                line <b>25</b><br />
-                <option class='category-in-options' style='color: #004284;' value='Very Sorted,#004284'>Very Sorted
-                </option>
-            </select>
-
-            <button type="submit" name="createNote">Log note!</button>
-        </form>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </main>
-
-    <section id="notes-main-section">
-        <script>
-            $(document).ready(function () {
-                $.ajax({
-                    type: "post",
-                    url: "newnote.php",
-                    data: {
-                        sortingByCategory: 'all'
-                    },
-                    dataType: "text",
-                    success: function (response) {
-                        $('main').html(response);
-                    }
-                });
-            });
-        </script>
-
-
-
-        <div class="span3"></div>
-        <div id='open-fn-40' class='note-container span3 borderFalse'>
-            <h2 class='i-title pinned-title'>Is this pinned?</h2>
-            <p class='i-text'>I must wosnder...testds</p><b class='i-options' id='card0'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>5/10/2020</span>
-            <div class='i-category'><i style='border-color: #ff2025;'>RED</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=40">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-40").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 40
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card0').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-66' class='note-container span3 borderFalse'>
-            <h2 class='i-title pinned-title'>Another one of those</h2>
-            <p class='i-text'>Testingg notesasdasd</p><b class='i-options' id='card1'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>5/10/2020</span>
-            <div class='i-category'><i style='border-color: #00ffd5;'>Another-one</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=66">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-66").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 66
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card1').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-19' class='note-container span3 borderFalse'>
-            <h2 class='i-title pinned-title'>Lorem ipsum</h2>
-            <p class='i-text'><i>Sit amet, consectetur adipiscing elit.</i></p><b class='i-options' id='card2'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>5/10/2020</span>
-            <div class='i-category'><i style='border-color: #004284;'>Very Sorted</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=19">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-19").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 19
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card2').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-63' class='note-container span3 borderFalse'>
-            <h2 class='i-title pinned-title'>Category names</h2>
-            <p class='i-text'>Probably wouldn't be very hard to edit category names. dg</p><b class='i-options'
-                id='card3'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>5/10/2020</span>
-            <div class='i-category'><i style='border-color: #20ff25;'>asdasd</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=63">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-63").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 63
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card3').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-67' class='note-container span3 borderFalse'>
-            <h2 class='i-title '>Pinning</h2>
-            <p class='i-text'>I can now pin notes but the process doesn't work properly. For some reason it gets stuck
-                on the include page and won't load anything further.</p><b class='i-options' id='card4'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>5/10/2020</span>
-            <div class='i-category'><i style='border-color: #20ff25;'>asdasd</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=67">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-67").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 67
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card4').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-14' class='note-container span4 borderFalse'>
-            <h2 class='i-title '>Lorem ipsum dolor</h2>
-            <p class='i-text'>Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco <b>laboris nisi ut</b>
-                aliquip ex ea commodo consequat.</p><b class='i-options' id='card5'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>5/10/2020</span>
-            <div class='i-category'><i style='border-color: #ff2025;'>RED</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=14">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-14").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 14
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card5').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-65' class='note-container span3 borderFalse'>
-            <h2 class='i-title '>New note hello - yes</h2>
-            <p class='i-text'>How are things?</p><b class='i-options' id='card6'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>4/10/2020</span>
-            <div class='i-category'><i style='border-color: #800000;'>hello</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=65">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-65").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 65
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card6').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-62' class='note-container span4 borderFalse'>
-            <h2 class='i-title '>New Note</h2>
-            <p class='i-text'>Update the fullnote when you select a category so that it displays the top note of that
-                category instead of the one it was previously displaying? Or is this a bad idea because it will discard
-                what was written?</p><b class='i-options' id='card7'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>3/10/2020</span>
-            <div class='i-category'><i style='border-color: #20ff25;'>asdasd</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=62">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-62").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 62
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card7').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-61' class='note-container span3 borderFalse'>
-            <h2 class='i-title '>RIGHT SIDE BAR</h2>
-            <p class='i-text'>All notes are being displayed in full on the right not only the latest one however they
-                are being hidden.</p><b class='i-options' id='card8'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>3/10/2020</span>
-            <div class='i-category'><i style='border-color: #20ff25;'>asdasd</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=61">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-61").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 61
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card8').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-60' class='note-container span4 borderFalse'>
-            <h2 class='i-title '>SQL FAILED</h2>
-            <p class='i-text'>Sometimes saving doesn't work.
-                http://localhost/php_practice/login/includes/modifynote.inc.php?note=%3Cbr%20/%3E%3Cb%3ENotice%3C/b%3E:%20%20Undefined%20index:%20note%20in%20%3Cb%3EC:\xampp\htdocs\php_practice\login\fullnoteside.php%3C/b%3E%20on%20line%20%3Cb%3E43%3C/b%3E%3Cbr%20/%3E
-            </p><b class='i-options' id='card9'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>3/10/2020</span>
-            <div class='i-category'><i style='border-color: #20ff25;'>asdasd</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=60">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-60").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 60
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card9').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-42' class='note-container span6 borderFalse'>
-            <h2 class='i-title '>New note</h2>
-            <p class='i-text'>Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. Sit amet, consectetur adipiscing elit, sed
-                do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
-                Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-
-
-                incididunt ut labore et dolore magna <i> aliqua. Ut enim </i> ad minim veniam, quis nostrud. Sit amet,
-                consectetur. Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua. Ut enim ad minim veniam, quis nostrud. aliqua. Ut enim Sit amet, consectetur. Ut enim ad
-                minim veniam, quis nost</p><b class='i-options' id='card10'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>3/10/2020</span>
-            <div class='i-category'><i style='border-color: #ff0000;'>unsorted</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=42">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-42").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 42
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card10').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-17' class='note-container span5 borderFalse'>
-            <h2 class='i-title '>The IMG Note</h2>
-            <p class='i-text'>
-                <!--<img src="https://source.unsplash.com/random" alt="">-->
-
-                Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud. Sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. Sit amet,
-                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                ad minim veniam, quis nostrud.</p><b class='i-options' id='card11'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>3/10/2020</span>
-            <div class='i-category'><i style='border-color: #800000;'>hello</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=17">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-17").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 17
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card11').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-47' class='note-container span2 borderFalse'>
-            <h2 class='i-title '>New Note</h2>
-            <p class='i-text'></p><b class='i-options' id='card12'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>3/10/2020</span>
-            <div class='i-category'><i style='border-color: #ff0000;'>unsorted</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=47">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-47").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 47
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card12').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-59' class='note-container span2 borderFalse'>
-            <h2 class='i-title '>Have I solved the problem?</h2>
-            <p class='i-text'></p><b class='i-options' id='card13'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>2/10/2020</span>
-            <div class='i-category'><i style='border-color: #8f8f8f;'>t-----category</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=59">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-59").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 59
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card13').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-29' class='note-container span2 borderFalse'>
-            <h2 class='i-title '>Log into a new account for the showcase</h2>
-            <p class='i-text'></p><b class='i-options' id='card14'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>2/10/2020</span>
-            <div class='i-category'><i style='border-color: #00ffff;'>B-team</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=29">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-29").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 29
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card14').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-39' class='note-container span3 borderFalse'>
-            <h2 class='i-title '>test title</h2>
-            <p class='i-text'>test title</p><b class='i-options' id='card15'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>2/10/2020</span>
-            <div class='i-category'><i style='border-color: #8f8f8f;'>t-----category</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=39">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-39").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 39
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card15').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-26' class='note-container span3 borderFalse'>
-            <h2 class='i-title '>What</h2>
-            <p class='i-text'>Modified just now</p><b class='i-options' id='card16'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>2/10/2020</span>
-            <div class='i-category'><i style='border-color: #FF0000;'>unsorted</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=26">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-26").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 26
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card16').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-43' class='note-container span3 borderFalse'>
-            <h2 class='i-title '>New Note</h2>
-            <p class='i-text'>asdpojaspdoaspod</p><b class='i-options' id='card17'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>2/10/2020</span>
-            <div class='i-category'><i style='border-color: #00ffff;'>B-team</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=43">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-43").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 43
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card17').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-57' class='note-container span2 borderFalse'>
-            <h2 class='i-title '>Delete category</h2>
-            <p class='i-text'></p><b class='i-options' id='card18'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>2/10/2020</span>
-            <div class='i-category'><i style='border-color: #ffffff;'>New category!</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=57">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-57").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 57
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card18').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-58' class='note-container span2 borderFalse'>
-            <h2 class='i-title '>How are you doing friend???Maxing title.</h2>
-            <p class='i-text'></p><b class='i-options' id='card19'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>1/10/2020</span>
-            <div class='i-category'><i style='border-color: #8f8f8f;'>t-----category</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=58">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-58").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 58
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card19').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-56' class='note-container span3 borderFalse'>
-            <h2 class='i-title '>Cool note</h2>
-            <p class='i-text'>Green and stuff</p><b class='i-options' id='card20'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>29/9/2020</span>
-            <div class='i-category'><i style='border-color: #FF0000;'>unsorted</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=56">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-56").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 56
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card20').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-46' class='note-container span2 borderFalse'>
-            <h2 class='i-title '>Is this vissible?</h2>
-            <p class='i-text'></p><b class='i-options' id='card21'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>29/9/2020</span>
-            <div class='i-category'><i style='border-color: #ff0000;'>unsorted</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=46">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-46").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 46
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card21').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-41' class='note-container span3 borderFalse'>
-            <h2 class='i-title '>Ideas note</h2>
-            <p class='i-text'>sdasdasd</p><b class='i-options' id='card22'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>28/9/2020</span>
-            <div class='i-category'><i style='border-color: #FF0000;'>unsorted</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=41">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-41").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 41
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card22').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-35' class='note-container span3 borderFalse'>
-            <h2 class='i-title '>NEEEEEW!!!</h2>
-            <p class='i-text'>asdasdasdasd</p><b class='i-options' id='card23'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>28/9/2020</span>
-            <div class='i-category'><i style='border-color: #ffffff;'>New category!</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=35">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-35").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 35
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card23').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-36' class='note-container span2 borderFalse'>
-            <h2 class='i-title '>Test visibility</h2>
-            <p class='i-text'></p><b class='i-options' id='card24'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>26/9/2020</span>
-            <div class='i-category'><i style='border-color: #FF0000;'>unsorted</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=36">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-36").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 36
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card24').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-15' class='note-container span3 borderFalse'>
-            <h2 class='i-title '>The Yellow Note</h2>
-            <p class='i-text'>Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p><b class='i-options' id='card25'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>21/9/2020</span>
-            <div class='i-category'><i style='border-color: #FF0000;'>unsorted</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=15">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-15").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 15
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card25').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-27' class='note-container span2 borderFalse'>
-            <h2 class='i-title '>Decimal</h2>
-            <p class='i-text'></p><b class='i-options' id='card26'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>21/9/2020</span>
-            <div class='i-category'><i style='border-color: #800000;'>hello</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=27">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-27").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 27
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card26').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div id='open-fn-20' class='note-container span3 borderFalse'>
-            <h2 class='i-title '>The Hello Note</h2>
-            <p class='i-text'>Entering some text. I've been working for a while now. Really enjoying it.</p><b
-                class='i-options' id='card27'>...</b>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
-            </div>
-            <span class='i-date'>20/9/2020</span>
-            <div class='i-category'><i style='border-color: #FF0000;'>unsorted</i></div>
-            <b><a class='i-btn' href="fullnote.php?note=20">Edit note</a></b>
-            <script>
-                $(document).ready(function () {
-                    $("#open-fn-20").click(function (e) {
-                        var viewportWidth = $(window).width();
-                        if (viewportWidth > 1460) {
-                            $.ajax({
-                                type: "get",
-                                url: "fullnoteside.php",
-                                data: {
-                                    note: 20
-                                },
-                                dataType: "text",
-                                success: function (response) {
-                                    $('#fullnote-insert').html(response);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#card27').click(function (e) {
-                        // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
-                    });
-                });
-            </script>
-        </div>
-        <div class="span3"></div>
-    </section>
-
-    <aside>
-        <div class="sidebar-container">
-
-            <!-- ======================================================================== -->
-
-            <div id="search">
-                <input type="text" name="searchbox" placeholder="Search..." id="searchbox" autocomplete="off">
-            </div>
-            <script>
-                $(document).ready(function () {
-                    $("#searchbox").keyup(function (e) {
-                        var input = $(this).val();
-                        if (input.length > -1) {
-                            $.ajax({
-                                type: "post",
-                                url: "innernotes.php",
-                                data: {
-                                    search: input
-                                },
-                                dataType: "text",
-                                success: function (data) {
-                                    $('#notes-main-section').html(data);
-                                }
-                            });
-                        }
-                    });
-                });
-            </script>
-
-            <!-- ======================================================================== -->
 
             <div class="categories-container">
                 <div class="inner-categories-container">
@@ -1639,7 +53,7 @@
                         });
                     </script>
 
-                    <a class='category categoryBtn categoryBtn1' style='border-color: ffd900;'>unsorted</a>
+                    <a class='category categoryBtn categoryBtn1' style='border-color: ;'>unsorted</a>
                     <script>
                         var valueCategory1 = 'unsorted';
                     </script>
@@ -1695,9 +109,9 @@
                             });
                         });
                     </script>
-                    <a class='category categoryBtn categoryBtn5' style='border-color: #800000;'>hello</a>
+                    <a class='category categoryBtn categoryBtn5' style='border-color: #ffffff;'>New category!</a>
                     <script>
-                        var valueCategory5 = 'hello';
+                        var valueCategory5 = 'New category!';
                     </script>
                     <script>
                         $(document).ready(function () {
@@ -1709,9 +123,9 @@
                             });
                         });
                     </script>
-                    <a class='category categoryBtn categoryBtn6' style='border-color: #ffffff;'>New category!</a>
+                    <a class='category categoryBtn categoryBtn6' style='border-color: #ff2025;'>RED</a>
                     <script>
-                        var valueCategory6 = 'New category!';
+                        var valueCategory6 = 'RED';
                     </script>
                     <script>
                         $(document).ready(function () {
@@ -1723,9 +137,9 @@
                             });
                         });
                     </script>
-                    <a class='category categoryBtn categoryBtn7' style='border-color: #ff2025;'>RED</a>
+                    <a class='category categoryBtn categoryBtn7' style='border-color: #004284;'>Very Sorted</a>
                     <script>
-                        var valueCategory7 = 'RED';
+                        var valueCategory7 = 'Very Sorted';
                     </script>
                     <script>
                         $(document).ready(function () {
@@ -1737,40 +151,10 @@
                             });
                         });
                     </script>
-                    <a class='category categoryBtn categoryBtn8' style='border-color: #8f8f8f;'>t-----category</a>
-                    <script>
-                        var valueCategory8 = 't-----category';
-                    </script>
-                    <script>
-                        $(document).ready(function () {
-                            $('.categoryBtn8').click(function () {
-                                $.get("innernotes.php?categoryname=" + valueCategory8, function (data,
-                                    status) {
-                                    $("#notes-main-section").html(data);
-                                })
-                            });
-                        });
-                    </script>
-                    <a class='category categoryBtn categoryBtn9' style='border-color: #004284;'>Very Sorted</a>
-                    <script>
-                        var valueCategory9 = 'Very Sorted';
-                    </script>
-                    <script>
-                        $(document).ready(function () {
-                            $('.categoryBtn9').click(function () {
-                                $.get("innernotes.php?categoryname=" + valueCategory9, function (data,
-                                    status) {
-                                    $("#notes-main-section").html(data);
-                                })
-                            });
-                        });
-                    </script>
                 </div>
             </div>
 
-            <!-- ======================================================================== -->
-
-            <div class="dropdown-category-select">
+            <div class="notes-rightside-options-container">
                 <label for="select-category-dropdown">Category:</label>
                 <select name="" id="select-category-dropdown">
                     <option id="cio-1" class="category-in-options cio-1">All</option>
@@ -1785,7 +169,7 @@
                             });
                         });
                     </script>
-                    <option class='category-in-options' style='color: ffd900;'>unsorted</option>
+                    <option class='category-in-options' style='color: ;'>unsorted</option>
                     <script>
                         $(document).ready(function () {
                             $('#select-category-dropdown').on('change', function () {
@@ -1829,17 +213,6 @@
                             });
                         });
                     </script>
-                    <option class='category-in-options' style='color: #800000;'>hello</option>
-                    <script>
-                        $(document).ready(function () {
-                            $('#select-category-dropdown').on('change', function () {
-                                var value = $(this).val();
-                                $.get("innernotes.php?categoryname=" + value, function (data, status) {
-                                    $("#notes-main-section").html(data);
-                                })
-                            });
-                        });
-                    </script>
                     <option class='category-in-options' style='color: #ffffff;'>New category!</option>
                     <script>
                         $(document).ready(function () {
@@ -1852,17 +225,6 @@
                         });
                     </script>
                     <option class='category-in-options' style='color: #ff2025;'>RED</option>
-                    <script>
-                        $(document).ready(function () {
-                            $('#select-category-dropdown').on('change', function () {
-                                var value = $(this).val();
-                                $.get("innernotes.php?categoryname=" + value, function (data, status) {
-                                    $("#notes-main-section").html(data);
-                                })
-                            });
-                        });
-                    </script>
-                    <option class='category-in-options' style='color: #8f8f8f;'>t-----category</option>
                     <script>
                         $(document).ready(function () {
                             $('#select-category-dropdown').on('change', function () {
@@ -1897,181 +259,1152 @@
                     $(document).ready(function () {
                         $('#order-by').on('change', function () {
                             var result = $(this).val();
+                            // alert("includes/notes.inc.php?sort=" + result);
+                            // current issue seems to be that the include isn't picking up the sort variable
+
                             $.get("includes/notes.inc.php?sort=" + result, {}, function (data, status) {
                                 $("#notes-main-section").html(data);
                             })
+
                         })
+
+                    });
+                    // using the gets might cause conflicts to arise because one get is setting the sort and the category gets are ignoring it and reseting it to their own thing. We'll see.
+                </script>
+                <!-- 
+            All categories.
+            Sort by. 
+            Color theme?
+            Delete categories?
+            Quick delete toggle.
+            Trashed notes page.
+        How do I make this as few clicks as possible? -->
+            </div>
+        </header>
+        <main>
+        </main>
+
+        <section id="notes-main-section">
+            <script>
+                $(document).ready(function () {
+                    $.ajax({
+                        type: "post",
+                        url: "newnote.php",
+                        data: {
+                            sortingByCategory: 'all'
+                        },
+                        dataType: "text",
+                        success: function (response) {
+                            $('main').html(response);
+                        }
+                    });
+                });
+            </script>
+
+
+
+            <div class="span3"></div>
+            <div id='open-fn-63' class='note-container span3 borderFalse'>
+                <h2 class='i-title pinned-title'>Category names</h2>
+                <p class='i-text'>Probably wouldn't be very hard to edit category names.</p><b class='i-options'
+                    id='card0'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>6/10/2020</span>
+                <div class='i-category'><i style='border-color: #20ff25; background-color: #20ff25'>asdasd</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=63">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-63").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 63
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card0').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
                     });
                 </script>
             </div>
-
-            <!-- ======================================================================== -->
-
-            <div class="new-category">
-                <form action="includes/createcategory.inc.php" method="POST" autocomplete="off">
-                    <input type="text" name="newCategoryName" placeholder="New category..." maxlength="14">
-                    <label class="color-example" for="clr">color</label>
-                    <input id="clr" type="color" name="newCategoryColor" value="#8f8f8f">
-                    <button id="category-create-btn" type="submit" name="newCategorySubmit">Create</button>
-                    <script>
-                        $(document).ready(function () {
-                            $("#clr").change(function (e) {
-                                var currentColor = $(this).val();
-                                // console.log(currentColor);
-                                $(".color-example").css("border-color", currentColor);
-                            });
+            <div id='open-fn-19' class='note-container span3 borderFalse'>
+                <h2 class='i-title pinned-title'>Lorem ipsum</h2>
+                <p class='i-text'><i>Sit amet, consectetur adipiscing elit.</i></p><b class='i-options'
+                    id='card1'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>5/10/2020</span>
+                <div class='i-category'><i style='border-color: #004284; background-color: #004284'>Very Sorted</i>
+                </div>
+                <b><a class='i-btn' href="fullnote.php?note=19">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-19").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 19
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
                         });
-                    </script>
-                </form>
-            </div>
-
-            <!-- ======================================================================== -->
-
-            <form id="delete-category">
-                <select id="category-to-delete" name="category">
-                    <option value=""></option>
-                    <option class='category-in-options' style='color: #00ffd5;' value=Another-one>Another-one</option>
-                    <option class='category-in-options' style='color: #20ff25;' value=asdasd>asdasd</option>
-                    <option class='category-in-options' style='color: #00ffff;' value=B-team>B-team</option>
-                    <option class='category-in-options' style='color: #800000;' value=hello>hello</option>
-                    <option class='category-in-options' style='color: #ffffff;' value=New category!>New category!
-                    </option>
-                    <option class='category-in-options' style='color: #ff2025;' value=RED>RED</option>
-                    <option class='category-in-options' style='color: #8f8f8f;' value=t-----category>t-----category
-                    </option>
-                    <option class='category-in-options' style='color: #004284;' value=Very Sorted>Very Sorted</option>
-                </select>
-                <button id="deleteCategory">Delete Selected <br> Category</button>
-            </form>
-
-            <!-- ======================================================================== -->
-
-            <div id="toggles">
-                <a class="a-btn-off" href="archive.php?a"><b>Archiving mode</b><i></i>
-                    <div></div>
-                </a> <a class='a-btn-off' href="archivednotes.php?b"><b>Archived notes</b><i></i>
-                    <div></div>
-                </a> <a class='a-btn-off' href="#"><b>Lightmode</b><i></i>
-                    <div></div>
-                </a>
-            </div>
-
-            <!-- ======================================================================== -->
-
-            <form action="includes/logout.inc.php" method="POST" id="logout">
-                <button type="submit" name="logout-submit">Log Out</button>
-                <div id="permissions">
-                    <span>Signed in as: Aero.K</span> </div>
-            </form>
-
-
-        </div>
-    </aside>
-
-    <div id="fullnote-insert">
-        <script>
-            $(document).ready(function () {
-                $.ajax({
-                    type: "get",
-                    url: "fullnoteside.php",
-                    data: {
-                        note: 67
-                    },
-                    dataType: "text",
-                    success: function (response) {
-                        $('#fullnote-insert').html(response);
-                    }
-                });
-            });
-        </script>
-    </div>
-    <!-- <div class="bgdec" id="background-decoration"></div> -->
-    <div class="bgdec" id="background-decoration0"></div>
-    <div class="bgdec" id="background-decoration1"></div>
-
-
-
-
-    <footer>
-        <div id="search">
-            <input type="text" name="searchbox" id="searchbox-b" placeholder="Search..." autocomplete="off">
-        </div>
-        <script>
-            $(document).ready(function () {
-                var width = $(window).width();
-                if (width < 1481) {
-                    $("#searchbox-b").keyup(function (e) {
-                        var input = $(this).val();
-                        if (input.length > -1) {
-                            $.ajax({
-                                type: "post",
-                                url: "innernotes.php",
-                                data: {
-                                    search: input
-                                },
-                                dataType: "text",
-                                success: function (data) {
-                                    $('#notes-main-section').html(data);
-                                }
-                            });
-                        }
                     });
-                }
-            });
-        </script>
-        <!-- ======================================================================== -->
-        <form action="includes/logout.inc.php" method="POST" id="logout">
-            <button type="submit" name="logout-submit">Log Out</button>
-            <div id="permissions">
-                <span>Signed in as: Aero.K</span> </div>
-        </form>
-        <!-- ======================================================================== -->
-        <div id="darkmode">
-            <br />
-            <b>Notice</b>: Undefined variable: darkmode in <b>C:\xampp\htdocs\php_practice\login\footer.php</b> on line
-            <b>45</b><br />
-            <button>Lightmode</button> </div>
-        <!-- ======================================================================== -->
-        <div id="archive">
-            <a class="a-btn-off" href="archive.php?a"><b>Archiving mode</b><i></i>
-                <div></div>
-            </a> <a class='a-btn-off' href="archivednotes.php?b"><b>Archived notes</b><i></i>
-                <div></div>
-            </a> <a class='a-btn-off' href="#"><b>Lightmode</b><i></i>
-                <div></div>
-            </a>
-        </div>
-        <!-- ======================================================================== -->
-        <!-- <form action="includes/deletecategory.inc.php" id="category" method="POST"> -->
-        <div>
-            <select id="category-to-delete" name="category">
-                <option class='category-in-options' style='color: #00ffd5;' value=Another-one>Another-one</option>
-                <option class='category-in-options' style='color: #20ff25;' value=asdasd>asdasd</option>
-                <option class='category-in-options' style='color: #00ffff;' value=B-team>B-team</option>
-                <option class='category-in-options' style='color: #800000;' value=hello>hello</option>
-                <option class='category-in-options' style='color: #ffffff;' value=New category!>New category!</option>
-                <option class='category-in-options' style='color: #ff2025;' value=RED>RED</option>
-                <option class='category-in-options' style='color: #8f8f8f;' value=t-----category>t-----category</option>
-                <option class='category-in-options' style='color: #004284;' value=Very Sorted>Very Sorted</option>
-            </select>
-            <button id="deleteCategory">Delete Selected Category</button>
-            <script>
-                $(document).ready(function () {
-                    selectedCategory = "";
-                    $(".category-in-options").click(function (e) {
-                        // Change the underline of the delete button to an active state
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card1').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
                     });
-                    $('#deleteCategory').click(function (e) {
-                        var selectedCategory = $("#category-to-delete").val();
-                        $.ajax({
-                            type: "POST",
-                            url: "includes/deletecategory.inc.php",
-                            data: {
-                                category: selectedCategory
-                            },
-                            dataType: "text",
-                            success: function (response) {
-                                var input = "";
+                </script>
+            </div>
+            <div id='open-fn-69' class='note-container span2 borderFalse'>
+                <h2 class='i-title '>New Note</h2>
+                <p class='i-text'></p><b class='i-options' id='card2'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>6/10/2020</span>
+                <div class='i-category'><i style='border-color: ; background-color: '>unsorted</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=69">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-69").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 69
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card2').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-39' class='note-container span3 borderFalse'>
+                <h2 class='i-title '>test title</h2>
+                <p class='i-text'>test title</p><b class='i-options' id='card3'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>6/10/2020</span>
+                <div class='i-category'><i style='border-color: ; background-color: '>unsorted</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=39">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-39").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 39
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card3').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-57' class='note-container span2 borderFalse'>
+                <h2 class='i-title '>Delete category</h2>
+                <p class='i-text'></p><b class='i-options' id='card4'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>6/10/2020</span>
+                <div class='i-category'><i style='border-color: ; background-color: '>unsorted</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=57">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-57").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 57
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card4').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-68' class='note-container span2 borderFalse'>
+                <h2 class='i-title '>Newly unsorted</h2>
+                <p class='i-text'></p><b class='i-options' id='card5'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>6/10/2020</span>
+                <div class='i-category'><i style='border-color: ffd900; background-color: ffd900'>unsorted</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=68">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-68").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 68
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card5').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-67' class='note-container span3 borderFalse'>
+                <h2 class='i-title '>Pinning</h2>
+                <p class='i-text'>I can now pin notes but the process doesn't work properly. For some reason it gets
+                    stuck on the include page and won't load anything further.</p><b class='i-options'
+                    id='card6'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>5/10/2020</span>
+                <div class='i-category'><i style='border-color: #20ff25; background-color: #20ff25'>asdasd</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=67">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-67").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 67
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card6').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-14' class='note-container span4 borderFalse'>
+                <h2 class='i-title '>Lorem ipsum dolor</h2>
+                <p class='i-text'>Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco <b>laboris nisi
+                        ut</b> aliquip ex ea commodo consequat.</p><b class='i-options' id='card7'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>5/10/2020</span>
+                <div class='i-category'><i style='border-color: #ff2025; background-color: #ff2025'>RED</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=14">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-14").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 14
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card7').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-65' class='note-container span3 borderFalse'>
+                <h2 class='i-title '>New note hello - yes</h2>
+                <p class='i-text'>How are things?</p><b class='i-options' id='card8'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>4/10/2020</span>
+                <div class='i-category'><i style='border-color: #ffd900; background-color: #ffd900'>unsorted</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=65">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-65").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 65
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card8').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-62' class='note-container span4 borderFalse'>
+                <h2 class='i-title '>New Note</h2>
+                <p class='i-text'>Update the fullnote when you select a category so that it displays the top note of
+                    that category instead of the one it was previously displaying? Or is this a bad idea because it will
+                    discard what was written?</p><b class='i-options' id='card9'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>3/10/2020</span>
+                <div class='i-category'><i style='border-color: #20ff25; background-color: #20ff25'>asdasd</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=62">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-62").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 62
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card9').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-61' class='note-container span3 borderFalse'>
+                <h2 class='i-title '>RIGHT SIDE BAR</h2>
+                <p class='i-text'>All notes are being displayed in full on the right not only the latest one however
+                    they are being hidden.</p><b class='i-options' id='card10'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>3/10/2020</span>
+                <div class='i-category'><i style='border-color: #20ff25; background-color: #20ff25'>asdasd</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=61">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-61").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 61
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card10').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-60' class='note-container span4 borderFalse'>
+                <h2 class='i-title '>SQL FAILED</h2>
+                <p class='i-text'>Sometimes saving doesn't work.
+                    http://localhost/php_practice/login/includes/modifynote.inc.php?note=%3Cbr%20/%3E%3Cb%3ENotice%3C/b%3E:%20%20Undefined%20index:%20note%20in%20%3Cb%3EC:\xampp\htdocs\php_practice\login\fullnoteside.php%3C/b%3E%20on%20line%20%3Cb%3E43%3C/b%3E%3Cbr%20/%3E
+                </p><b class='i-options' id='card11'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>3/10/2020</span>
+                <div class='i-category'><i style='border-color: #20ff25; background-color: #20ff25'>asdasd</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=60">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-60").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 60
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card11').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-42' class='note-container span6 borderFalse'>
+                <h2 class='i-title '>New note</h2>
+                <p class='i-text'>Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. Sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                    nostrud. Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua. Sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+
+
+                    incididunt ut labore et dolore magna <i> aliqua. Ut enim </i> ad minim veniam, quis nostrud. Sit
+                    amet, consectetur. Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. aliqua. Ut enim Sit amet,
+                    consectetur. Ut enim ad minim veniam, quis nost</p><b class='i-options' id='card12'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>3/10/2020</span>
+                <div class='i-category'><i style='border-color: #ff0000; background-color: #ff0000'>unsorted</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=42">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-42").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 42
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card12').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-17' class='note-container span5 borderFalse'>
+                <h2 class='i-title '>The IMG Note</h2>
+                <p class='i-text'>
+                    <!--<img src="https://source.unsplash.com/random" alt="">-->
+
+                    Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud. Sit amet, consectetur adipiscing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. Sit amet,
+                    consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                    enim ad minim veniam, quis nostrud.</p><b class='i-options' id='card13'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>3/10/2020</span>
+                <div class='i-category'><i style='border-color: #ffd900; background-color: #ffd900'>unsorted</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=17">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-17").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 17
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card13').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-59' class='note-container span2 borderFalse'>
+                <h2 class='i-title '>Have I solved the problem?</h2>
+                <p class='i-text'></p><b class='i-options' id='card14'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>2/10/2020</span>
+                <div class='i-category'><i style='border-color: #ffd900; background-color: #ffd900'>unsorted</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=59">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-59").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 59
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card14').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-29' class='note-container span2 borderFalse'>
+                <h2 class='i-title '>Log into a new account for the showcase</h2>
+                <p class='i-text'></p><b class='i-options' id='card15'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>2/10/2020</span>
+                <div class='i-category'><i style='border-color: #00ffff; background-color: #00ffff'>B-team</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=29">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-29").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 29
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card15').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-26' class='note-container span3 borderFalse'>
+                <h2 class='i-title '>What</h2>
+                <p class='i-text'>Modified just now</p><b class='i-options' id='card16'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>2/10/2020</span>
+                <div class='i-category'><i style='border-color: #FF0000; background-color: #FF0000'>unsorted</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=26">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-26").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 26
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card16').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-43' class='note-container span3 borderFalse'>
+                <h2 class='i-title '>New Note</h2>
+                <p class='i-text'>asdpojaspdoaspod</p><b class='i-options' id='card17'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>2/10/2020</span>
+                <div class='i-category'><i style='border-color: #00ffff; background-color: #00ffff'>B-team</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=43">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-43").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 43
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card17').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-58' class='note-container span2 borderFalse'>
+                <h2 class='i-title '>How are you doing friend???Maxing title.</h2>
+                <p class='i-text'></p><b class='i-options' id='card18'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>1/10/2020</span>
+                <div class='i-category'><i style='border-color: #ffd900; background-color: #ffd900'>unsorted</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=58">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-58").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 58
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card18').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-56' class='note-container span3 borderFalse'>
+                <h2 class='i-title '>Cool note</h2>
+                <p class='i-text'>Green and stuff</p><b class='i-options' id='card19'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>29/9/2020</span>
+                <div class='i-category'><i style='border-color: #FF0000; background-color: #FF0000'>unsorted</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=56">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-56").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 56
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card19').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-46' class='note-container span2 borderFalse'>
+                <h2 class='i-title '>Is this vissible?</h2>
+                <p class='i-text'></p><b class='i-options' id='card20'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>29/9/2020</span>
+                <div class='i-category'><i style='border-color: #ff0000; background-color: #ff0000'>unsorted</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=46">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-46").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 46
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card20').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-41' class='note-container span3 borderFalse'>
+                <h2 class='i-title '>Ideas note</h2>
+                <p class='i-text'>sdasdasd</p><b class='i-options' id='card21'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>28/9/2020</span>
+                <div class='i-category'><i style='border-color: #FF0000; background-color: #FF0000'>unsorted</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=41">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-41").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 41
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card21').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-35' class='note-container span3 borderFalse'>
+                <h2 class='i-title '>NEEEEEW!!!</h2>
+                <p class='i-text'>asdasdasdasd</p><b class='i-options' id='card22'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>28/9/2020</span>
+                <div class='i-category'><i style='border-color: #ffffff; background-color: #ffffff'>New category!</i>
+                </div>
+                <b><a class='i-btn' href="fullnote.php?note=35">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-35").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 35
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card22').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-36' class='note-container span2 borderFalse'>
+                <h2 class='i-title '>Test visibility</h2>
+                <p class='i-text'></p><b class='i-options' id='card23'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>26/9/2020</span>
+                <div class='i-category'><i style='border-color: #FF0000; background-color: #FF0000'>unsorted</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=36">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-36").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 36
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card23').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-15' class='note-container span3 borderFalse'>
+                <h2 class='i-title '>The Yellow Note</h2>
+                <p class='i-text'>Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                    dolore magna aliqua.</p><b class='i-options' id='card24'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>21/9/2020</span>
+                <div class='i-category'><i style='border-color: #FF0000; background-color: #FF0000'>unsorted</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=15">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-15").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 15
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card24').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-27' class='note-container span2 borderFalse'>
+                <h2 class='i-title '>Decimal</h2>
+                <p class='i-text'></p><b class='i-options' id='card25'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>21/9/2020</span>
+                <div class='i-category'><i style='border-color: #ffd900; background-color: #ffd900'>unsorted</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=27">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-27").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 27
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card25').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div id='open-fn-20' class='note-container span3 borderFalse'>
+                <h2 class='i-title '>The Hello Note</h2>
+                <p class='i-text'>Entering some text. I've been working for a while now. Really enjoying it.</p><b
+                    class='i-options' id='card26'>...</b>
+                <div class="expanded-options">
+                    <button>Pin</button>
+                    <button>Archive</button>
+                    <button>Delete</button>
+                </div>
+                <span class='i-date'>20/9/2020</span>
+                <div class='i-category'><i style='border-color: #FF0000; background-color: #FF0000'>unsorted</i></div>
+                <b><a class='i-btn' href="fullnote.php?note=20">Edit note</a></b>
+                <script>
+                    $(document).ready(function () {
+                        $("#open-fn-20").click(function (e) {
+                            var viewportWidth = $(window).width();
+                            if (viewportWidth > 1460) {
+                                $.ajax({
+                                    type: "get",
+                                    url: "fullnoteside.php",
+                                    data: {
+                                        note: 20
+                                    },
+                                    dataType: "text",
+                                    success: function (response) {
+                                        $('#fullnote-insert').html(response);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#card26').click(function (e) {
+                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        });
+                    });
+                </script>
+            </div>
+            <div class="span3"></div>
+        </section>
+
+        <aside>
+            <div class="sidebar-container">
+
+                <!-- ======================================================================== -->
+
+                <div id="search">
+                    <input type="text" name="searchbox" placeholder="Search..." id="searchbox" autocomplete="off">
+                </div>
+                <script>
+                    $(document).ready(function () {
+                        $("#searchbox").keyup(function (e) {
+                            var input = $(this).val();
+                            if (input.length > -1) {
                                 $.ajax({
                                     type: "post",
                                     url: "innernotes.php",
@@ -2083,16 +1416,404 @@
                                         $('#notes-main-section').html(data);
                                     }
                                 });
-                                // That manages to update the main section however the navigation and footer should be updated as well somehow.
                             }
                         });
+                    });
+                </script>
+
+                <!-- ======================================================================== -->
+
+                <div class="categories-container">
+                    <div class="inner-categories-container">
+                        <a class='category c-all'>All</a>
+                        <script>
+                            $(document).ready(function () {
+                                $(".c-all").click(function (e) {
+                                    $.get("innernotes.php",
+                                        function (data, status) {
+                                            $("#notes-main-section").html(data);
+                                        })
+                                });
+                            });
+                        </script>
+
+                        <a class='category categoryBtn categoryBtn1'
+                            style='border-color: ; background-color: ;'>unsorted</a>
+                        <script>
+                            var valueCategory1 = 'unsorted';
+                        </script>
+                        <script>
+                            $(document).ready(function () {
+                                $('.categoryBtn1').click(function () {
+                                    $.get("innernotes.php?categoryname=" + valueCategory1, function (
+                                        data, status) {
+                                        $("#notes-main-section").html(data);
+                                    })
+                                });
+                            });
+                        </script>
+                        <a class='category categoryBtn categoryBtn2'
+                            style='border-color: #00ffd5; background-color: #00ffd5;'>Another-one</a>
+                        <script>
+                            var valueCategory2 = 'Another-one';
+                        </script>
+                        <script>
+                            $(document).ready(function () {
+                                $('.categoryBtn2').click(function () {
+                                    $.get("innernotes.php?categoryname=" + valueCategory2, function (
+                                        data, status) {
+                                        $("#notes-main-section").html(data);
+                                    })
+                                });
+                            });
+                        </script>
+                        <a class='category categoryBtn categoryBtn3'
+                            style='border-color: #20ff25; background-color: #20ff25;'>asdasd</a>
+                        <script>
+                            var valueCategory3 = 'asdasd';
+                        </script>
+                        <script>
+                            $(document).ready(function () {
+                                $('.categoryBtn3').click(function () {
+                                    $.get("innernotes.php?categoryname=" + valueCategory3, function (
+                                        data, status) {
+                                        $("#notes-main-section").html(data);
+                                    })
+                                });
+                            });
+                        </script>
+                        <a class='category categoryBtn categoryBtn4'
+                            style='border-color: #00ffff; background-color: #00ffff;'>B-team</a>
+                        <script>
+                            var valueCategory4 = 'B-team';
+                        </script>
+                        <script>
+                            $(document).ready(function () {
+                                $('.categoryBtn4').click(function () {
+                                    $.get("innernotes.php?categoryname=" + valueCategory4, function (
+                                        data, status) {
+                                        $("#notes-main-section").html(data);
+                                    })
+                                });
+                            });
+                        </script>
+                        <a class='category categoryBtn categoryBtn5'
+                            style='border-color: #ffffff; background-color: #ffffff;'>New category!</a>
+                        <script>
+                            var valueCategory5 = 'New category!';
+                        </script>
+                        <script>
+                            $(document).ready(function () {
+                                $('.categoryBtn5').click(function () {
+                                    $.get("innernotes.php?categoryname=" + valueCategory5, function (
+                                        data, status) {
+                                        $("#notes-main-section").html(data);
+                                    })
+                                });
+                            });
+                        </script>
+                        <a class='category categoryBtn categoryBtn6'
+                            style='border-color: #ff2025; background-color: #ff2025;'>RED</a>
+                        <script>
+                            var valueCategory6 = 'RED';
+                        </script>
+                        <script>
+                            $(document).ready(function () {
+                                $('.categoryBtn6').click(function () {
+                                    $.get("innernotes.php?categoryname=" + valueCategory6, function (
+                                        data, status) {
+                                        $("#notes-main-section").html(data);
+                                    })
+                                });
+                            });
+                        </script>
+                        <a class='category categoryBtn categoryBtn7'
+                            style='border-color: #004284; background-color: #004284;'>Very Sorted</a>
+                        <script>
+                            var valueCategory7 = 'Very Sorted';
+                        </script>
+                        <script>
+                            $(document).ready(function () {
+                                $('.categoryBtn7').click(function () {
+                                    $.get("innernotes.php?categoryname=" + valueCategory7, function (
+                                        data, status) {
+                                        $("#notes-main-section").html(data);
+                                    })
+                                });
+                            });
+                        </script>
+                    </div>
+                </div>
+
+                <!-- ======================================================================== -->
+
+                <div class="dropdown-category-select">
+                    <label for="select-category-dropdown">Category:</label>
+                    <select name="" id="select-category-dropdown">
+                        <option id="cio-1" class="category-in-options cio-1">All</option>
+                        <script>
+                            $(document).ready(function () {
+                                $(".cio-1").click(function (e) {
+                                    // window.location = "notes.php";
+                                    $.get("innernotes.php",
+                                        function (data, status) {
+                                            $("#notes-main-section").html(data);
+                                        })
+                                });
+                            });
+                        </script>
+                        <option class='category-in-options' style='color: ;'>unsorted</option>
+                        <script>
+                            $(document).ready(function () {
+                                $('#select-category-dropdown').on('change', function () {
+                                    var value = $(this).val();
+                                    $.get("innernotes.php?categoryname=" + value, function (data,
+                                        status) {
+                                        $("#notes-main-section").html(data);
+                                    })
+                                });
+                            });
+                        </script>
+                        <option class='category-in-options' style='color: #00ffd5;'>Another-one</option>
+                        <script>
+                            $(document).ready(function () {
+                                $('#select-category-dropdown').on('change', function () {
+                                    var value = $(this).val();
+                                    $.get("innernotes.php?categoryname=" + value, function (data,
+                                        status) {
+                                        $("#notes-main-section").html(data);
+                                    })
+                                });
+                            });
+                        </script>
+                        <option class='category-in-options' style='color: #20ff25;'>asdasd</option>
+                        <script>
+                            $(document).ready(function () {
+                                $('#select-category-dropdown').on('change', function () {
+                                    var value = $(this).val();
+                                    $.get("innernotes.php?categoryname=" + value, function (data,
+                                        status) {
+                                        $("#notes-main-section").html(data);
+                                    })
+                                });
+                            });
+                        </script>
+                        <option class='category-in-options' style='color: #00ffff;'>B-team</option>
+                        <script>
+                            $(document).ready(function () {
+                                $('#select-category-dropdown').on('change', function () {
+                                    var value = $(this).val();
+                                    $.get("innernotes.php?categoryname=" + value, function (data,
+                                        status) {
+                                        $("#notes-main-section").html(data);
+                                    })
+                                });
+                            });
+                        </script>
+                        <option class='category-in-options' style='color: #ffffff;'>New category!</option>
+                        <script>
+                            $(document).ready(function () {
+                                $('#select-category-dropdown').on('change', function () {
+                                    var value = $(this).val();
+                                    $.get("innernotes.php?categoryname=" + value, function (data,
+                                        status) {
+                                        $("#notes-main-section").html(data);
+                                    })
+                                });
+                            });
+                        </script>
+                        <option class='category-in-options' style='color: #ff2025;'>RED</option>
+                        <script>
+                            $(document).ready(function () {
+                                $('#select-category-dropdown').on('change', function () {
+                                    var value = $(this).val();
+                                    $.get("innernotes.php?categoryname=" + value, function (data,
+                                        status) {
+                                        $("#notes-main-section").html(data);
+                                    })
+                                });
+                            });
+                        </script>
+                        <option class='category-in-options' style='color: #004284;'>Very Sorted</option>
+                        <script>
+                            $(document).ready(function () {
+                                $('#select-category-dropdown').on('change', function () {
+                                    var value = $(this).val();
+                                    $.get("innernotes.php?categoryname=" + value, function (data,
+                                        status) {
+                                        $("#notes-main-section").html(data);
+                                    })
+                                });
+                            });
+                        </script>
+                    </select>
+
+                    <label for="order-by">Order by:</label>
+                    <select name="" id="order-by">
+                        <option value="0">Last modified</option>
+                        <option value="1">Last created</option>
+                        <option value="2">First created</option>
+                        <option value="3">Alphabetically</option>
+                    </select>
+                    <script>
+                        $(document).ready(function () {
+                            $('#order-by').on('change', function () {
+                                var result = $(this).val();
+                                $.get("includes/notes.inc.php?sort=" + result, {}, function (data,
+                                    status) {
+                                    $("#notes-main-section").html(data);
+                                })
+                            })
+                        });
+                    </script>
+                </div>
+
+                <!-- ======================================================================== -->
+
+                <div class="new-category">
+                    <form action="includes/createcategory.inc.php" method="POST" autocomplete="off">
+                        <input type="text" name="newCategoryName" placeholder="New category..." maxlength="14">
+                        <label class="color-example" for="clr">color</label>
+                        <input id="clr" type="color" name="newCategoryColor" value="#ffffff">
+                        <button id="category-create-btn" type="submit" name="newCategorySubmit">Create</button>
+                        <script>
+                            $(document).ready(function () {
+                                $("#clr").change(function (e) {
+                                    var currentColor = $(this).val();
+                                    // console.log(currentColor);
+                                    $(".color-example").css("border-color", currentColor);
+                                });
+                            });
+                        </script>
+                    </form>
+                </div>
+
+                <!-- ======================================================================== -->
+
+                <form id="delete-category" action="includes/deletecategory.inc.php" method="POST">
+                    <select id="category-to-delete" name="category">
+                        <option value=""></option>
+                        <option class='category-in-options' style='color: #00ffd5;' value=Another-one>Another-one
+                        </option>
+                        <option class='category-in-options' style='color: #20ff25;' value=asdasd>asdasd</option>
+                        <option class='category-in-options' style='color: #00ffff;' value=B-team>B-team</option>
+                        <option class='category-in-options' style='color: #ffffff;' value=New category!>New category!
+                        </option>
+                        <option class='category-in-options' style='color: #ff2025;' value=RED>RED</option>
+                        <option class='category-in-options' style='color: #004284;' value=Very Sorted>Very Sorted
+                        </option>
+                    </select>
+                    <button id="deleteCategory">Delete Selected <br> Category</button>
+                </form>
+
+                <!-- ======================================================================== -->
+
+                <div id="toggles">
+                    <a class="a-btn-off" href="notes.php?a"><b>Archiving mode</b><i></i>
+                        <div></div>
+                    </a> <a class='a-btn-off' href="notes.php?b"><b>Archived notes</b><i></i>
+                        <div></div>
+                    </a> <a class='a-btn-on' href="includes/togglecolor.inc.php"><b>Fuschia light</b><i></i>
+                        <div></div>
+                    </a>
+                </div>
+
+                <!-- ======================================================================== -->
+
+                <form action="includes/logout.inc.php" method="POST" id="logout">
+                    <button type="submit" name="logout-submit">Log Out</button>
+                    <div id="permissions">
+                        <span>Signed in as: Aero.K</span> </div>
+                </form>
+
+
+            </div>
+        </aside>
+
+        <div id="fullnote-insert">
+            <script>
+                $(document).ready(function () {
+                    $.ajax({
+                        type: "get",
+                        url: "fullnoteside.php",
+                        data: {
+                            note: 63
+                        },
+                        dataType: "text",
+                        success: function (response) {
+                            $('#fullnote-insert').html(response);
+                        }
                     });
                 });
             </script>
         </div>
-        <!-- </form> -->
-    </footer>
-</body>
+        <!-- <div class="bgdec" id="background-decoration"></div> -->
+        <div class="bgdec" id="background-decoration0"></div>
+        <div class="bgdec" id="background-decoration1"></div>
+
+
+
+
+        <footer>
+            <div id="search">
+                <input type="text" name="searchbox" id="searchbox-b" placeholder="Search..." autocomplete="off">
+            </div>
+            <script>
+                $(document).ready(function () {
+                    var width = $(window).width();
+                    if (width < 1481) {
+                        $("#searchbox-b").keyup(function (e) {
+                            var input = $(this).val();
+                            if (input.length > -1) {
+                                $.ajax({
+                                    type: "post",
+                                    url: "innernotes.php",
+                                    data: {
+                                        search: input
+                                    },
+                                    dataType: "text",
+                                    success: function (data) {
+                                        $('#notes-main-section').html(data);
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            </script>
+            <!-- ======================================================================== -->
+            <form action="includes/logout.inc.php" method="POST" id="logout-b">
+                <div id="permissions">
+                    <span>Signed in as: Aero.K</span> </div>
+                <button type="submit" name="logout-submit">Log Out</button>
+            </form>
+            <!-- ======================================================================== -->
+            <div id="archive">
+                <a class="a-btn-off" href="notes.php?a"><b>Archiving mode</b><i></i>
+                    <div></div>
+                </a> <a class='a-btn-off' href="notes.php?b"><b>Archived notes</b><i></i>
+                    <div></div>
+                </a> <a class='a-btn-on' href="includes/togglecolor.inc.php"><b>Fuschia light</b><i></i>
+                    <div></div>
+                </a>
+            </div>
+            <!-- ======================================================================== -->
+            <form id="category" action="includes/deletecategory.inc.php" method="POST">
+                <select id="category-to-delete-b" name="category">
+                    <option value=""></option>
+                    <option class='category-in-options' style='color: #00ffd5;' value=Another-one>Another-one</option>
+                    <option class='category-in-options' style='color: #20ff25;' value=asdasd>asdasd</option>
+                    <option class='category-in-options' style='color: #00ffff;' value=B-team>B-team</option>
+                    <option class='category-in-options' style='color: #ffffff;' value=New category!>New category!
+                    </option>
+                    <option class='category-in-options' style='color: #ff2025;' value=RED>RED</option>
+                    <option class='category-in-options' style='color: #004284;' value=Very Sorted>Very Sorted</option>
+                </select>
+                <button id="deleteCategory-b">Delete Selected <br> Category</button>
+            </form>
+
+        </footer>
+    </body>
 
 </html>
 
@@ -2102,18 +1823,17 @@
 <!-- not a necessary feature --- Clicking on a note's category allows you to change it to a different one. This should be done as a dropdown list. -->
 <!-- not a necessary feature --- add in multi category select -->
 <!-- not a necessary feature --- Ability to add photos to notes? -->
-<!-- The notes come in floating up from the bottom  -->
-<!-- Using LIMIT in sql it would be easy to only return a certain amount of notes per load - and load more later -->
+<!-- not a necessary feature --- Using LIMIT in sql it would be easy to only return a certain amount of notes per load - and load more later -->
 <!-- The category selector looks rather bad in lightmode and borders aren't enough -->
-<!-- Add the option to place the footer as a sidebar on the left / combine with tv layout maybe -->
 <!-- An empty archive displays the wrong message BUG -->
-<!-- Perhaps the ability to insert html in a note can be a strength instead of a bug? -->
 <!-- Set a min height for the sidebar and test it on less tall displays -->
 <!-- Would it be possible for you to make the table per user upgrade? -->
 <!-- Active category styling -->
 <!-- A button for switching the side on which the sidebar appears -->
-<!-- Add a character counter in fullnotes?, a, b, i tags. -->
-<!-- footer searchbar doesn't work -->
+<!-- Hide the toggles in lg mode to reduce footer footprint -->
+<!-- On login or first time load display a short loading screen consisting of a slide with the logo of the application sliding up -->
+<!-- Research anti-aliasing -->
+<!-- BUG - if the last note created has been archived the fullnote-side will throw an error (on reload when it tries to grab the latest note) -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->

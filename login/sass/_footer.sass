@@ -3,9 +3,9 @@ footer
     z-index: 1000
     display: grid
     grid-template-columns: $hGrid
-    grid-template-areas: "search category logout" "archive archive color"
-    grid-template-columns: 2fr 1.5fr 1.5fr
-    grid-template-rows: 3fr 2fr
+    grid-template-areas: "search category logout" "archive archive archive"
+    grid-template-columns: 2fr 1.85fr 1.5fr
+    grid-template-rows: 1fr 1fr
     width: 100%
     height: 165px
     bottom: 0px
@@ -16,9 +16,9 @@ footer
         grid-area: search
         input
             position: relative
-            left: 8%
-            width: 70%
-            margin-top: 1rem
+            left: 2rem
+            width: 80%
+            margin-top: 1.5rem
             padding: 1rem  0
             padding-left: 1.75rem
             background: $c3
@@ -32,12 +32,17 @@ footer
     #logout-b
         grid-area: logout
         display: grid
-        grid-template-columns: 1fr 3fr
+        grid-template-columns: 2.5fr 1fr
         span
-            // margin: 0 2rem
+            display: block
+            margin-left: 1rem
+            margin-top: 3.5rem
+            // justify-self: center
+            // align-self: center
         button
+            position: relative
+            right: 1rem
             margin: auto
-            margin-bottom: 2rem
             padding: .75rem 1.5rem 
             background: $c3
             transition-duration: $t1
@@ -50,17 +55,20 @@ footer
                 text-decoration: underline
                 text-shadow: 0px 0px 7px $ca
                 cursor: pointer
-    #darkmode
-        grid-area: color
     #archive
         grid-area: archive
         display: grid
         grid-template-columns: 1fr 1fr 1fr
-        grid-gap: 1.5rem
+        grid-template-columns: repeat(auto-fit, 140px)
+        grid-gap: 1.75rem
         width: 100%
+        margin-top: -0.5rem
+        padding-left: 2.25rem
+        padding-bottom: 1rem
+
         a
             display: grid
-            grid-template-rows: 17px 6px                    
+            grid-template-rows: 6px 6px                    
             width: 80%
             height: 30%
             align-self: center
@@ -88,7 +96,6 @@ footer
             border-radius: 9999px
         i
             display: inline
-            // visibility: hidden
             pointer-events: none
 
         .a-btn-on
@@ -98,6 +105,34 @@ footer
                 box-shadow: 0px 0px 8px 4px $cat
     #category
         grid-area: category
+        margin-top: 1.5rem
+        select
+            float: left
+            width: 40%
+            margin-right: 1rem
+            padding: 1rem
+            background: $c3
+            border: 1px solid $c3t
+            border-radius: $border-r
+            box-shadow: inset 5px 5px 5px 3px $c0, inset -5px -5px 5px 3px $c33
+            &:focus
+                border: 1px solid $caa
+        button
+            float: left
+            color: $c5
+            font-weight: bold
+            font-size: .85rem
+            padding: .75rem 1.25rem
+            transition-duration: $t1
+            border-radius: $border-r
+            box-shadow:  3px 3px 3px 3px $c0,  -3px -3px 3px 3px $c33
+            &:hover
+                color: $caa
+                text-decoration: underline
+                text-shadow: 0px 0px 7px $ca
+                cursor: pointer
+            &:active
+                box-shadow: inset -3px -3px 3px 3px $c33, inset 3px 3px 3px 3px $c0
 
     
     

@@ -6,10 +6,9 @@
         header("Location: login.php");
     }
 
-    $editingMode = false;
-    $archiveView = false;
-    $singleCategory = false;
     $searchStrLength = 0;
+
+    require "includes/viewmodes.inc.php";
 
 ?>
 
@@ -18,7 +17,11 @@
 ?>
 <main>
     <?php 
-        require "newnote.php";
+        if ($editingMode === true) {}
+        elseif ($archiveView === true) {}
+        else {
+            // require "newnote.php";
+        }
     ?>
 </main>
 
@@ -67,18 +70,17 @@
 <!-- not a necessary feature --- Clicking on a note's category allows you to change it to a different one. This should be done as a dropdown list. -->
 <!-- not a necessary feature --- add in multi category select -->
 <!-- not a necessary feature --- Ability to add photos to notes? -->
-<!-- The notes come in floating up from the bottom  -->
-<!-- Using LIMIT in sql it would be easy to only return a certain amount of notes per load - and load more later -->
+<!-- not a necessary feature --- Using LIMIT in sql it would be easy to only return a certain amount of notes per load - and load more later -->
 <!-- The category selector looks rather bad in lightmode and borders aren't enough -->
-<!-- Add the option to place the footer as a sidebar on the left / combine with tv layout maybe -->
 <!-- An empty archive displays the wrong message BUG -->
-<!-- Perhaps the ability to insert html in a note can be a strength instead of a bug? -->
 <!-- Set a min height for the sidebar and test it on less tall displays -->
 <!-- Would it be possible for you to make the table per user upgrade? -->
 <!-- Active category styling -->
 <!-- A button for switching the side on which the sidebar appears -->
-<!-- Add a character counter in fullnotes?, a, b, i tags. -->
-<!-- footer searchbar doesn't work -->
+<!-- Hide the toggles in lg mode to reduce footer footprint -->
+<!-- On login or first time load display a short loading screen consisting of a slide with the logo of the application sliding up -->
+<!-- Research anti-aliasing -->
+<!-- BUG - if the last note created has been archived the fullnote-side will throw an error (on reload when it tries to grab the latest note) -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->

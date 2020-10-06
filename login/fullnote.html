@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PHP-Practice</title>
+
+        <link href="css/styles.light.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=B612+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+            rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+
+    <body>
+
+        <main id="fullnote">
+
+            <div class="full-note">
+                <form action="includes/modifynote.inc.php?note=69" method="POST" autocomplete="off">
+
+                    <input type='text' name='noteTitle' maxlength='40' required placeholder='Title'
+                        value='New Note'><textarea type='text' name='noteText'
+                        placeholder='Note text'></textarea><textarea type='text' name='noteSubText'
+                        placeholder='Hidden text'></textarea>2020-10-06 10:13:15 <select name="categoryAndColor">
+                        <option class='category-in-options' style='color: ;' value='unsorted,'>unsorted</option>
+                        <option class='category-in-options' style='color: #00ffd5;' value='Another-one,#00ffd5'>
+                            Another-one</option>
+                        <option class='category-in-options' style='color: #20ff25;' value='asdasd,#20ff25'>asdasd
+                        </option>
+                        <option class='category-in-options' style='color: #00ffff;' value='B-team,#00ffff'>B-team
+                        </option>
+                        <option class='category-in-options' style='color: #ffffff;' value='New category!,#ffffff'>New
+                            category!</option>
+                        <option class='category-in-options' style='color: #ff2025;' value='RED,#ff2025'>RED</option>
+                        <option class='category-in-options' style='color: #004284;' value='Very Sorted,#004284'>Very
+                            Sorted</option>
+                    </select>
+                    <button type="submit" name="saveNote">Save</button>
+                </form>
+                <a href="includes/archivenote.inc.php?note=69&update=archived">Archive</a>
+                <a href="includes/deletenote.inc.php?note=69&update=deleted">Delete</a>
+                <a href="notes.php?update=discarded">Return</a>
+            </div> <!-- closes the full-note div -->
+            <!-- return without saving. JS alert asking are you sure, don't ask me again -->
+        </main>
+    </body>
+
+</html>

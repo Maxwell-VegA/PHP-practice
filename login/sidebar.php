@@ -47,11 +47,10 @@
                 else {
                     $index = 0;
                     foreach ($categoryArr as $aCategory) {
-                        // echo "<a class='category categoryBtn'" . " style='background-color: " . $aCategory['color'] . ";'" . "href='notes.php?categoryname=" . $aCategory['categoryName'] . "'>" . $aCategory['categoryName'] . "</a>";
                         $index++;
                         $cName = $aCategory['categoryName'];
                         echo "<a class='category categoryBtn categoryBtn$index' ";
-                        echo "style='border-color: " . $aCategory['color'] . ";'>";
+                        echo "style='border-color: " . $aCategory['color'] . "; background-color: " . $aCategory['color'] . ";'>";
                         echo $cName;
                         echo "</a>";
                         echo "<script>var valueCategory$index = '$cName';</script>";
@@ -135,7 +134,7 @@
     <form action="includes/createcategory.inc.php" method="POST" autocomplete="off">
         <input type="text" name="newCategoryName" placeholder="New category..." maxlength="14">
         <label class="color-example" for="clr">color</label>
-        <input id="clr" type="color" name="newCategoryColor" value="#8f8f8f">
+        <input id="clr" type="color" name="newCategoryColor" value="#ffffff">
         <button id="category-create-btn" type="submit" name="newCategorySubmit">Create</button>
         <script>
             $(document).ready(function () {
@@ -151,7 +150,7 @@
 
     <!-- ======================================================================== -->
 
-<form id="delete-category">
+<form id="delete-category" action="includes/deletecategory.inc.php" method="POST">
     <select id="category-to-delete" name="category">
             <option value=""></option>
             <?php 
@@ -173,20 +172,20 @@
             ?><a class="a-btn-on" href="notes.php"><b>Archiving mode</b><i></i><div></div></a> <?php
         }
         else {
-            ?><a class="a-btn-off" href="archive.php?a"><b>Archiving mode</b><i></i><div></div></a> <?php
+            ?><a class="a-btn-off" href="notes.php?a"><b>Archiving mode</b><i></i><div></div></a> <?php
         }
 
         if ($archiveView === false) {
-            ?> <a class='a-btn-off' href="archivednotes.php?b"><b>Archived notes</b><i></i><div></div></a> <?php
+            ?> <a class='a-btn-off' href="notes.php?b"><b>Archived notes</b><i></i><div></div></a> <?php
         }
         else {
             ?> <a class='a-btn-on' href="notes.php"><b>Archived notes</b><div></div></a> <?php
         }
-        if (true) {
-            ?> <a class='a-btn-off' href="#"><b>Lightmode</b><i></i><div></div></a> <?php
+        if ($_SESSION['darkmode'] === 'd') {
+            ?> <a class='a-btn-on' href="includes/togglecolor.inc.php"><b>Golden night</b><i></i><div></div></a> <?php
         }
         else {
-            ?> <a class='a-btn-on' href="#"><b>Lightmode</b><i></i><div></div></a> <?php
+            ?> <a class='a-btn-on' href="includes/togglecolor.inc.php"><b>Fuschia light</b><i></i><div></div></a> <?php
         }
     ?>            
 </div>

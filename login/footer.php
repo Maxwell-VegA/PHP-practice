@@ -27,7 +27,6 @@
         </script>
         <!-- ======================================================================== -->
         <form action="includes/logout.inc.php" method="POST" id="logout-b">
-            <button type="submit" name="logout-submit">Log Out</button>
             <div id="permissions">
                 <?php
                     if ($adminPermissions === true) {
@@ -36,23 +35,10 @@
                     else {
                         echo "<span>Signed in as: " . $_SESSION['userUid'] . "</span>";
                     }
-                ?>
+                    ?>
             </div>
+            <button type="submit" name="logout-submit">Log Out</button>
         </form> 
-        <!-- ======================================================================== -->
-        <div id="darkmode">
-            <?php
-                if ($darkmode === true) {
-                    echo "<button>Darkmode</button>";
-                }
-                else {
-                    echo "<button>Lightmode</button>";
-                }
-                // darkmode is warm, lightmode is cool
-                // if user darkmode = d {require darkmode.sass}
-                // All buttons have a kind of glowing bar underneeth them which activates when they are toggled
-            ?>
-        </div>  
         <!-- ======================================================================== -->
         <div id="archive">
             <?php
@@ -60,25 +46,25 @@
                     ?><a class="a-btn-on" href="notes.php"><b>Archiving mode</b><i></i><div></div></a> <?php
                 }
                 else {
-                    ?><a class="a-btn-off" href="archive.php?a"><b>Archiving mode</b><i></i><div></div></a> <?php
+                    ?><a class="a-btn-off" href="notes.php?a"><b>Archiving mode</b><i></i><div></div></a> <?php
                 }
 
                 if ($archiveView === false) {
-                    ?> <a class='a-btn-off' href="archivednotes.php?b"><b>Archived notes</b><i></i><div></div></a> <?php
+                    ?> <a class='a-btn-off' href="notes.php?b"><b>Archived notes</b><i></i><div></div></a> <?php
                 }
                 else {
                     ?> <a class='a-btn-on' href="notes.php"><b>Archived notes</b><div></div></a> <?php
                 }
-                if (true) {
-                    ?> <a class='a-btn-off' href="#"><b>Lightmode</b><i></i><div></div></a> <?php
+                if ($_SESSION['darkmode'] === 'd') {
+                    ?> <a class='a-btn-on' href="includes/togglecolor.inc.php"><b>Golden night</b><i></i><div></div></a> <?php
                 }
                 else {
-                    ?> <a class='a-btn-on' href="#"><b>Lightmode</b><i></i><div></div></a> <?php
+                    ?> <a class='a-btn-on' href="includes/togglecolor.inc.php"><b>Fuschia light</b><i></i><div></div></a> <?php
                 }
             ?>            
         </div>
         <!-- ======================================================================== -->
-        <form id="category">
+        <form id="category" action="includes/deletecategory.inc.php" method="POST">
             <select id="category-to-delete-b" name="category">
                     <option value=""></option>
                     <?php 

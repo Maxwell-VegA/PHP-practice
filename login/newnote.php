@@ -1,4 +1,9 @@
-<?php 
+<?php
+    require "includes/viewmodes.inc.php";
+    if ($editingMode === true) {}
+    elseif ($archiveView === true) {}
+    else {
+
     require "includes/categories.inc.php";
     if(isset($_POST['sortingByCategory'])) {
         $category = $_POST['sortingByCategory'];
@@ -44,3 +49,5 @@
     <div></div>
     <div></div>
     <div></div>
+<?php 
+    }

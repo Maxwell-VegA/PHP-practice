@@ -19,7 +19,8 @@
             }
             else {
                 mysqli_stmt_execute($stmt);
-                require 'notes.inc.php';
+                header("Location: ../notes.php");
+                // require 'notes.inc.php';
             }
         }
     }

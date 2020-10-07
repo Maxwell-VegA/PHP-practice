@@ -47,7 +47,7 @@
                             $index++;
                             $cName = $aCategory['categoryName'];
                             echo "<a class='category categoryBtn categoryBtn$index' ";
-                            echo "style='border-color: " . $aCategory['color'] . ";'>";
+                            echo "style='border-color: " . $aCategory['color'] . "; background-color: " . $aCategory['color'] . ";'>";
                             echo $cName;
                             echo "</a>";
                             echo "<script>var valueCategory$index = '$cName';</script>";

@@ -2,7 +2,7 @@
 @import "variables";
     
 *
-    font-family: 'Roboto Mono', monospace
+    font-family: 'Roboto Mono', 'Nova Mono', 'B612 Mono', 'Source Code Pro', 'Courier Prime', monospace
     color: $c5
     text-decoration: none
     outline: none
@@ -47,5 +47,8 @@ button:hover
         border-bottom-right-radius: 0px !important
 select        
     option
-        color: $ca
-        background-color: $option
+        color: $ca 
+        background-color: $option !important
+
+// Apply this to prevent text selection where it would be useful (not a must have though)
+// user-select: none

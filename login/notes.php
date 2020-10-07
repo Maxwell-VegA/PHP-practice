@@ -80,7 +80,13 @@
 <!-- Hide the toggles in lg mode to reduce footer footprint -->
 <!-- On login or first time load display a short loading screen consisting of a slide with the logo of the application sliding up -->
 <!-- Research anti-aliasing -->
-<!-- BUG - if the last note created has been archived the fullnote-side will throw an error (on reload when it tries to grab the latest note) -->
+<!-- Either I try to fix order by or remove it -->
+<!-- Fix the 1px offset on new note bottom (log note btn) -->
+<!-- Will need to improve the behaviour of the options toggle on page reoload -->
+<!-- Style header active states and responsive border widths -->
+<!-- integrate variable shadows depending on time of day? -->
+<!-- To wrap up I could mvoe all JS to a seperate file -->
+<!-- When the options for a note are opened and then closed by opening them for a different note they will need to be double clicked to open again -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->
 <!-- ======================================================== -->

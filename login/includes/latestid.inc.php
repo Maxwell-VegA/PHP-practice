@@ -4,7 +4,7 @@
     }
     require 'dbh.inc.php';
     $currentUser = $_SESSION['userUid'];
-    $sql = "SELECT * FROM notes WHERE createdBy='$currentUser' ORDER BY lastModified DESC";
+    $sql = "SELECT * FROM notes WHERE createdBy='$currentUser' AND visibility = 'default' ORDER BY lastModified DESC";
     $stmt = mysqli_stmt_init($conn);
     mysqli_stmt_prepare($stmt, $sql);
     mysqli_stmt_execute($stmt);

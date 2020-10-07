@@ -73,30 +73,19 @@
                 </select>
                 <button id="save-btn" type="submit" name="saveNote">Save</button>
                 <div>
-                    <a href="includes/archivenote.inc.php?note=<?php echo $note['id']; ?>&update=archived">Archive</a>
-                    <a href="includes/deletenote.inc.php?note=<?php echo $note['id']; ?>&update=deleted">Delete</a>
-                    <?php
-                    $pinValue = 'Pin';
-                    $pinYN    = 'yes';
+                    <?php 
                     if ($note['pinned'] === "yes") {
-                        $pinValue = 'Unpin';
-                        $pinYN    = 'no';
+                        $pinYN = "no";
+                        $pinValue = "Unpin";
+                    }
+                    else {
+                        $pinYN = "yes";
+                        $pinValue = "Pin";
                     }
                     ?>
-
-                    <button id="pin-note"><?php echo $pinValue; ?></button>
-                    <script>
-                        $(document).ready(function () {
-                            $("#pin-note").click(function (e) { 
-                                $.post("includes/pinnote.inc.php?note=<?php echo $_GET['note']; ?>",
-                                {
-                                    pinNote:'<?php echo $pinYN; ?>'
-                                });  
-                                // $("#notes-main-section").load("innernotes.php");
-                            });
-                        });
-                    </script>
-                        <?php ?>
+                    <a href="includes/archivenote.inc.php?note=<?php echo $note['id']; ?>&update=archived">Archive</a>
+                    <a href="includes/deletenote.inc.php?note=<?php echo $note['id']; ?>&update=deleted">Delete</a>
+                    <a href="includes/pinnote.inc.php?note=<?php echo $note['id'] ?>&pinNote=<?php echo $pinYN ?>"><?php echo $pinValue ?></a>
                 </div>
             </form>
         </div> <!-- closes the full-note div --> 

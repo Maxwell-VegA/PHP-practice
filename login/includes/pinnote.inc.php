@@ -1,11 +1,11 @@
 <?php
     session_start();
     
-    if (isset($_POST['pinNote'])) {
+    if (isset($_GET['pinNote'])) {
         require 'dbh.inc.php';
         $createdBy  =   $_SESSION['userUid'];
         $noteId     =   $_GET['note'];
-        $pinNote    =   $_POST['pinNote'];
+        $pinNote    =   $_GET['pinNote'];
         if ($pinNote === "yes" || $pinNote === "no") {
             $sql = "UPDATE notes SET pinned = '$pinNote', lastModified = now() WHERE id = $noteId AND createdBy = '$createdBy'";
             $stmt = mysqli_stmt_init($conn);

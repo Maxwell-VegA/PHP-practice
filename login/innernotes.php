@@ -140,12 +140,23 @@
             echo "<h2 class='i-title " . $pinnedTitle . "'>" . $note['noteTitle'] . "</h2>";
             echo "<p class='i-text'>" . $note['noteText'] . "</p>";
             // =====
-            echo "<b class='i-options' id='card$index'>"      . "..." . "</b>"; 
+            echo "<b class='i-options' id='options-btn-card$index'>"      . "opt" . "</b>"; 
             ?>
-            <div class="expanded-options">
-                <button>Pin</button>
-                <button>Archive</button>
-                <button>Delete</button>
+            <div id="options-container-card<?php echo $index ?>" class="expanded-options">
+                <?php 
+                if ($note['pinned'] === "yes") {
+                    $pinYN = "no";
+                    $pinValue = "Unpin";
+                }
+                else {
+                    $pinYN = "yes";
+                    $pinValue = "Pin";
+                }
+                
+                ?>
+                <a class="button-in-options" href="includes/pinnote.inc.php?note=<?php echo $note['id'] ?>&pinNote=<?php echo $pinYN ?>"><?php echo $pinValue ?></a>
+                <a class="button-in-options" href="includes/archivenote.inc.php?note=<?php echo $note['id']; ?>&update=archived">Archive</a>
+                <a class="button-in-options" href="includes/deletenote.inc.php?note=<?php echo $note['id']; ?>&update=deleted">Delete</a>
             </div>
             <?php
             // =====
@@ -183,8 +194,23 @@
             ?>
                 <script>
                     $(document).ready(function () {
-                        $('#card<?php echo $index; ?>').click(function (e) { 
-                            // This will open a menu. Before I get into opening it I should probably create it and restyle the card template in css.
+                        var optionsContainerOpen = false;
+                        $('#options-btn-card<?php echo $index; ?>').click(function (e) { 
+                            $(".expanded-options").css({
+                                    'display': 'none'
+                            })
+                            if (optionsContainerOpen === false) {
+                                $("#options-container-card<?php echo $index ?>").css({
+                                    'display': 'block'
+                                });
+                                optionsContainerOpen = true;
+                            }
+                            else {
+                                $("#options-container-card<?php echo $index ?>").css({
+                                    'display': 'none'
+                                });
+                                optionsContainerOpen = false;
+                            }
                         });
                     });
                 </script>
@@ -199,3 +225,6 @@
     if ($editingMode === false && $archiveView === false) {
         ?> <div class="span3"></div> <?php
     }
+?>
+<div></div>
+<div></div>

@@ -26,19 +26,34 @@
             });
         </script>
         <!-- ======================================================================== -->
-        <form action="includes/logout.inc.php" method="POST" id="logout-b">
-            <div id="permissions">
-                <?php
-                    if ($adminPermissions === true) {
-                        echo "<span>User Class - Admin</span>";
-                    }
-                    else {
-                        echo "<span>Signed in as: " . $_SESSION['userUid'] . "</span>";
-                    }
-                    ?>
-            </div>
-            <button type="submit" name="logout-submit">Log Out</button>
-        </form> 
+        <div class="options-logout-container">
+            <button id="options-btn">Options</button>
+<!-- on click change archive from display none to display some -->
+            <script>
+                $(document).ready(function () {
+                    var optionsOpen = false;
+                    $("#options-btn").click(function (e) { 
+                        if (optionsOpen === false) {
+                            $("#archive").css({
+                                'display': 'grid'
+                            });
+                            $("#options-btn").toggleClass("options-btn-active");
+                            optionsOpen = true;
+                        }
+                        else {
+                            $("#archive").css({
+                                'display': 'none'
+                            });
+                            $("#options-btn").toggleClass("options-btn-active");
+                            optionsOpen = false;
+                        }
+                    });
+                });
+            </script>
+            <form action="includes/logout.inc.php" method="POST" id="logout-b">
+                <button type="submit" name="logout-submit">Log Out</button>
+            </form> 
+        </div>
         <!-- ======================================================================== -->
         <div id="archive">
             <?php

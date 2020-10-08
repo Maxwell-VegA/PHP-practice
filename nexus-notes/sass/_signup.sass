@@ -1,0 +1,64 @@
+// Should add a back to signup link as well as a title declaring the purpouse of the page
+#signup-title
+    position: absolute
+    font-size: 1.5rem
+    color: $c6
+    left: 50%
+    transform: translateX(-50%)
+    top: 6%
+.signup-form
+    position: absolute
+    width: 90%
+    max-width: 26rem
+    height: 31rem
+    left: 50%
+    transform: translateX(-50%)
+    top: 10%
+    margin: 0 auto
+    padding: 2rem
+    background: $c44
+    border-radius: $border-r 
+    box-shadow: 5px 5px 5px 3px $c0, -5px -5px 5px 3px $c33
+    p
+        color: $c3
+        font-size: 1.2rem
+        margin: 1.25rem .5rem .75rem .5rem
+        &:nth-child(1)
+            margin-top: 0
+            
+    input
+        font-size: 1.15rem
+        width: 94%
+        padding: .75rem 2% .75rem 4%
+        background: $c2
+        border: $c44 solid $borderPX
+        border-radius: $border-r
+        box-shadow: inset 5px 5px 5px 3px $c0, inset -5px -5px 5px 3px $c33
+        &:focus
+            background: $c3
+            border: $caa solid $borderPX
+        &:hover
+            background: $c3
+
+    a
+        float: left
+        color: $c3
+        font-size: 1.2rem
+        text-decoration: underline
+        margin: .75rem .5rem
+        &:hover
+            color: $caa
+    
+    button
+        float: right
+        color: $c6
+        font-size: 1.2rem
+        margin-top: .5rem
+        padding: .75rem 1.5rem
+        background: $c2
+        border: $c2 solid 1px
+        border-radius: 2px
+        &:hover
+            color: $ca
+            background: $c4
+            border: $ca solid 1px

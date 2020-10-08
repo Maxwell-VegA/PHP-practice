@@ -23,7 +23,9 @@
         }
     }
 ?>
-<form action="includes/signup.inc.php" method="POST">
+
+<h1 id="signup-title">Sign Up</h1>
+<form class="signup-form" action="includes/signup.inc.php" method="POST">
     <p>Username:</p>
     <input type="text"      name="uid">
     <p>E-mail:</p>
@@ -35,6 +37,7 @@
     <br>
     <br>
     <button type="submit"   name="signup-submit">Create Account</button>
+    <a href="login.php">Log in</a>      
 </form>
 
 <!-- The second pwd field only pops up after the minimum seven characters have been entered into the first one -->

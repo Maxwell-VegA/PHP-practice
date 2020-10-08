@@ -1,0 +1,94 @@
+#fullnote
+    position: fixed
+    width: 100%
+    height: 100vh
+    top: 0
+    background: $c2
+    pointer-events: all
+    overflow: hidden
+    form
+        // position: fixed
+        position: relative
+        display: grid
+        grid-template-rows: 1fr 1fr minmax(200px, 5fr) 2fr .25fr 1fr  
+        grid-template-areas: "title" "category" "text" "subtext" "date" "save" "btns"
+        grid-row-gap: 2rem
+        width: 80%
+        max-width: 44rem
+        height: auto
+        left: 50%
+        transform: translateX(-50%)
+        input
+            grid-area: title
+            color: $c4
+            padding: .75rem 1.75rem
+            font-weight: bold
+            font-size: 1.75rem
+            background: $c3
+            border: $borderPX $borderType $c3
+            border-radius: $border-r
+            box-shadow: inset 5px 5px 5px 3px $c0, inset -5px -5px 5px 3px $c33
+            &:hover
+                color: $c44
+            &:focus
+                color: $c5
+                border: $borderPX $borderType $caa  
+        textarea
+            color: $c4
+            padding: 5%
+            background: $c3
+            border-radius: $border-r
+            border: $borderPX $borderType $c3
+            box-shadow: inset 5px 5px 5px 3px $c0, inset -5px -5px 5px 3px $c33
+            resize: none
+            &:hover
+                color: $c44
+            &:focus
+                z-index: 400
+                color: $c5
+                border: $borderPX $borderType $caa  
+        textarea:nth-child(2)
+            grid-area: text
+        textarea:nth-child(3)
+            grid-area: subtext
+        select
+            grid-area: category
+            padding: .5rem
+            background: $c3
+            border: $borderPX $borderType $c3
+            border-radius: $border-r
+            box-shadow: inset 5px 5px 5px 3px $c0, inset -5px -5px 5px 3px $c33
+            &:hover
+                // border: $borderPX $borderType $cab
+            &:focus
+                border: $borderPX $borderType $caa  
+            option
+                color: $ca
+                background: $option
+
+
+        i
+            grid-area: date
+            // padding: 1rem
+            // will need to place the date inside of an i tag. Currently it has no taggs.
+        
+        button:nth-child(5)
+            grid-area: save
+            color: $c5
+            font-weight: bold
+            font-size: 1.25rem
+            width: 94%
+            align-self: center
+            justify-self: center
+            padding: 1rem 0
+            transition-duration: $t1
+            border-radius: $border-r
+            box-shadow:  3px 3px 3px 3px $c0,  -3px -3px 3px 3px $c33
+            &:hover
+                color: $caa
+                text-decoration: underline
+                text-shadow: 0px 0px 7px $ca
+                cursor: pointer
+            &:active
+                box-shadow: inset -3px -3px 3px 3px $c33, inset 3px 3px 3px 3px $c0
+
